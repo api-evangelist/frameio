@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/frameio-v4-openapi.json
+docs: https://next.developer.frame.io/platform/v4/docs/guides/authentication/overview
+note: OAuth2 via Adobe IMS (ims-na1.adobelogin.com). authorizationCode flow for user
+  apps (Web/SPA/Native with PKCE), clientCredentials for server-to-server. Legacy
+  developer tokens supported via the x-frameio-legacy-token-auth header.
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+    scopes: 4
+  description: 'For more information, see: https://developer.adobe.com/frameio'
+  sources:
+  - openapi/frameio-v4-openapi.json
+- name: s2s_auth
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+    scopes: 3
+  description: Server to server authentication flow
+  sources:
+  - openapi/frameio-v4-openapi.json
