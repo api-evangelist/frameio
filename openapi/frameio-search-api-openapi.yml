@@ -1,0 +1,1731 @@
+openapi: 3.0.0
+info:
+  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  license:
+    name: Adobe
+    url: https://www.adobe.com/legal/terms.html
+  title: Frame.io Account Permissions Search API
+  version: v4.0
+servers:
+- url: https://api.frame.io
+  variables: {}
+security:
+- OAuth2: []
+- bearer: []
+tags:
+- description: Manage Search and related operations.
+  name: Search
+paths:
+  /v4/accounts/{account_id}/search:
+    post:
+      callbacks: {}
+      description: 'Search across assets, folders, and projects within an account.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user
+
+        '
+      operationId: search.search
+      parameters:
+      - description: ''
+        example: 54510046-73dd-4f53-acdb-f6894fd4ae5a
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: 'Opaque Cursor query param for requests returning paginated results.
+
+          <br/>
+
+          NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+          '
+        in: query
+        name: after
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestAfterOpaqueCursor'
+      - description: ''
+        in: query
+        name: page_size
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestPageSize'
+      - description: ''
+        in: query
+        name: include_total_count
+        required: false
+        schema:
+          $ref: '#/components/schemas/IncludeTotalCount'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchParams'
+        description: Search parameters
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Search account
+      tags:
+      - Search
+components:
+  schemas:
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    AssigneeMatch:
+      description: The result's assignee is a match for the search query
+      example:
+        assignee_id: 4b1cea16-40a7-4e3d-8eba-24e2e922aae0
+        type: assignee_match
+      properties:
+        assignee_id:
+          description: The ID of the user who the result is assigned to
+          format: uuid
+          type: string
+        type:
+          enum:
+          - assignee_match
+          type: string
+      required:
+      - type
+      - assignee_id
+      title: AssigneeMatch
+      type: object
+    SearchMatch:
+      description: A match explaining why a result was returned
+      example:
+        name: red_car.png
+        terms:
+        - red
+        - car
+        type: name_match
+      oneOf:
+      - $ref: '#/components/schemas/NameMatch'
+      - $ref: '#/components/schemas/SourceFilenameMatch'
+      - $ref: '#/components/schemas/ProjectMatch'
+      - $ref: '#/components/schemas/CreatorMatch'
+      - $ref: '#/components/schemas/AssigneeMatch'
+      - $ref: '#/components/schemas/FormatMatch'
+      - $ref: '#/components/schemas/KeywordsMatch'
+      - $ref: '#/components/schemas/StatusMatch'
+      - $ref: '#/components/schemas/VisualMatch'
+      - $ref: '#/components/schemas/TranscriptionMatch'
+      - $ref: '#/components/schemas/CommentMatch'
+      - $ref: '#/components/schemas/RatingMatch'
+      - $ref: '#/components/schemas/CommentCountMatch'
+      - $ref: '#/components/schemas/PageCountMatch'
+      - $ref: '#/components/schemas/DurationMatch'
+      - $ref: '#/components/schemas/FilesizeMatch'
+      - $ref: '#/components/schemas/AudioSampleRateMatch'
+      - $ref: '#/components/schemas/NotesMatch'
+      - $ref: '#/components/schemas/UploadedAtMatch'
+      - $ref: '#/components/schemas/UpdatedAtMatch'
+      - $ref: '#/components/schemas/DeletedAtMatch'
+      - $ref: '#/components/schemas/InsertedAtMatch'
+      - $ref: '#/components/schemas/FileTypeMatch'
+      - $ref: '#/components/schemas/BitDepthMatch'
+      - $ref: '#/components/schemas/BitRateMatch'
+      - $ref: '#/components/schemas/CodecMatch'
+      - $ref: '#/components/schemas/ChannelsMatch'
+      - $ref: '#/components/schemas/FrameRateMatch'
+      - $ref: '#/components/schemas/HasAlphaChannelMatch'
+      - $ref: '#/components/schemas/ColorSpaceMatch'
+      - $ref: '#/components/schemas/ResolutionWidthMatch'
+      - $ref: '#/components/schemas/ResolutionHeightMatch'
+      - $ref: '#/components/schemas/DynamicRangeMatch'
+      title: SearchMatch
+      type: object
+    AssetCommon:
+      example:
+        adobe_id: urn:aaid:sc:US:a1b2c3d4-e5f6-7890-abcd-ef1234567890
+        created_at: '2023-09-25T19:18:29.614189Z'
+        id: 477b4abc-b34e-41dc-81b3-61ef3e6f4a0e
+        name: asset.png
+        parent_id: c9c99632-6f5f-4e60-a323-c93e4c2a0f4f
+        project_id: 3ffaf0ca-e6d8-4f1e-ac9d-3c064d371085
+        type: file
+        updated_at: '2024-02-07T16:44:41.986478Z'
+        view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/view/5a89a9fb-0900-4b23-826b-127b90e4db4c
+      properties:
+        adobe_id:
+          description: Adobe cloud storage asset identifier, when available.
+          nullable: true
+          type: string
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        id:
+          description: File, Folder, or Version Stack ID
+          format: uuid
+          type: string
+        name:
+          description: File or folder Name
+          type: string
+        parent_id:
+          description: Parent Folder or Version Stack ID
+          format: uuid
+          nullable: true
+          type: string
+        project_id:
+          description: Project ID
+          format: uuid
+          type: string
+        type:
+          enum:
+          - file
+          - folder
+          - version_stack
+          type: string
+        updated_at:
+          description: Update timestamp
+          format: date-time
+          type: string
+        view_url:
+          description: URL to view the asset in the Frame.io web application
+          type: string
+      required:
+      - id
+      - name
+      - type
+      - project_id
+      - parent_id
+      - created_at
+      - updated_at
+      - view_url
+      title: AssetCommon
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    AssetSearchResult:
+      description: A search result containing an asset (file, folder, or version stack)
+      example:
+        matches:
+        - name: red_car.png
+          terms:
+          - red
+          - car
+          type: name_match
+        result:
+          adobe_id: urn:aaid:sc:US:a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          created_at: '2023-09-25T19:18:29.614189Z'
+          id: 477b4abc-b34e-41dc-81b3-61ef3e6f4a0e
+          name: asset.png
+          parent_id: c9c99632-6f5f-4e60-a323-c93e4c2a0f4f
+          project_id: 3ffaf0ca-e6d8-4f1e-ac9d-3c064d371085
+          type: file
+          updated_at: '2024-02-07T16:44:41.986478Z'
+          view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/view/5a89a9fb-0900-4b23-826b-127b90e4db4c
+        type: file_result
+      properties:
+        matches:
+          description: Matches explaining why this result was returned
+          items:
+            $ref: '#/components/schemas/SearchMatch'
+          type: array
+        result:
+          $ref: '#/components/schemas/AssetCommon'
+        type:
+          enum:
+          - file_result
+          - folder_result
+          - version_stack_result
+          type: string
+      required:
+      - type
+      - result
+      - matches
+      title: AssetSearchResult
+      type: object
+    CodecMatch:
+      description: The result's codec is a match for the search query
+      example:
+        codec: h264
+        type: codec_match
+      properties:
+        codec:
+          description: The codec of the result
+          type: string
+        type:
+          enum:
+          - codec_match
+          type: string
+      required:
+      - type
+      - codec
+      title: CodecMatch
+      type: object
+    FrameRateMatch:
+      description: The result's frame rate is a match for the search query
+      example:
+        frame_rate: 29.97
+        type: frame_rate_match
+      properties:
+        frame_rate:
+          description: The frame rate of the result in fps
+          format: float
+          type: number
+        type:
+          enum:
+          - frame_rate_match
+          type: string
+      required:
+      - type
+      - frame_rate
+      title: FrameRateMatch
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    BitDepthMatch:
+      description: The result's bit depth is a match for the search query
+      example:
+        bit_depth: 24.0
+        type: bit_depth_match
+      properties:
+        bit_depth:
+          description: The bit depth of the result
+          format: float
+          type: number
+        type:
+          enum:
+          - bit_depth_match
+          type: string
+      required:
+      - type
+      - bit_depth
+      title: BitDepthMatch
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    NameMatch:
+      description: The result's name is a match for the search query
+      example:
+        name: red_car.png
+        terms:
+        - red
+        - car
+        type: name_match
+      properties:
+        name:
+          description: The name of the result
+          type: string
+        terms:
+          description: The terms in the search query that matched the result's name
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - name_match
+          type: string
+      required:
+      - type
+      - name
+      - terms
+      title: NameMatch
+      type: object
+    HasAlphaChannelMatch:
+      description: The result's alpha channel presence is a match for the search query
+      example:
+        has_alpha_channel: true
+        type: has_alpha_channel_match
+      properties:
+        has_alpha_channel:
+          description: Whether the result has an alpha channel
+          type: boolean
+        type:
+          enum:
+          - has_alpha_channel_match
+          type: string
+      required:
+      - type
+      - has_alpha_channel
+      title: HasAlphaChannelMatch
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    KeywordsMatch:
+      description: The result's keywords are a match for the search query
+      example:
+        keywords:
+        - car
+        - red
+        - sports
+        type: keywords_match
+      properties:
+        keywords:
+          description: The keywords of the result that are relevant to the search
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - keywords_match
+          type: string
+      required:
+      - type
+      - keywords
+      title: KeywordsMatch
+      type: object
+    VisualMatch:
+      description: The result's content vector embedding is a match for the search query
+      example:
+        clips:
+        - best_frame_time: 18500
+          end_time: 23000
+          index: 0
+          relevancy_index: 0
+          start_time: 15000
+        type: visual_match
+      properties:
+        clips:
+          description: The list of subclips matching the query
+          items:
+            description: A subclip within a video that is a match for the search query
+            properties:
+              best_frame_time:
+                description: Best matching frame time in milliseconds
+                type: integer
+              end_time:
+                description: End time in milliseconds
+                type: integer
+              index:
+                description: Chronological index of this clip
+                type: integer
+              relevancy_index:
+                description: Index ordered by relevancy score
+                type: integer
+              start_time:
+                description: Start time in milliseconds
+                type: integer
+            required:
+            - start_time
+            - end_time
+            - best_frame_time
+            - index
+            - relevancy_index
+            title: VisualMatchClip
+            type: object
+          type: array
+        type:
+          enum:
+          - visual_match
+          type: string
+      required:
+      - type
+      - clips
+      title: VisualMatch
+      type: object
+    FilesizeMatch:
+      description: The result's file size is a match for the search query
+      example:
+        filesize: 1048576
+        type: filesize_match
+      properties:
+        filesize:
+          description: The file size of the result in bytes
+          type: integer
+        type:
+          enum:
+          - filesize_match
+          type: string
+      required:
+      - type
+      - filesize
+      title: FilesizeMatch
+      type: object
+    InsertedAtMatch:
+      description: The result's inserted at timestamp is a match for the search query
+      example:
+        inserted_at: '2025-01-06T10:00:00Z'
+        type: inserted_at_match
+      properties:
+        inserted_at:
+          description: The inserted at timestamp of the result
+          format: date-time
+          type: string
+        type:
+          enum:
+          - inserted_at_match
+          type: string
+      required:
+      - type
+      - inserted_at
+      title: InsertedAtMatch
+      type: object
+    DynamicRangeMatch:
+      description: The result's dynamic range is a match for the search query
+      example:
+        dynamic_range: HDR
+        type: dynamic_range_match
+      properties:
+        dynamic_range:
+          description: The dynamic range of the result
+          type: string
+        type:
+          enum:
+          - dynamic_range_match
+          type: string
+      required:
+      - type
+      - dynamic_range
+      title: DynamicRangeMatch
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    ProjectSearchResult:
+      description: A search result containing a project
+      example:
+        matches:
+        - name: red_car.png
+          terms:
+          - red
+          - car
+          type: name_match
+        result:
+          adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+          created_at: '2024-01-25T19:18:29.614189Z'
+          id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+          name: My Project
+          restricted: false
+          root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
+          status: active
+          storage: 15000
+          updated_at: '2024-02-07T16:44:41.986478Z'
+          view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+          workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+        type: project_result
+      properties:
+        matches:
+          description: Matches explaining why this result was returned
+          items:
+            $ref: '#/components/schemas/SearchMatch'
+          type: array
+        result:
+          $ref: '#/components/schemas/Project'
+        type:
+          enum:
+          - project_result
+          type: string
+      required:
+      - type
+      - result
+      - matches
+      title: ProjectSearchResult
+      type: object
+    FormatMatch:
+      description: The result's format is a match for the search query
+      example:
+        format: mp4
+        type: format_match
+      properties:
+        format:
+          description: The format of the result
+          type: string
+        type:
+          enum:
+          - format_match
+          type: string
+      required:
+      - type
+      - format
+      title: FormatMatch
+      type: object
+    Project:
+      description: Frame.io Project
+      example:
+        adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+        created_at: '2024-01-25T19:18:29.614189Z'
+        id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+        name: My Project
+        restricted: false
+        root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
+        status: active
+        storage: 15000
+        updated_at: '2024-02-07T16:44:41.986478Z'
+        view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+        workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+      properties:
+        adobe_id:
+          description: Adobe cloud storage directory ID associated with the project, when available.
+          nullable: true
+          type: string
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        id:
+          description: Project ID
+          format: uuid
+          type: string
+        name:
+          description: Project Name
+          type: string
+        restricted:
+          description: Whether the project is restricted or not
+          type: boolean
+        root_folder_id:
+          description: Root Folder ID
+          format: uuid
+          type: string
+        status:
+          description: Project Status
+          enum:
+          - active
+          - inactive
+          type: string
+        storage:
+          default: 0
+          description: Storage Usage
+          type: integer
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+        view_url:
+          description: URL to view the project in the Frame.io web application
+          type: string
+        workspace_id:
+          description: Workspace ID
+          format: uuid
+          type: string
+      required:
+      - id
+      - name
+      - status
+      - storage
+      - workspace_id
+      - root_folder_id
+      - created_at
+      - updated_at
+      - view_url
+      title: Project
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    RatingMatch:
+      description: The result's rating is a match for the search query
+      example:
+        color: '#FFD700'
+        max_value: 5
+        rating: 4
+        style: stars
+        type: rating_match
+      properties:
+        color:
+          description: The color of the rating field
+          type: string
+        max_value:
+          description: The maximum rating of the rating field for the result
+          type: integer
+        rating:
+          description: The rating of the result
+          type: integer
+        style:
+          description: The style of the rating field
+          type: string
+        type:
+          enum:
+          - rating_match
+          type: string
+      required:
+      - type
+      - rating
+      title: RatingMatch
+      type: object
+    SearchParams:
+      additionalProperties: false
+      description: Search request parameters
+      example:
+        engine: nlp
+        filters:
+          files_and_version_stacks: true
+          folders: false
+          projects: false
+        query: red car driving on highway
+      properties:
+        engine:
+          description: 'Search engine to use. Available engines: lexical, nlp.'
+          enum:
+          - lexical
+          - nlp
+          type: string
+        filters:
+          additionalProperties: false
+          description: Filters to control which types of results are returned
+          properties:
+            files_and_version_stacks:
+              default: true
+              description: Include files and version stacks in search results
+              type: boolean
+            folders:
+              default: true
+              description: Include folders in search results
+              type: boolean
+            projects:
+              default: true
+              description: Include projects in search results
+              type: boolean
+          type: object
+        query:
+          description: The search query text
+          maxLength: 1000
+          minLength: 1
+          type: string
+      required:
+      - query
+      - engine
+      title: SearchParams
+      type: object
+    CommentMatch:
+      description: The result's comment is a match for the search query
+      example:
+        comment_id: df1d12e0-501e-4ee2-bb06-59ad25445397
+        snippet: '...looks great, love the red car...'
+        terms:
+        - red
+        - car
+        type: comment_match
+      properties:
+        comment_id:
+          description: The ID of the comment that matched the query
+          format: uuid
+          type: string
+        snippet:
+          description: The small portion of the comment that matched the search query
+          type: string
+        terms:
+          description: The terms in the search query that matched the result's comment
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - comment_match
+          type: string
+      required:
+      - type
+      - snippet
+      - comment_id
+      - terms
+      title: CommentMatch
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      nullable: true
+      title: RequestAfterOpaqueCursor
+      type: string
+    CommentCountMatch:
+      description: The result's comment count is a match for the search query
+      example:
+        comment_count: 15
+        type: comment_count_match
+      properties:
+        comment_count:
+          description: The comment count of the result
+          type: integer
+        type:
+          enum:
+          - comment_count_match
+          type: string
+      required:
+      - type
+      - comment_count
+      title: CommentCountMatch
+      type: object
+    AudioSampleRateMatch:
+      description: The result's audio sample rate is a match for the search query
+      example:
+        audio_sample_rate: 4.8e4
+        type: audio_sample_rate_match
+      properties:
+        audio_sample_rate:
+          description: The audio sample rate of the result in Hz
+          format: float
+          type: number
+        type:
+          enum:
+          - audio_sample_rate_match
+          type: string
+      required:
+      - type
+      - audio_sample_rate
+      title: AudioSampleRateMatch
+      type: object
+    ChannelsMatch:
+      description: The result's channels is a match for the search query
+      example:
+        channels: 2.0
+        type: channels_match
+      properties:
+        channels:
+          description: The number of audio channels of the result
+          format: float
+          type: number
+        type:
+          enum:
+          - channels_match
+          type: string
+      required:
+      - type
+      - channels
+      title: ChannelsMatch
+      type: object
+    UploadedAtMatch:
+      description: The result's uploaded at timestamp is a match for the search query
+      example:
+        type: uploaded_at_match
+        uploaded_at: '2025-01-06T10:30:00Z'
+      properties:
+        type:
+          enum:
+          - uploaded_at_match
+          type: string
+        uploaded_at:
+          description: The uploaded at timestamp of the result
+          format: date-time
+          type: string
+      required:
+      - type
+      - uploaded_at
+      title: UploadedAtMatch
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          nullable: true
+          type: string
+      required:
+      - next
+      title: Links
+      type: object
+    DurationMatch:
+      description: The result's duration is a match for the search query
+      example:
+        duration: 120.5
+        type: duration_match
+      properties:
+        duration:
+          description: The duration of the result in seconds
+          format: float
+          type: number
+        type:
+          enum:
+          - duration_match
+          type: string
+      required:
+      - type
+      - duration
+      title: DurationMatch
+      type: object
+    ProjectMatch:
+      description: The asset's project name is a match for the search query
+      example:
+        project:
+          id: 40d1526f-6674-48f9-b6c3-e7d74fd24ade
+          name: Marketing Assets
+        terms:
+        - marketing
+        type: project_match
+      properties:
+        project:
+          description: Project information for a project match
+          properties:
+            id:
+              description: The project ID
+              format: uuid
+              type: string
+            name:
+              description: The project name
+              type: string
+          required:
+          - id
+          - name
+          title: ProjectMatchInfo
+          type: object
+        terms:
+          description: The terms in the search query that matched the project name
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - project_match
+          type: string
+      required:
+      - type
+      - project
+      - terms
+      title: ProjectMatch
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    BitRateMatch:
+      description: The result's bit rate is a match for the search query
+      example:
+        bit_rate: 3.2e5
+        type: bit_rate_match
+      properties:
+        bit_rate:
+          description: The bit rate of the result in bps
+          format: float
+          type: number
+        type:
+          enum:
+          - bit_rate_match
+          type: string
+      required:
+      - type
+      - bit_rate
+      title: BitRateMatch
+      type: object
+    ResolutionHeightMatch:
+      description: The result's resolution height is a match for the search query
+      example:
+        resolution_height: 1080.0
+        type: resolution_height_match
+      properties:
+        resolution_height:
+          description: The resolution height of the result in pixels
+          format: float
+          type: number
+        type:
+          enum:
+          - resolution_height_match
+          type: string
+      required:
+      - type
+      - resolution_height
+      title: ResolutionHeightMatch
+      type: object
+    DeletedAtMatch:
+      description: The result's deleted at timestamp is a match for the search query
+      example:
+        deleted_at: '2025-01-07T08:00:00Z'
+        type: deleted_at_match
+      properties:
+        deleted_at:
+          description: The deleted at timestamp of the result
+          format: date-time
+          type: string
+        type:
+          enum:
+          - deleted_at_match
+          type: string
+      required:
+      - type
+      - deleted_at
+      title: DeletedAtMatch
+      type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    ResolutionWidthMatch:
+      description: The result's resolution width is a match for the search query
+      example:
+        resolution_width: 1920.0
+        type: resolution_width_match
+      properties:
+        resolution_width:
+          description: The resolution width of the result in pixels
+          format: float
+          type: number
+        type:
+          enum:
+          - resolution_width_match
+          type: string
+      required:
+      - type
+      - resolution_width
+      title: ResolutionWidthMatch
+      type: object
+    FileTypeMatch:
+      description: The result's file type is a match for the search query
+      example:
+        file_type: video
+        type: file_type_match
+      properties:
+        file_type:
+          description: The file type of the result
+          type: string
+        type:
+          enum:
+          - file_type_match
+          type: string
+      required:
+      - type
+      - file_type
+      title: FileTypeMatch
+      type: object
+    UpdatedAtMatch:
+      description: The result's updated at timestamp is a match for the search query
+      example:
+        type: updated_at_match
+        updated_at: '2025-01-06T12:00:00Z'
+      properties:
+        type:
+          enum:
+          - updated_at_match
+          type: string
+        updated_at:
+          description: The updated at timestamp of the result
+          format: date-time
+          type: string
+      required:
+      - type
+      - updated_at
+      title: UpdatedAtMatch
+      type: object
+    SearchResponse:
+      description: Response containing search results
+      example:
+        data:
+        - matches:
+          - name: red_car.png
+            terms:
+            - red
+            - car
+            type: name_match
+          result:
+            adobe_id: urn:aaid:sc:US:a1b2c3d4-e5f6-7890-abcd-ef1234567890
+            created_at: '2023-09-25T19:18:29.614189Z'
+            id: 477b4abc-b34e-41dc-81b3-61ef3e6f4a0e
+            name: asset.png
+            parent_id: c9c99632-6f5f-4e60-a323-c93e4c2a0f4f
+            project_id: 3ffaf0ca-e6d8-4f1e-ac9d-3c064d371085
+            type: file
+            updated_at: '2024-02-07T16:44:41.986478Z'
+            view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/view/5a89a9fb-0900-4b23-826b-127b90e4db4c
+          type: file_result
+        links:
+          next: /v4/accounts/1234/search?after=abc123
+        total_count: 15
+      properties:
+        data:
+          description: List of search results
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/AssetSearchResult'
+            - $ref: '#/components/schemas/ProjectSearchResult'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total number of matching results
+          nullable: true
+          type: integer
+      required:
+      - data
+      - links
+      title: SearchResponse
+      type: object
+    NotesMatch:
+      description: The result's notes is a match for the search query
+      example:
+        notes: This is a great shot of the red car
+        type: notes_match
+      properties:
+        notes:
+          description: The notes of the result
+          type: string
+        type:
+          enum:
+          - notes_match
+          type: string
+      required:
+      - type
+      - notes
+      title: NotesMatch
+      type: object
+    ColorSpaceMatch:
+      description: The result's color space is a match for the search query
+      example:
+        color_space: sRGB
+        type: color_space_match
+      properties:
+        color_space:
+          description: The color space of the result
+          type: string
+        type:
+          enum:
+          - color_space_match
+          type: string
+      required:
+      - type
+      - color_space
+      title: ColorSpaceMatch
+      type: object
+    StatusMatch:
+      description: The result's status is a match for the search query
+      example:
+        status: approved
+        type: status_match
+      properties:
+        status:
+          description: The status of the result
+          type: string
+        type:
+          enum:
+          - status_match
+          type: string
+      required:
+      - type
+      - status
+      title: StatusMatch
+      type: object
+    TranscriptionMatch:
+      description: The result's transcription is a match for the search query
+      example:
+        matches:
+        - id: 3f292d38-6302-4d66-940c-b314685a205b
+          snippets:
+          - '...the red sports car speeds down the...'
+          terms:
+          - red
+          - car
+        type: transcription_match
+      properties:
+        matches:
+          description: The transcriptions that match
+          items:
+            description: A transcription segment that is a match for the search query
+            properties:
+              id:
+                description: Transcription segment ID
+                format: uuid
+                type: string
+              snippets:
+                description: The small portion of the transcription that is a match for the search query
+                items:
+                  type: string
+                type: array
+              terms:
+                description: The terms in the search query that are a match for the result's transcription
+                items:
+                  type: string
+                type: array
+            required:
+            - id
+            - snippets
+            - terms
+            type: object
+          type: array
+        type:
+          enum:
+          - transcription_match
+          type: string
+      required:
+      - type
+      - matches
+      title: TranscriptionMatch
+      type: object
+    SourceFilenameMatch:
+      description: The result's original file name is a match for the search query
+      example:
+        source_filename: DSC_0001.jpg
+        terms:
+        - DSC
+        type: source_filename_match
+      properties:
+        source_filename:
+          description: The original file name of the result
+          type: string
+        terms:
+          description: The terms in the search query that matched the result's original file name
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - source_filename_match
+          type: string
+      required:
+      - type
+      - source_filename
+      - terms
+      title: SourceFilenameMatch
+      type: object
+    PageCountMatch:
+      description: The result's page count is a match for the search query
+      example:
+        page_count: 10
+        type: page_count_match
+      properties:
+        page_count:
+          description: The page count of the result
+          type: integer
+        type:
+          enum:
+          - page_count_match
+          type: string
+      required:
+      - type
+      - page_count
+      title: PageCountMatch
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    CreatorMatch:
+      description: The result's creator is a match for the search query
+      example:
+        creator_id: 315e93d7-3683-43f5-a70c-d4bdc3544c8a
+        type: creator_match
+      properties:
+        creator_id:
+          description: The ID of the user who created the result
+          format: uuid
+          type: string
+        type:
+          enum:
+          - creator_match
+          type: string
+      required:
+      - type
+      - creator_id
+      title: CreatorMatch
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    bearer:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    s2s_auth:
+      description: Server to server authentication flow
+      flows:
+        clientCredentials:
+          scopes:
+            AdobeID: Adobe ID
+            frame.s2s.all: Frame.io Server to Server access
+            openid: Sign in a user
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+x-tagGroups:
+- name: Accounts, Users and Permissions
+  tags:
+  - Accounts
+  - Users
+  - Account Permissions
+  - Workspace Permissions
+  - Project Permissions
+  - Folder Permissions
+  - Groups
+- name: Workspace Management
+  tags:
+  - Projects
+  - Workspaces
+  - Shares
+- name: Assets
+  tags:
+  - Files
+  - Folders
+  - Version Stacks
+- name: Comments
+  tags:
+  - Comments
+- name: Collections
+  tags:
+  - Collections
+- name: Metadata
+  tags:
+  - Metadata Fields
+  - Metadata
+- name: Integrations
+  tags:
+  - Webhooks
+  - Custom Actions

@@ -1,0 +1,1892 @@
+openapi: 3.0.0
+info:
+  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  license:
+    name: Adobe
+    url: https://www.adobe.com/legal/terms.html
+  title: Frame.io Account Permissions Groups API
+  version: v4.0
+servers:
+- url: https://api.frame.io
+  variables: {}
+security:
+- OAuth2: []
+- bearer: []
+tags:
+- description: Manage Groups and related operations.
+  name: Groups
+paths:
+  /v4/accounts/{account_id}/groups:
+    get:
+      callbacks: {}
+      description: 'List groups in account. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: groups.index
+      parameters:
+      - description: ''
+        example: 974c52fb-4e22-4e68-a532-61c0e9716841
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        in: query
+        name: include
+        required: false
+        schema:
+          description: Include query parameter for groups
+          enum:
+          - creator
+          example: creator
+          title: GroupsInclude
+          type: string
+      - description: Sort groups by query params
+        in: query
+        name: sort
+        required: false
+        schema:
+          description: Sort query parameter for Groups.
+          enum:
+          - creator_asc
+          - creator_desc
+          - name_asc
+          - name_desc
+          - created_at_asc
+          - created_at_desc
+          example: created_at_asc
+          title: GroupsSort
+          type: string
+      - description: 'Opaque Cursor query param for requests returning paginated results.
+
+          <br/>
+
+          NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+          '
+        in: query
+        name: after
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestAfterOpaqueCursor'
+      - description: ''
+        in: query
+        name: page_size
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestPageSize'
+      - description: ''
+        in: query
+        name: include_total_count
+        required: false
+        schema:
+          $ref: '#/components/schemas/IncludeTotalCount'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupsWithIncludesResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: List groups
+      tags:
+      - Groups
+    post:
+      callbacks: {}
+      description: 'Create group for the current account. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      operationId: groups.create
+      parameters:
+      - description: ''
+        example: 69804a80-af31-4d57-a9f2-8890ab4960cf
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupParams'
+        description: Group params body
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+          description: Created
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Create group
+      tags:
+      - Groups
+  /v4/accounts/{account_id}/groups/{group_id}:
+    get:
+      callbacks: {}
+      description: 'Show group details. <br>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: groups.show
+      parameters:
+      - description: ''
+        example: 7238c8d4-cbfc-4b3b-be37-ba3cfdc23328
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: c2597adf-70a2-43e6-bb44-338f9bd2826e
+        in: path
+        name: group_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        in: query
+        name: include
+        required: false
+        schema:
+          description: Include query parameter for groups
+          enum:
+          - creator
+          example: creator
+          title: GroupsInclude
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupWithIncludesResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Show group
+      tags:
+      - Groups
+    patch:
+      callbacks: {}
+      description: 'Update group details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      operationId: groups.update
+      parameters:
+      - description: ''
+        example: 749070e6-1e78-45c1-8c83-405410aa293d
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: a22a1f71-8401-4371-aa3a-41934d300aaa
+        in: path
+        name: group_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupParams'
+        description: Group params
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Update group
+      tags:
+      - Groups
+components:
+  schemas:
+    GroupCommon:
+      example:
+        created_at: '2024-02-02T21:19:24.828948Z'
+        creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+        emoji: smile
+        id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+        member_count: 5
+        name: group-1
+        source: frame
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: ID of group creator
+          format: uuid
+          nullable: true
+          type: string
+        emoji:
+          description: Group emoji for UI display
+          maxLength: 255
+          type: string
+        id:
+          description: Group ID
+          format: uuid
+          type: string
+        member_count:
+          description: Number of members in group
+          type: integer
+        name:
+          description: Group name
+          maxLength: 255
+          type: string
+        source:
+          description: Group source
+          enum:
+          - frame
+          - adobe
+          - workfront
+          type: string
+        updated_at:
+          description: Update timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - emoji
+      - member_count
+      - source
+      - creator_id
+      - created_at
+      - updated_at
+      title: GroupCommon
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    UpdateGroupParams:
+      additionalProperties: false
+      description: Frame.io update group params
+      example:
+        data:
+          emoji: smile
+          name: group-1
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            emoji:
+              description: Group emoji for UI display
+              maxLength: 255
+              minLength: 1
+              type: string
+            name:
+              description: Group name
+              maxLength: 255
+              minLength: 1
+              type: string
+          type: object
+      required:
+      - data
+      title: UpdateGroupParams
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    GroupWithIncludes:
+      discriminator:
+        mapping:
+          adobe: '#/components/schemas/SyncGroupWithIncludes'
+          frame: '#/components/schemas/GroupCommonWithIncludes'
+          workfront: '#/components/schemas/GroupCommonWithIncludes'
+        propertyName: source
+      example:
+        created_at: '2024-02-02T21:19:24.828948Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+        emoji: smile
+        id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+        member_count: 5
+        name: group-1
+        source: frame
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      oneOf:
+      - $ref: '#/components/schemas/GroupCommonWithIncludes'
+      - $ref: '#/components/schemas/SyncGroupWithIncludes'
+      title: GroupWithIncludes
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    GroupWithIncludesResponse:
+      example:
+        data:
+          created_at: '2024-02-02T21:19:24.828948Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+          emoji: smile
+          id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+          member_count: 5
+          name: group-1
+          source: frame
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/GroupWithIncludes'
+      required:
+      - data
+      title: GroupWithIncludesResponse
+      type: object
+    GroupResponse:
+      example:
+        data:
+          created_at: '2024-02-02T21:19:24.828948Z'
+          creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+          emoji: smile
+          id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+          member_count: 5
+          name: group-1
+          source: frame
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/GroupCommon'
+      required:
+      - data
+      title: GroupResponse
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      nullable: true
+      title: RequestAfterOpaqueCursor
+      type: string
+    GroupsWithIncludesResponse:
+      example:
+        data:
+        - created_at: '2024-02-02T21:19:24.828948Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+          emoji: smile
+          id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+          member_count: 5
+          name: group-1
+          source: frame
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        links:
+          next: /v4/accounts/123/groups
+        total_count: 10
+      properties:
+        data:
+          description: Groups
+          items:
+            $ref: '#/components/schemas/GroupWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          nullable: true
+          type: integer
+      required:
+      - data
+      - links
+      title: GroupsWithIncludesResponse
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          nullable: true
+          type: string
+      required:
+      - next
+      title: Links
+      type: object
+    CreateGroupParams:
+      additionalProperties: false
+      description: Frame.io create group params
+      example:
+        data:
+          emoji: smile
+          name: group-1
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            emoji:
+              description: Group emoji for UI display
+              maxLength: 255
+              minLength: 1
+              type: string
+            name:
+              description: Group name
+              maxLength: 255
+              minLength: 1
+              type: string
+          required:
+          - name
+          - emoji
+          type: object
+      required:
+      - data
+      title: CreateGroupParams
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          nullable: true
+          type: boolean
+        adobe_user_id:
+          description: Adobe user ID
+          nullable: true
+          type: string
+        avatar_url:
+          description: User avatar image url
+          nullable: true
+          type: string
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          nullable: true
+          type: string
+        name:
+          description: User name
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    GroupCommonWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/GroupCommon'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-02-02T21:19:24.828948Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+        emoji: smile
+        id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+        member_count: 5
+        name: group-1
+        source: frame
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      title: GroupCommonWithIncludes
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    SyncGroupWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/GroupCommonWithIncludes'
+      - properties:
+          sync_status:
+            description: Imported group sync status
+            enum:
+            - not_started
+            - in_progress
+            - completed
+            - error
+            type: string
+        type: object
+      example:
+        created_at: '2024-02-02T21:19:24.828948Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+        emoji: smile
+        id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+        member_count: 5
+        name: group-1
+        source: frame
+        sync_status: completed
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      required:
+      - sync_status
+      title: SyncGroupWithIncludes
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    bearer:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    s2s_auth:
+      description: Server to server authentication flow
+      flows:
+        clientCredentials:
+          scopes:
+            AdobeID: Adobe ID
+            frame.s2s.all: Frame.io Server to Server access
+            openid: Sign in a user
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+x-tagGroups:
+- name: Accounts, Users and Permissions
+  tags:
+  - Accounts
+  - Users
+  - Account Permissions
+  - Workspace Permissions
+  - Project Permissions
+  - Folder Permissions
+  - Groups
+- name: Workspace Management
+  tags:
+  - Projects
+  - Workspaces
+  - Shares
+- name: Assets
+  tags:
+  - Files
+  - Folders
+  - Version Stacks
+- name: Comments
+  tags:
+  - Comments
+- name: Collections
+  tags:
+  - Collections
+- name: Metadata
+  tags:
+  - Metadata Fields
+  - Metadata
+- name: Integrations
+  tags:
+  - Webhooks
+  - Custom Actions

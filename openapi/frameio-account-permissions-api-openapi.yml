@@ -1,0 +1,760 @@
+openapi: 3.0.0
+info:
+  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  license:
+    name: Adobe
+    url: https://www.adobe.com/legal/terms.html
+  title: Frame.io Account Permissions API
+  version: v4.0
+servers:
+- url: https://api.frame.io
+  variables: {}
+security:
+- OAuth2: []
+- bearer: []
+tags:
+- description: Manage Account Permissions and related operations.
+  name: Account Permissions
+paths:
+  /v4/accounts/{account_id}/users:
+    get:
+      callbacks: {}
+      description: 'List user roles for a given account. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: account_user_roles.index
+      parameters:
+      - description: ''
+        example: b92bffff-4e3d-4037-9959-2eb161e002e8
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: Supports including deactivated users in the response. Default is false.
+        in: query
+        name: include_deactivated
+        required: false
+        schema:
+          type: boolean
+      - description: Sort account users by query params
+        in: query
+        name: sort
+        required: false
+        schema:
+          description: Sort by query parameter for account users
+          enum:
+          - role_asc
+          - role_desc
+          - name_asc
+          - name_desc
+          - email_asc
+          - email_desc
+          example: role_asc
+          title: AccountUserSort
+          type: string
+      - description: 'Opaque Cursor query param for requests returning paginated results.
+
+          <br/>
+
+          NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+          '
+        in: query
+        name: after
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestAfterOpaqueCursor'
+      - description: ''
+        in: query
+        name: page_size
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestPageSize'
+      - description: ''
+        in: query
+        name: include_total_count
+        required: false
+        schema:
+          $ref: '#/components/schemas/IncludeTotalCount'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountUserRolesResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: List account user roles
+      tags:
+      - Account Permissions
+components:
+  schemas:
+    AccountUserRole:
+      description: Frame.io Account User Role
+      example:
+        role: admin
+        user:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+      properties:
+        role:
+          description: Account User Role
+          enum:
+          - member
+          - owner
+          - admin
+          - reviewer
+          nullable: true
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - role
+      - user
+      title: AccountUserRole
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          nullable: true
+          type: boolean
+        adobe_user_id:
+          description: Adobe user ID
+          nullable: true
+          type: string
+        avatar_url:
+          description: User avatar image url
+          nullable: true
+          type: string
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          nullable: true
+          type: string
+        name:
+          description: User name
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      nullable: true
+      title: RequestAfterOpaqueCursor
+      type: string
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          nullable: true
+          type: string
+      required:
+      - next
+      title: Links
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    AccountUserRolesResponse:
+      description: Frame.io Account user role details
+      example:
+        data:
+        - role: admin
+          user:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+        links:
+          next: /v4/accounts/123/users
+        total_count: 10
+      properties:
+        data:
+          description: Account User Roles
+          items:
+            $ref: '#/components/schemas/AccountUserRole'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          nullable: true
+          type: integer
+      required:
+      - data
+      - links
+      title: AccountUserRolesResponse
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    bearer:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    s2s_auth:
+      description: Server to server authentication flow
+      flows:
+        clientCredentials:
+          scopes:
+            AdobeID: Adobe ID
+            frame.s2s.all: Frame.io Server to Server access
+            openid: Sign in a user
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+x-tagGroups:
+- name: Accounts, Users and Permissions
+  tags:
+  - Accounts
+  - Users
+  - Account Permissions
+  - Workspace Permissions
+  - Project Permissions
+  - Folder Permissions
+  - Groups
+- name: Workspace Management
+  tags:
+  - Projects
+  - Workspaces
+  - Shares
+- name: Assets
+  tags:
+  - Files
+  - Folders
+  - Version Stacks
+- name: Comments
+  tags:
+  - Comments
+- name: Collections
+  tags:
+  - Collections
+- name: Metadata
+  tags:
+  - Metadata Fields
+  - Metadata
+- name: Integrations
+  tags:
+  - Webhooks
+  - Custom Actions

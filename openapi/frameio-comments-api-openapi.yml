@@ -1,0 +1,3467 @@
+openapi: 3.0.0
+info:
+  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  license:
+    name: Adobe
+    url: https://www.adobe.com/legal/terms.html
+  title: Frame.io Account Permissions Comments API
+  version: v4.0
+servers:
+- url: https://api.frame.io
+  variables: {}
+security:
+- OAuth2: []
+- bearer: []
+tags:
+- description: Manage Comments and related operations.
+  name: Comments
+paths:
+  /v4/accounts/{account_id}/comments/{comment_id}/attachments/{attachment_id}:
+    delete:
+      callbacks: {}
+      description: 'Delete an attachment from a comment. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user'
+      operationId: comments.delete_attachment
+      parameters:
+      - description: ''
+        example: 669978f7-2e79-4bce-a03b-6a348eedfafa
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: 3f57e071-2443-4959-8935-d278f6a34938
+        in: path
+        name: comment_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        example: 32e6e5bd-7748-431b-8f16-bbc17c50bfd5
+        in: path
+        name: attachment_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          content:
+            '*':
+              schema:
+                $ref: '#/components/schemas/NoContent'
+          description: No Content
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Delete comment attachment
+      tags:
+      - Comments
+  /v4/accounts/{account_id}/comments/{comment_id}/attachments:
+    post:
+      callbacks: {}
+      description: 'Create an attachment for an existing comment. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user'
+      operationId: comments.create_attachment
+      parameters:
+      - description: ''
+        example: f660423f-018b-47aa-84c2-e968f80c9b5a
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: a0a8ddeb-1dbf-42a6-a236-95c2ce7af593
+        in: path
+        name: comment_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAttachmentParams'
+        description: Comment attachment params body
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentAttachmentResponse'
+          description: Created
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Create comment attachment
+      tags:
+      - Comments
+  /v4/accounts/{account_id}/comments/{comment_id}:
+    delete:
+      callbacks: {}
+      description: 'Delete comment from an asset. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user'
+      operationId: comments.delete
+      parameters:
+      - description: ''
+        example: 3118d9c7-34c8-4242-aa54-d511db1a37ec
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: 46728852-0f85-49ea-b9cb-6759b0d8c159
+        in: path
+        name: comment_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          content:
+            '*':
+              schema:
+                $ref: '#/components/schemas/NoContent'
+          description: No Content
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Delete comment
+      tags:
+      - Comments
+    get:
+      callbacks: {}
+      description: 'Show a single comment on a file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: comments.show
+      parameters:
+      - description: ''
+        example: 66082a8b-7e17-40d1-ae77-d37e5af48d78
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: c1b0c99d-ac3f-435c-a1fb-ea916900d1ad
+        in: path
+        name: comment_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        in: query
+        name: timestamp_as_timecode
+        required: false
+        schema:
+          description: Enables display of timestamp as timecode (HH:MM:SS:FF) when true
+          type: boolean
+      - description: ''
+        in: query
+        name: include
+        required: false
+        schema:
+          description: Include query parameter for comments
+          enum:
+          - owner
+          - replies
+          example: owner
+          title: CommentInclude
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentWithIncludesResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Show comment
+      tags:
+      - Comments
+    patch:
+      callbacks: {}
+      description: 'Update comment on given asset.<br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      operationId: comments.update
+      parameters:
+      - description: ''
+        example: 6c7358f4-0e2b-4d65-81ce-2d86b2f74df8
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: 51165bfc-7544-42e0-9aea-4f0c54d36599
+        in: path
+        name: comment_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        in: query
+        name: timestamp_as_timecode
+        required: false
+        schema:
+          description: Enables display of timestamp as timecode (HH:MM:SS:FF) when true
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCommentParams'
+        description: Comment params body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Update comment
+      tags:
+      - Comments
+  /v4/accounts/{account_id}/files/{file_id}/comments:
+    get:
+      callbacks: {}
+      description: 'List comments on a given asset. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: comments.index
+      parameters:
+      - description: ''
+        example: d9536267-4d48-4969-a4ae-328027176e5a
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: ae27bb7b-efb4-4101-b445-acb0cb4933a7
+        in: path
+        name: file_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        in: query
+        name: timestamp_as_timecode
+        required: false
+        schema:
+          description: Enables display of timestamp as timecode (HH:MM:SS:FF) when true
+          type: boolean
+      - description: ''
+        in: query
+        name: include
+        required: false
+        schema:
+          description: Include query parameter for comments
+          enum:
+          - owner
+          - replies
+          example: owner
+          title: CommentInclude
+          type: string
+      - description: Sort comments by query params
+        in: query
+        name: sort
+        required: false
+        schema:
+          description: Sort query parameter for comments. Include query params for owner is required when sorting by owner.
+          enum:
+          - owner_asc
+          - owner_desc
+          - completed_at_asc
+          - completed_at_desc
+          - created_at_asc
+          - created_at_desc
+          example: completed_at_asc
+          title: CommentSort
+          type: string
+      - description: 'Opaque Cursor query param for requests returning paginated results.
+
+          <br/>
+
+          NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+          '
+        in: query
+        name: after
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestAfterOpaqueCursor'
+      - description: ''
+        in: query
+        name: page_size
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestPageSize'
+      - description: ''
+        in: query
+        name: include_total_count
+        required: false
+        schema:
+          $ref: '#/components/schemas/IncludeTotalCount'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentsWithIncludesResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: List comments
+      tags:
+      - Comments
+    post:
+      callbacks: {}
+      description: 'Create a comment on a file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: comments.create
+      parameters:
+      - description: ''
+        example: 02efe07a-28a3-43f2-8611-764d7ccc61f0
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: 4bd7f46d-95bb-43ac-b3bd-456a56f7da50
+        in: path
+        name: file_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        in: query
+        name: timestamp_as_timecode
+        required: false
+        schema:
+          description: Enables display of timestamp as timecode (HH:MM:SS:FF) when true
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCommentParams'
+        description: Comment params body
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentResponse'
+          description: Created
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Create comment
+      tags:
+      - Comments
+components:
+  schemas:
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    Link:
+      example:
+        end_index: 13
+        start_index: 5
+        text: Test User
+        url: https://www.example.com
+      properties:
+        end_index:
+          description: End index of link text
+          minimum: 1
+          type: integer
+        start_index:
+          description: Start index of link text
+          format: int32
+          minimum: 0
+          type: integer
+        text:
+          description: Link text
+          type: string
+        url:
+          description: Link URL
+          type: string
+      required:
+      - start_index
+      - end_index
+      - text
+      - url
+      title: Link
+      type: object
+    CommentsWithIncludesResponse:
+      example:
+        data:
+        - anchor:
+            x: 0.5
+            y: 0.5
+          annotation: annotation
+          attachments:
+          - created_at: '2024-02-02T21:19:24.828948Z'
+            file_size: 1024000
+            id: 325ce490-eeac-4b84-879d-57d2a939bfae
+            media_type: image/png
+            name: screenshot.png
+            upload_urls:
+            - https://s3.amazonaws.com/bucket/part1?signature=...
+          completed_at: null
+          completer_id: null
+          created_at: '2024-02-02T21:19:24.828948Z'
+          duration: 10
+          file_id: 4ae08df1-b419-4897-aba5-560198a18237
+          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+          links:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            url: https://www.example.com
+          mentions:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+          owner:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          page: 1
+          replies: []
+          text: This is great!
+          text_edited_at: '2024-02-02T21:19:24.828948Z'
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 123
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        - anchor:
+            x: 0.5
+            y: 0.5
+          annotation: annotation
+          attachments:
+          - created_at: '2024-02-02T21:19:24.828948Z'
+            file_size: 1024000
+            id: 325ce490-eeac-4b84-879d-57d2a939bfae
+            media_type: image/png
+            name: screenshot.png
+            upload_urls:
+            - https://s3.amazonaws.com/bucket/part1?signature=...
+          completed_at: null
+          completer_id: null
+          created_at: '2024-02-02T21:19:24.828948Z'
+          duration: 10
+          file_id: 4ae08df1-b419-4897-aba5-560198a18237
+          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+          links:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            url: https://www.example.com
+          mentions:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+          owner:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          page: 1
+          replies:
+          - anchor:
+              x: 0.5
+              y: 0.5
+            annotation: annotation
+            attachments:
+            - created_at: '2024-02-02T21:19:24.828948Z'
+              file_size: 1024000
+              id: 325ce490-eeac-4b84-879d-57d2a939bfae
+              media_type: image/png
+              name: screenshot.png
+              upload_urls:
+              - https://s3.amazonaws.com/bucket/part1?signature=...
+            completed_at: null
+            completer_id: null
+            created_at: '2024-02-02T21:19:24.828948Z'
+            duration: 10
+            file_id: 4ae08df1-b419-4897-aba5-560198a18237
+            id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+            links:
+            - end_index: 13
+              start_index: 5
+              text: Test User
+              url: https://www.example.com
+            mentions:
+            - end_index: 13
+              start_index: 5
+              text: Test User
+              user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+            page: 1
+            text: This is great!
+            text_edited_at: '2024-02-02T21:19:24.828948Z'
+            text_review_annotation:
+              bounds:
+              - height: 42.0
+                width: 130.0
+                x: 12.5
+                y: 24.0
+              selection_text: existing copy
+              suggested_text: updated copy
+              text_review_annotation_type: replace
+            timestamp: 123
+            updated_at: '2024-02-02T21:19:24.828948Z'
+          text: This is great!
+          text_edited_at: '2024-02-02T21:19:24.828948Z'
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 123
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        links:
+          next: /v4/accounts/123/files/123/comments
+        total_count: 10
+      properties:
+        data:
+          description: Comments
+          items:
+            $ref: '#/components/schemas/CommentWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          nullable: true
+          type: integer
+      required:
+      - data
+      - links
+      title: CommentsWithIncludesResponse
+      type: object
+    CommentAttachmentResponse:
+      example:
+        data:
+          created_at: '2025-11-11T17:41:34.358394Z'
+          file_size: 1024000
+          id: 1a3ccfb4-c431-4f39-b0b6-6b146b9beefe
+          media_type: image/png
+          name: Comp2.png
+          upload_urls:
+          - https://s3.amazonaws.com/bucket/part1?signature=...
+      properties:
+        data:
+          $ref: '#/components/schemas/CommentAttachment'
+      title: CommentAttachmentResponse
+      type: object
+    TimeStamp:
+      example: 00:00:02:12
+      oneOf:
+      - description: Comment timecode in media. Only allowed when file type is 'audio', 'stream', or 'video'.
+        format: HH:MM:SS:FF
+        nullable: true
+        type: string
+      - description: Comment frame in media. Only allowed when file type is 'audio', 'stream', or 'video'.
+        format: int32
+        minimum: 0
+        nullable: true
+        type: integer
+      title: TimeStamp
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    Comment:
+      example:
+        anchor:
+          x: 0.5
+          y: 0.5
+        annotation: annotation
+        attachments:
+        - created_at: '2024-02-02T21:19:24.828948Z'
+          file_size: 1024000
+          id: 325ce490-eeac-4b84-879d-57d2a939bfae
+          media_type: image/png
+          name: screenshot.png
+          upload_urls:
+          - https://s3.amazonaws.com/bucket/part1?signature=...
+        completed_at: null
+        completer_id: null
+        created_at: '2024-02-02T21:19:24.828948Z'
+        duration: 10
+        file_id: 4ae08df1-b419-4897-aba5-560198a18237
+        id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+        links:
+        - end_index: 13
+          start_index: 5
+          text: Test User
+          url: https://www.example.com
+        mentions:
+        - end_index: 13
+          start_index: 5
+          text: Test User
+          user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+        page: 1
+        text: This is great!
+        text_edited_at: '2024-02-02T21:19:24.828948Z'
+        text_review_annotation:
+          bounds:
+          - height: 42.0
+            width: 130.0
+            x: 12.5
+            y: 24.0
+          selection_text: existing copy
+          suggested_text: updated copy
+          text_review_annotation_type: replace
+        timestamp: 123
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        anchor:
+          allOf:
+          - $ref: '#/components/schemas/Anchor'
+          description: Comment anchor location. {(x, y) | 0 <= x <= 1, 0 <= y <= 1}.
+          nullable: true
+          type: object
+        annotation:
+          nullable: true
+          type: string
+        attachments:
+          description: Attachments associated with this comment (0-6 attachments allowed)
+          items:
+            $ref: '#/components/schemas/CommentAttachment'
+          nullable: true
+          type: array
+        completed_at:
+          description: Completion timestamp
+          format: date-time
+          nullable: true
+          type: string
+        completer_id:
+          description: ID of user who marked the comment as completed
+          format: uuid
+          nullable: true
+          type: string
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        duration:
+          description: Duration of comment in frames. Requires presence of timestamp parameter
+          format: int32
+          minimum: 1
+          nullable: true
+          type: integer
+        file_id:
+          description: File ID
+          format: uuid
+          type: string
+        id:
+          description: Comment ID
+          format: uuid
+          type: string
+        links:
+          description: Links
+          items:
+            $ref: '#/components/schemas/Link'
+          type: array
+        mentions:
+          description: Mentions
+          items:
+            $ref: '#/components/schemas/Mention'
+          type: array
+        page:
+          description: Document page
+          nullable: true
+          type: integer
+        text:
+          description: Comment text
+          type: string
+        text_edited_at:
+          description: Text edited timestamp
+          format: date-time
+          nullable: true
+          type: string
+        text_review_annotation:
+          allOf:
+          - $ref: '#/components/schemas/TextReviewAnnotation'
+          description: Text review annotation details for comments left on text documents.
+          nullable: true
+          type: object
+        timestamp:
+          $ref: '#/components/schemas/TimeStamp'
+        updated_at:
+          description: Update timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - file_id
+      - text
+      - annotation
+      - page
+      - text_edited_at
+      - timestamp
+      - duration
+      - text_review_annotation
+      - created_at
+      - updated_at
+      - completed_at
+      - completer_id
+      - attachments
+      - mentions
+      - links
+      title: Comment
+      type: object
+    Mention:
+      example:
+        end_index: 13
+        start_index: 5
+        text: Test User
+        user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+      properties:
+        end_index:
+          description: End index of mention text
+          type: integer
+        start_index:
+          description: Start index of mention text
+          type: integer
+        text:
+          description: Mention text
+          type: string
+        user_id:
+          description: Mentioned user ID
+          format: uuid
+          type: string
+      required:
+      - user_id
+      - start_index
+      - end_index
+      - text
+      title: Mention
+      type: object
+    Anchor:
+      example:
+        x: 0.5
+        y: 0.5
+      properties:
+        x:
+          description: Horizontal comment anchor location.
+          format: float
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+        y:
+          description: Vertical comment anchor location.
+          format: float
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+      required:
+      - x
+      - y
+      title: Anchor
+      type: object
+    UpdateCommentParams:
+      additionalProperties: false
+      description: Frame.io update comment params
+      example:
+        data:
+          anchor:
+            x: 0.5
+            y: 0.5
+          annotation: '[{"tool":"rect","color":"#F22237","size":8,"x":0.277726001863933,"y":0.12909555568499534,"w":0.3153168321877913,"h":0.5308131407269339,"ix":0.277726001863933,"iy":0.12909555568499534,"radius":8}]'
+          completed: false
+          duration: 10
+          links:
+          - end_index: 13
+            start_index: 5
+            url: https://www.example.com
+          page: 4
+          text: This is great!
+          text_review_annotation:
+            selection_text: existing copy
+            suggested_text: updated copy
+          timestamp: 100
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            anchor:
+              allOf:
+              - $ref: '#/components/schemas/Anchor'
+              description: Comment anchor location. {(x, y) | 0 <= x <= 1, 0 <= y <= 1}.
+              nullable: true
+              type: object
+            annotation:
+              description: JSON geometry for on-screen drawings. Allowed for document, image, video, or stream file types. JSON must be stringified.
+              maxLength: 200000
+              nullable: true
+              type: string
+            completed:
+              description: Comment completion status
+              nullable: true
+              type: boolean
+            duration:
+              description: Duration of comment in frames. Requires presence of timestamp parameter
+              format: int32
+              minimum: 1
+              nullable: true
+              type: integer
+            links:
+              description: Comment text links.
+              items:
+                $ref: '#/components/schemas/LinkParams'
+              type: array
+            page:
+              description: Document page. Only allowed when file type is a pdf document
+              minimum: 1
+              nullable: true
+              type: integer
+            text:
+              description: Comment text
+              maxLength: 40000
+              minLength: 1
+              type: string
+            text_review_annotation:
+              $ref: '#/components/schemas/TextReviewAnnotationUpdate'
+            timestamp:
+              $ref: '#/components/schemas/TimeStamp'
+          type: object
+      required:
+      - data
+      title: UpdateCommentParams
+      type: object
+    TextReviewAnnotationBounds:
+      example:
+        height: 42.0
+        width: 130.0
+        x: 12.5
+        y: 24.0
+      properties:
+        height:
+          description: Height of the rectangle
+          minimum: 0
+          type: number
+        width:
+          description: Width of the rectangle
+          minimum: 0
+          type: number
+        x:
+          description: Left corner position.
+          type: number
+        y:
+          description: Bottom corner position.
+          type: number
+      required:
+      - x
+      - y
+      - width
+      - height
+      title: TextReviewAnnotationBounds
+      type: object
+    TextReviewAnnotationUpdate:
+      description: Payload for updating an existing text review annotation.
+      example:
+        selection_text: existing copy
+        suggested_text: updated copy
+      minProperties: 1
+      properties:
+        bounds:
+          description: Optional bounds array. When omitted, previously stored bounds are preserved.
+          items:
+            $ref: '#/components/schemas/TextReviewAnnotationBounds'
+          minItems: 1
+          type: array
+        selection_text:
+          description: Optional selection text override.
+          nullable: true
+          type: string
+        suggested_text:
+          description: Optional suggestion override.
+          maxLength: 3000
+          nullable: true
+          type: string
+        text_review_annotation_type:
+          description: Optional annotation type override.
+          enum:
+          - highlight
+          - insert
+          - remove
+          - replace
+          type: string
+      title: TextReviewAnnotationUpdate
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    CommentAttachment:
+      example:
+        created_at: '2024-02-02T21:19:24.828948Z'
+        file_size: 1024000
+        id: 325ce490-eeac-4b84-879d-57d2a939bfae
+        media_type: image/png
+        name: screenshot.png
+        upload_urls:
+        - https://s3.amazonaws.com/bucket/part1?signature=...
+      properties:
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        file_size:
+          description: Attachment file size in bytes (up to 5TB)
+          type: integer
+        id:
+          description: Comment attachment ID
+          format: uuid
+          type: string
+        media_type:
+          description: File media type
+          nullable: true
+          type: string
+        name:
+          description: File name for the attachment
+          type: string
+        upload_urls:
+          description: Comment attachment upload URLs. Number of URLs returned will vary depending on the file size.
+          items:
+            type: string
+          nullable: true
+          type: array
+      required:
+      - id
+      - name
+      - file_size
+      - media_type
+      - created_at
+      title: CommentAttachment
+      type: object
+    CreateAttachmentParams:
+      additionalProperties: false
+      description: Request body for creating a comment attachment
+      example:
+        data:
+          file_size: 1024000
+          media_type: image/png
+          name: screenshot.png
+      properties:
+        data:
+          $ref: '#/components/schemas/AttachmentInput'
+      required:
+      - data
+      title: CreateAttachmentParams
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    AttachmentInput:
+      additionalProperties: false
+      description: Input for creating a comment attachment
+      example:
+        file_size: 1024000
+        media_type: image/png
+        name: screenshot.png
+      properties:
+        file_size:
+          description: Attachment file size in bytes (up to 5TB)
+          maximum: 5000000000000
+          minimum: 1
+          type: integer
+        media_type:
+          description: File media type
+          maxLength: 255
+          minLength: 1
+          type: string
+        name:
+          description: Filename
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - name
+      - file_size
+      - media_type
+      title: AttachmentInput
+      type: object
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    CommentResponse:
+      example:
+        data:
+          anchor:
+            x: 0.5
+            y: 0.5
+          annotation: annotation
+          attachments:
+          - created_at: '2024-02-02T21:19:24.828948Z'
+            file_size: 1024000
+            id: 325ce490-eeac-4b84-879d-57d2a939bfae
+            media_type: image/png
+            name: screenshot.png
+            upload_urls:
+            - https://s3.amazonaws.com/bucket/part1?signature=...
+          completed_at: null
+          completer_id: null
+          created_at: '2024-02-02T21:19:24.828948Z'
+          duration: 10
+          file_id: 4ae08df1-b419-4897-aba5-560198a18237
+          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+          links:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            url: https://www.example.com
+          mentions:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+          page: 1
+          text: This is great!
+          text_edited_at: '2024-02-02T21:19:24.828948Z'
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 123
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/Comment'
+      required:
+      - data
+      title: CommentResponse
+      type: object
+    CommentWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/Comment'
+      - properties:
+          owner:
+            $ref: '#/components/schemas/User'
+          replies:
+            description: Replies
+            items:
+              $ref: '#/components/schemas/Comment'
+            type: array
+        type: object
+      example:
+        anchor:
+          x: 0.5
+          y: 0.5
+        annotation: annotation
+        attachments:
+        - created_at: '2024-02-02T21:19:24.828948Z'
+          file_size: 1024000
+          id: 325ce490-eeac-4b84-879d-57d2a939bfae
+          media_type: image/png
+          name: screenshot.png
+          upload_urls:
+          - https://s3.amazonaws.com/bucket/part1?signature=...
+        completed_at: null
+        completer_id: null
+        created_at: '2024-02-02T21:19:24.828948Z'
+        duration: 10
+        file_id: 4ae08df1-b419-4897-aba5-560198a18237
+        id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+        links:
+        - end_index: 13
+          start_index: 5
+          text: Test User
+          url: https://www.example.com
+        mentions:
+        - end_index: 13
+          start_index: 5
+          text: Test User
+          user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+        owner:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        page: 1
+        replies: []
+        text: This is great!
+        text_edited_at: '2024-02-02T21:19:24.828948Z'
+        text_review_annotation:
+          bounds:
+          - height: 42.0
+            width: 130.0
+            x: 12.5
+            y: 24.0
+          selection_text: existing copy
+          suggested_text: updated copy
+          text_review_annotation_type: replace
+        timestamp: 123
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      title: CommentWithIncludes
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      nullable: true
+      title: RequestAfterOpaqueCursor
+      type: string
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          nullable: true
+          type: string
+      required:
+      - next
+      title: Links
+      type: object
+    CommentWithIncludesResponse:
+      example:
+        data:
+          anchor:
+            x: 0.5
+            y: 0.5
+          annotation: annotation
+          attachments:
+          - created_at: '2024-02-02T21:19:24.828948Z'
+            file_size: 1024000
+            id: 325ce490-eeac-4b84-879d-57d2a939bfae
+            media_type: image/png
+            name: screenshot.png
+            upload_urls:
+            - https://s3.amazonaws.com/bucket/part1?signature=...
+          completed_at: null
+          completer_id: null
+          created_at: '2024-02-02T21:19:24.828948Z'
+          duration: 10
+          file_id: 4ae08df1-b419-4897-aba5-560198a18237
+          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+          links:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            url: https://www.example.com
+          mentions:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+          owner:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          page: 1
+          replies: []
+          text: This is great!
+          text_edited_at: '2024-02-02T21:19:24.828948Z'
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 123
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/CommentWithIncludes'
+      required:
+      - data
+      title: CommentWithIncludesResponse
+      type: object
+    CreateCommentParams:
+      additionalProperties: false
+      description: Frame.io create comment params
+      example:
+        data:
+          anchor:
+            x: 0.5
+            y: 0.5
+          annotation: '[{"tool":"rect","color":"#F22237","size":8,"x":0.277726001863933,"y":0.12909555568499534,"w":0.3153168321877913,"h":0.5308131407269339,"ix":0.277726001863933,"iy":0.12909555568499534,"radius":8}]'
+          attachments:
+          - file_size: 1024000
+            media_type: image/png
+            name: screenshot.png
+          completed: false
+          duration: 10
+          links:
+          - end_index: 13
+            start_index: 5
+            url: https://www.example.com
+          page: 4
+          text: This is great!
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 00:00:02:12
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            anchor:
+              allOf:
+              - $ref: '#/components/schemas/Anchor'
+              description: Comment anchor location. {(x, y) | 0 <= x <= 1, 0 <= y <= 1}.
+              nullable: true
+              type: object
+            annotation:
+              description: JSON geometry for on-screen drawings. Allowed for document, image, video, or stream file types. JSON must be stringified
+              maxLength: 200000
+              nullable: true
+              type: string
+            attachments:
+              description: Optional attachments to create with the comment (max 6 attachments)
+              items:
+                $ref: '#/components/schemas/AttachmentInput'
+              type: array
+            completed:
+              description: Comment completion status
+              nullable: true
+              type: boolean
+            duration:
+              description: Duration of comment in frames. Requires presence of timestamp parameter
+              format: int32
+              minimum: 1
+              nullable: true
+              type: integer
+            links:
+              description: Comment text links.
+              items:
+                $ref: '#/components/schemas/LinkParams'
+              type: array
+            page:
+              description: Document page. Only allowed when file type is a pdf document
+              minimum: 1
+              nullable: true
+              type: integer
+            text:
+              description: Comment text (required)
+              maxLength: 40000
+              minLength: 1
+              type: string
+            text_review_annotation:
+              allOf:
+              - $ref: '#/components/schemas/TextReviewAnnotation'
+              description: Text review annotation details for comments left on text documents.
+            timestamp:
+              $ref: '#/components/schemas/TimeStamp'
+          required:
+          - text
+          type: object
+      required:
+      - data
+      title: CreateCommentParams
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    LinkParams:
+      example:
+        end_index: 13
+        start_index: 5
+        url: https://www.example.com
+      properties:
+        end_index:
+          description: End index of link text
+          format: int32
+          minimum: 1
+          type: integer
+        start_index:
+          description: Start index of link text
+          format: int32
+          minimum: 0
+          type: integer
+        url:
+          description: Link URL
+          type: string
+      required:
+      - start_index
+      - end_index
+      - url
+      title: LinkParams
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          nullable: true
+          type: boolean
+        adobe_user_id:
+          description: Adobe user ID
+          nullable: true
+          type: string
+        avatar_url:
+          description: User avatar image url
+          nullable: true
+          type: string
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          nullable: true
+          type: string
+        name:
+          description: User name
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    TextReviewAnnotation:
+      example:
+        bounds:
+        - height: 42.0
+          width: 130.0
+          x: 12.5
+          y: 24.0
+        selection_text: existing copy
+        suggested_text: updated copy
+        text_review_annotation_type: replace
+      properties:
+        bounds:
+          description: An array of bounds representing a multiline selection origin at the lower-left corner.
+          items:
+            $ref: '#/components/schemas/TextReviewAnnotationBounds'
+          minItems: 1
+          type: array
+        selection_text:
+          description: Selected text from the document.
+          nullable: true
+          type: string
+        suggested_text:
+          description: Suggested replacement or insertion text.
+          maxLength: 3000
+          nullable: true
+          type: string
+        text_review_annotation_type:
+          description: 'The type of text review annotation. '
+          enum:
+          - highlight
+          - insert
+          - remove
+          - replace
+          type: string
+      required:
+      - bounds
+      - suggested_text
+      - selection_text
+      - text_review_annotation_type
+      title: TextReviewAnnotation
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    bearer:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    s2s_auth:
+      description: Server to server authentication flow
+      flows:
+        clientCredentials:
+          scopes:
+            AdobeID: Adobe ID
+            frame.s2s.all: Frame.io Server to Server access
+            openid: Sign in a user
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+x-tagGroups:
+- name: Accounts, Users and Permissions
+  tags:
+  - Accounts
+  - Users
+  - Account Permissions
+  - Workspace Permissions
+  - Project Permissions
+  - Folder Permissions
+  - Groups
+- name: Workspace Management
+  tags:
+  - Projects
+  - Workspaces
+  - Shares
+- name: Assets
+  tags:
+  - Files
+  - Folders
+  - Version Stacks
+- name: Comments
+  tags:
+  - Comments
+- name: Collections
+  tags:
+  - Collections
+- name: Metadata
+  tags:
+  - Metadata Fields
+  - Metadata
+- name: Integrations
+  tags:
+  - Webhooks
+  - Custom Actions

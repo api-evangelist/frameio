@@ -1,0 +1,4043 @@
+openapi: 3.0.0
+info:
+  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  license:
+    name: Adobe
+    url: https://www.adobe.com/legal/terms.html
+  title: Frame.io Account Permissions Metadata Fields API
+  version: v4.0
+servers:
+- url: https://api.frame.io
+  variables: {}
+security:
+- OAuth2: []
+- bearer: []
+tags:
+- description: Manage Metadata Fields and related operations.
+  name: Metadata Fields
+paths:
+  /v4/accounts/{account_id}/metadata/field_definitions/{field_definition_id}:
+    delete:
+      callbacks: {}
+      description: 'Delete account level custom field definitions. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user'
+      operationId: metadata.field_definitions.delete
+      parameters:
+      - description: ''
+        example: 2cc54d61-9c1a-4df6-b3b0-6de24bf3a876
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: 3eccd30e-5b7b-48f9-b122-78bfe69ff900
+        in: path
+        name: field_definition_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          content:
+            '*':
+              schema:
+                $ref: '#/components/schemas/NoContent'
+          description: No Content
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Delete account level custom field definitions
+      tags:
+      - Metadata Fields
+    patch:
+      callbacks: {}
+      description: 'Update account level custom field definitions. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      operationId: metadata.field_definitions.update
+      parameters:
+      - description: ''
+        example: eef58532-bd3e-4cda-8c7e-0873e16f5ca9
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: bfae22b5-fc0f-478d-bfb5-c0e22bc9c3ef
+        in: path
+        name: field_definition_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFieldDefinitionParams'
+        description: Request body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldDefinitionResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Update account level custom field definitions
+      tags:
+      - Metadata Fields
+  /v4/accounts/{account_id}/metadata/field_definitions:
+    get:
+      callbacks: {}
+      description: 'List account level field definitions. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: metadata.field_definitions.index
+      parameters:
+      - description: ''
+        example: 084355f7-3a30-4242-9631-55bbed7e1c19
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        in: query
+        name: filters
+        required: false
+        schema:
+          additionalProperties: false
+          description: Filter parameters
+          example: filters[exclude_immutable]=true&filters[exclude_inactive]=true
+          properties:
+            exclude_immutable:
+              description: Filters out read-only fields.
+              type: boolean
+            exclude_inactive:
+              description: Filters out inactive fields.
+              type: boolean
+          type: object
+      - description: ''
+        in: query
+        name: include
+        required: false
+        schema:
+          description: Include query parameter for metadata field definitions
+          enum:
+          - creator
+          example: creator
+          title: FieldDefinitionInclude
+          type: string
+      - description: Sort field definitions by query params
+        in: query
+        name: sort
+        required: false
+        schema:
+          description: Sort by query parameter for field definitions
+          enum:
+          - name_asc
+          - created_at_asc
+          - name_desc
+          - created_at_desc
+          example: name_asc
+          title: FieldDefinitionSort
+          type: string
+      - description: 'Opaque Cursor query param for requests returning paginated results.
+
+          <br/>
+
+          NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+          '
+        in: query
+        name: after
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestAfterOpaqueCursor'
+      - description: ''
+        in: query
+        name: page_size
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestPageSize'
+      - description: ''
+        in: query
+        name: include_total_count
+        required: false
+        schema:
+          $ref: '#/components/schemas/IncludeTotalCount'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldDefinitionsWithIncludesResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: List account level field definitions
+      tags:
+      - Metadata Fields
+    post:
+      callbacks: {}
+      description: 'Create account level field definitions. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      operationId: metadata.field_definitions.create
+      parameters:
+      - description: ''
+        example: b17d263e-700c-45b0-959b-bca55c3a09eb
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFieldDefinitionParams'
+        description: Request body
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldDefinitionResponse'
+          description: Created
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Create account level field definitions
+      tags:
+      - Metadata Fields
+components:
+  schemas:
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    DateDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/DateDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: 599601e4-4927-43df-8173-07cc69da8a41
+        field_configuration:
+          display_format: local
+          display_timezone: true
+          include_time: false
+          time_format: twelve_hour
+        field_type: date
+        id: 6a2ccb64-2c1a-4ebe-99c3-3d2eead60da1
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: DateDefinitionWithIncludes
+      type: object
+    ToggleDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: 8a395795-bfc1-434c-92d8-d2c336c3443c
+        field_configuration:
+          color: '#ff44DD'
+        field_type: text
+        id: 346da34d-42a1-4a0c-895c-6b711debdf45
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            color:
+              description: 'Color value hex code. ex: #fbd400'
+              nullable: true
+              type: string
+          required:
+          - color
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: ToggleDefinition
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    ToggleDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/ToggleDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: 8a395795-bfc1-434c-92d8-d2c336c3443c
+        field_configuration:
+          color: '#ff44DD'
+        field_type: text
+        id: 346da34d-42a1-4a0c-895c-6b711debdf45
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: ToggleDefinitionWithIncludes
+      type: object
+    ToggleDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          color: '#ff44DD'
+        field_type: text
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            color:
+              description: 'Color value hex code. ex: #fbd400'
+              nullable: false
+              type: string
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      title: ToggleDefinitionParams
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    SelectDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: 0e55487c-4ce3-4333-b4d6-cb29806f9ff2
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+            id: 515964d7-eb7e-45a2-94ab-c6b70ef003a2
+          - display_name: Option 2
+            id: 2780656a-2771-4380-a105-6056dde7346b
+        field_type: select
+        id: 90f670d4-ca2a-43ef-85dd-e9c82b6de225
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            enable_add_new:
+              default: true
+              description: Allow or disallow adding in new option(s) from the grid/list view
+              type: boolean
+            options:
+              items:
+                additionalProperties: false
+                example:
+                  display_name: Display name
+                properties:
+                  color:
+                    description: 'Color value hex code for the `display_name`. ex: #fbd400'
+                    nullable: true
+                    type: string
+                  display_name:
+                    description: Option display name
+                    type: string
+                  id:
+                    format: uuid
+                    type: string
+                required:
+                - display_name
+                type: object
+              maxItems: 50
+              minItems: 1
+              type: array
+          required:
+          - options
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: SelectDefinition
+      type: object
+    LongTextDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: fcba6edc-2a54-453e-8183-be593ce15618
+        field_configuration: {}
+        field_type: long_text
+        id: a04d9720-aec7-42ba-bdb2-8431b0ffb6e6
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties: {}
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: LongTextDefinition
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    UserMultiDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          custom_members:
+          - id: dec7c574-6a1f-421f-8159-2d2a9440cf38
+            type: user
+          - id: 0a178795-2c2f-45e1-a8e7-77c9ccb3d64f
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_multi
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            custom_members:
+              items:
+                additionalProperties: false
+                example:
+                  id: 905103ec-7894-479d-ad0d-03532b83cadb
+                  type: user
+                properties:
+                  id:
+                    description: User Id
+                    format: uuid
+                    type: string
+                  type:
+                    enum:
+                    - user
+                    - account_user_group
+                    type: string
+                required:
+                - id
+                - type
+                type: object
+              minItems: 1
+              type: array
+            member_options_type:
+              enum:
+              - all_project_members
+              - custom
+              type: string
+            notify_members:
+              description: ''
+              type: boolean
+          required:
+          - notify_members
+          - member_options_type
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      - field_configuration
+      title: UserMultiDefinitionParams
+      type: object
+    FieldDefinition:
+      discriminator:
+        mapping:
+          date: '#/components/schemas/DateDefinition'
+          long_text: '#/components/schemas/LongTextDefinition'
+          number: '#/components/schemas/NumberDefinition'
+          rating: '#/components/schemas/RatingDefinition'
+          select: '#/components/schemas/SelectDefinition'
+          select_multi: '#/components/schemas/SelectMultiDefinition'
+          text: '#/components/schemas/TextDefinition'
+          toggle: '#/components/schemas/ToggleDefinition'
+          user_multi: '#/components/schemas/UserMultiDefinition'
+          user_single: '#/components/schemas/UserSingleDefinition'
+        propertyName: field_type
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: 0e55487c-4ce3-4333-b4d6-cb29806f9ff2
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+            id: 515964d7-eb7e-45a2-94ab-c6b70ef003a2
+          - display_name: Option 2
+            id: 2780656a-2771-4380-a105-6056dde7346b
+        field_type: select
+        id: 90f670d4-ca2a-43ef-85dd-e9c82b6de225
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      oneOf:
+      - $ref: '#/components/schemas/TextDefinition'
+      - $ref: '#/components/schemas/LongTextDefinition'
+      - $ref: '#/components/schemas/RatingDefinition'
+      - $ref: '#/components/schemas/NumberDefinition'
+      - $ref: '#/components/schemas/ToggleDefinition'
+      - $ref: '#/components/schemas/DateDefinition'
+      - $ref: '#/components/schemas/SelectDefinition'
+      - $ref: '#/components/schemas/SelectMultiDefinition'
+      - $ref: '#/components/schemas/UserSingleDefinition'
+      - $ref: '#/components/schemas/UserMultiDefinition'
+      title: FieldDefinition
+      type: object
+    SelectMultiDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: 68c9e62a-d1fe-4b0d-b2d7-46fd010b6eaf
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+            id: abe856bd-5811-4cec-9cfb-689f3e08e7bf
+          - display_name: Option 2
+            id: c7664c75-f0b6-4bb8-b360-f8b8ab6f8922
+        field_type: select
+        id: 5fefb542-32ae-4c02-aba4-ee4889073ad0
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            enable_add_new:
+              default: true
+              description: Allow or disallow adding in new option(s) from the grid/list view
+              type: boolean
+            options:
+              items:
+                additionalProperties: false
+                example:
+                  display_name: Display name
+                properties:
+                  color:
+                    description: 'Color value hex code for the `display_name`. ex: #fbd400'
+                    nullable: true
+                    type: string
+                  display_name:
+                    description: Option display name
+                    type: string
+                  id:
+                    format: uuid
+                    type: string
+                required:
+                - display_name
+                type: object
+              maxItems: 50
+              minItems: 1
+              type: array
+          required:
+          - options
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: SelectMultiDefinition
+      type: object
+    FieldDefinitionResponse:
+      example:
+        data:
+          created_at: '2024-01-25T19:18:29.614189Z'
+          creator_id: 0e55487c-4ce3-4333-b4d6-cb29806f9ff2
+          field_configuration:
+            enable_add_new: false
+            options:
+            - display_name: Option 1
+              id: 515964d7-eb7e-45a2-94ab-c6b70ef003a2
+            - display_name: Option 2
+              id: 2780656a-2771-4380-a105-6056dde7346b
+          field_type: select
+          id: 90f670d4-ca2a-43ef-85dd-e9c82b6de225
+          mutable: true
+          name: Fields definition name
+          updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/FieldDefinition'
+      required:
+      - data
+      title: FieldDefinitionResponse
+      type: object
+    CreateFieldDefinitionParams:
+      example:
+        data:
+          field_configuration:
+            enable_add_new: false
+            options:
+            - display_name: Option 1
+            - display_name: Option 2
+          field_type: select
+          name: Fields definition name
+      properties:
+        data:
+          discriminator:
+            mapping:
+              date: '#/components/schemas/DateDefinitionParams'
+              long_text: '#/components/schemas/LongTextDefinitionParams'
+              number: '#/components/schemas/NumberDefinitionParams'
+              rating: '#/components/schemas/RatingDefinitionParams'
+              select: '#/components/schemas/SelectDefinitionParams'
+              select_multi: '#/components/schemas/SelectMultiDefinitionParams'
+              text: '#/components/schemas/TextDefinitionParams'
+              toggle: '#/components/schemas/ToggleDefinitionParams'
+              user_multi: '#/components/schemas/UserMultiDefinitionParams'
+              user_single: '#/components/schemas/UserSingleDefinitionParams'
+            propertyName: field_type
+          oneOf:
+          - $ref: '#/components/schemas/TextDefinitionParams'
+          - $ref: '#/components/schemas/LongTextDefinitionParams'
+          - $ref: '#/components/schemas/RatingDefinitionParams'
+          - $ref: '#/components/schemas/NumberDefinitionParams'
+          - $ref: '#/components/schemas/ToggleDefinitionParams'
+          - $ref: '#/components/schemas/DateDefinitionParams'
+          - $ref: '#/components/schemas/SelectDefinitionParams'
+          - $ref: '#/components/schemas/SelectMultiDefinitionParams'
+          - $ref: '#/components/schemas/UserSingleDefinitionParams'
+          - $ref: '#/components/schemas/UserMultiDefinitionParams'
+          type: object
+      title: CreateFieldDefinitionParams
+      type: object
+    RatingDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          max_value: 5
+        field_type: rating
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            color:
+              description: 'Color value hex code for the `style` icon symbols. ex: #fbd400'
+              nullable: false
+              type: string
+            max_value:
+              maximum: 5
+              minimum: 0
+              type: integer
+            style:
+              description: Field type
+              enum:
+              - star
+              - heart
+              - thumbs_up
+              nullable: false
+              type: string
+          required:
+          - max_value
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      - field_configuration
+      title: RatingDefinitionParams
+      type: object
+    LongTextDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/LongTextDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: fcba6edc-2a54-453e-8183-be593ce15618
+        field_configuration: {}
+        field_type: long_text
+        id: a04d9720-aec7-42ba-bdb2-8431b0ffb6e6
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: LongTextDefinitionWithIncludes
+      type: object
+    RatingDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: 6679397d-a022-4bf2-995f-f3c4814e67fc
+        field_configuration:
+          color: '#ff34DD'
+          max_value: 5
+          style: star
+        field_type: rating
+        id: 1f5d47ab-1ab8-4c6a-a856-0eb89ff85b04
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            color:
+              description: 'Color value hex code for the `style` icon symbols. ex: #fbd400'
+              nullable: true
+              type: string
+            max_value:
+              maximum: 5
+              minimum: 0
+              type: integer
+            style:
+              description: Field type
+              enum:
+              - star
+              - heart
+              - thumbs_up
+              nullable: true
+              type: string
+          required:
+          - max_value
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: RatingDefinition
+      type: object
+    DateDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          display_format: local
+          display_timezone: true
+          include_time: false
+        field_type: date
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            display_format:
+              default: local
+              enum:
+              - local
+              - friendly
+              - usa
+              - euro
+              - iso
+              type: string
+            display_timezone:
+              default: false
+              type: boolean
+            include_time:
+              default: false
+              description: ''
+              type: boolean
+            time_format:
+              default: twelve_hour
+              enum:
+              - twelve_hour
+              - twenty_four_hour
+              type: string
+          required:
+          - display_format
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      - field_configuration
+      title: DateDefinitionParams
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    UpdateLongTextDefinitionParams:
+      additionalProperties: false
+      example:
+        field_type: text
+        name: Fields definition name
+      properties:
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateLongTextDefinitionParams
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    UpdateNumberDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          scale: 3
+        field_type: number
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            number_format:
+              description: Number format
+              enum:
+              - bitrate
+              - bits
+              - duration
+              - framerate
+              - frequency
+              - storage
+              - timecode
+              nullable: false
+              type: string
+            scale:
+              description: Number scale. Indicates the number of decimal places of precision for the number value
+              maximum: 3
+              minimum: 0
+              type: integer
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateNumberDefinitionParams
+      type: object
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    NumberDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: cc2f8410-ddc4-4d2d-98d9-499cd153e1db
+        field_configuration:
+          number_format: framerate
+          scale: 3
+        field_type: number
+        id: 70320e7b-b6a6-4d20-a65e-8df9f4f72495
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            number_format:
+              description: Number format
+              enum:
+              - bitrate
+              - bits
+              - duration
+              - framerate
+              - frequency
+              - storage
+              - timecode
+              nullable: true
+              type: string
+            scale:
+              description: Number scale. Indicates the number of decimal places of precision for the number value
+              maximum: 3
+              minimum: 0
+              type: integer
+          required:
+          - scale
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: NumberDefinition
+      type: object
+    UpdateToggleDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          color: '#ff44DD'
+        field_type: toggle
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            color:
+              description: 'Color value hex code. ex: #fbd400'
+              nullable: false
+              type: string
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateToggleDefinitionParams
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      nullable: true
+      title: RequestAfterOpaqueCursor
+      type: string
+    UserSingleDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/UserSingleDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: dc5cac72-1ba6-4e65-94ff-91298120ea32
+        field_configuration:
+          custom_members:
+          - id: 258d8e3e-c4b2-4556-bafe-ed5a4a3b4571
+            type: user
+          - id: acde8409-0894-41ba-b02d-d3d8bd5c326a
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_single
+        id: 21ded9ac-5cb9-4d3c-93d3-2ff9d37b1f2b
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: UserSingleDefinitionWithIncludes
+      type: object
+    SelectMultiDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+          - display_name: Option 2
+        field_type: select_multi
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            enable_add_new:
+              default: true
+              description: Allow or disallow adding in new option(s) from the grid/list view
+              type: boolean
+            options:
+              items:
+                additionalProperties: false
+                example:
+                  display_name: Display name
+                properties:
+                  color:
+                    description: 'Color value hex code for the `display_name`. ex: #fbd400'
+                    nullable: false
+                    type: string
+                  display_name:
+                    description: Option display name
+                    type: string
+                required:
+                - display_name
+                type: object
+              maxItems: 50
+              minItems: 1
+              type: array
+          required:
+          - options
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      - field_configuration
+      title: SelectMultiDefinitionParams
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          nullable: true
+          type: string
+      required:
+      - next
+      title: Links
+      type: object
+    UserSingleDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          custom_members:
+          - id: 1a84118f-af24-4bd8-87d0-335ed00569c0
+            type: user
+          - id: d54ee1b5-f129-4d19-9f07-1718afd5bb31
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_single
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            custom_members:
+              items:
+                additionalProperties: false
+                example:
+                  id: 8320f8c9-f29c-4235-9d95-e1cbf000ae62
+                  type: user
+                properties:
+                  id:
+                    description: User Id
+                    format: uuid
+                    type: string
+                  type:
+                    enum:
+                    - user
+                    - account_user_group
+                    type: string
+                required:
+                - id
+                - type
+                type: object
+              minItems: 1
+              type: array
+            member_options_type:
+              enum:
+              - all_project_members
+              - custom
+              type: string
+            notify_members:
+              description: ''
+              type: boolean
+          required:
+          - notify_members
+          - member_options_type
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      - field_configuration
+      title: UserSingleDefinitionParams
+      type: object
+    FieldDefinitionsWithIncludesResponse:
+      description: Account field definitions
+      example:
+        data:
+        - created_at: '2024-01-25T19:18:29.614189Z'
+          creator_id: 0e55487c-4ce3-4333-b4d6-cb29806f9ff2
+          field_configuration:
+            enable_add_new: false
+            options:
+            - display_name: Option 1
+              id: 515964d7-eb7e-45a2-94ab-c6b70ef003a2
+            - display_name: Option 2
+              id: 2780656a-2771-4380-a105-6056dde7346b
+          field_type: select
+          id: 90f670d4-ca2a-43ef-85dd-e9c82b6de225
+          mutable: true
+          name: Fields definition name
+          updated_at: '2024-02-07T16:44:41.986478Z'
+        - created_at: '2024-01-25T19:18:29.614189Z'
+          creator_id: 68c9e62a-d1fe-4b0d-b2d7-46fd010b6eaf
+          field_configuration:
+            enable_add_new: false
+            options:
+            - display_name: Option 1
+              id: abe856bd-5811-4cec-9cfb-689f3e08e7bf
+            - display_name: Option 2
+              id: c7664c75-f0b6-4bb8-b360-f8b8ab6f8922
+          field_type: select
+          id: 5fefb542-32ae-4c02-aba4-ee4889073ad0
+          mutable: true
+          name: Fields definition name
+          updated_at: '2024-02-07T16:44:41.986478Z'
+        links:
+          next: /v4/accounts/123/metadata/field_definitions
+        total_count: 10
+      properties:
+        data:
+          description: Field definitions
+          items:
+            $ref: '#/components/schemas/FieldDefinitionWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          nullable: true
+          type: integer
+      required:
+      - data
+      - links
+      title: FieldDefinitionsWithIncludesResponse
+      type: object
+    UserMultiDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/UserMultiDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: cea9894e-731c-470e-be3d-9f2772e94284
+        field_configuration:
+          custom_members:
+          - id: 3e3af2b3-9be9-4ef1-8856-a917fc2dbce4
+            type: user
+          - id: 80e9cf85-11c4-4d95-83fd-515a7da96f35
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_multi
+        id: 30adcd6b-1830-468c-aa54-e1c4d8949a7f
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: UserMultiDefinitionWithIncludes
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    NumberDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          scale: 3
+        field_type: number
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            number_format:
+              description: Number format
+              enum:
+              - bitrate
+              - bits
+              - duration
+              - framerate
+              - frequency
+              - storage
+              - timecode
+              nullable: false
+              type: string
+            scale:
+              description: Number scale. Indicates the number of decimal places of precision for the number value
+              maximum: 3
+              minimum: 0
+              type: integer
+          required:
+          - scale
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      - field_configuration
+      title: NumberDefinitionParams
+      type: object
+    UpdateDateDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          display_format: local
+          display_timezone: true
+          include_time: false
+        field_type: date
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            display_format:
+              default: local
+              enum:
+              - local
+              - friendly
+              - usa
+              - euro
+              - iso
+              type: string
+            display_timezone:
+              default: false
+              type: boolean
+            include_time:
+              default: false
+              description: ''
+              type: boolean
+            time_format:
+              default: twelve_hour
+              enum:
+              - twelve_hour
+              - twenty_four_hour
+              type: string
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateDateDefinitionParams
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    UpdateFieldDefinitionParams:
+      example:
+        data:
+          field_configuration:
+            enable_add_new: false
+            options:
+            - display_name: Option 1
+            - display_name: Option 2
+          field_type: select
+          name: Updated-Field-Name
+      properties:
+        data:
+          discriminator:
+            mapping:
+              date: '#/components/schemas/UpdateDateDefinitionParams'
+              long_text: '#/components/schemas/UpdateLongTextDefinitionParams'
+              number: '#/components/schemas/UpdateNumberDefinitionParams'
+              rating: '#/components/schemas/UpdateRatingDefinitionParams'
+              select: '#/components/schemas/UpdateSelectDefinitionParams'
+              select_multi: '#/components/schemas/UpdateSelectMultiDefinitionParams'
+              text: '#/components/schemas/UpdateTextDefinitionParams'
+              toggle: '#/components/schemas/UpdateToggleDefinitionParams'
+              user_multi: '#/components/schemas/UpdateUserMultiDefinitionParams'
+              user_single: '#/components/schemas/UpdateUserSingleDefinitionParams'
+            propertyName: field_type
+          oneOf:
+          - $ref: '#/components/schemas/UpdateTextDefinitionParams'
+          - $ref: '#/components/schemas/UpdateLongTextDefinitionParams'
+          - $ref: '#/components/schemas/UpdateRatingDefinitionParams'
+          - $ref: '#/components/schemas/UpdateNumberDefinitionParams'
+          - $ref: '#/components/schemas/UpdateToggleDefinitionParams'
+          - $ref: '#/components/schemas/UpdateDateDefinitionParams'
+          - $ref: '#/components/schemas/UpdateSelectDefinitionParams'
+          - $ref: '#/components/schemas/UpdateSelectMultiDefinitionParams'
+          - $ref: '#/components/schemas/UpdateUserSingleDefinitionParams'
+          - $ref: '#/components/schemas/UpdateUserMultiDefinitionParams'
+          type: object
+      title: UpdateFieldDefinitionParams
+      type: object
+    SelectDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/SelectDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: 0e55487c-4ce3-4333-b4d6-cb29806f9ff2
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+            id: 515964d7-eb7e-45a2-94ab-c6b70ef003a2
+          - display_name: Option 2
+            id: 2780656a-2771-4380-a105-6056dde7346b
+        field_type: select
+        id: 90f670d4-ca2a-43ef-85dd-e9c82b6de225
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: SelectDefinitionWithIncludes
+      type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    UserMultiDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: cea9894e-731c-470e-be3d-9f2772e94284
+        field_configuration:
+          custom_members:
+          - id: 3e3af2b3-9be9-4ef1-8856-a917fc2dbce4
+            type: user
+          - id: 80e9cf85-11c4-4d95-83fd-515a7da96f35
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_multi
+        id: 30adcd6b-1830-468c-aa54-e1c4d8949a7f
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            custom_members:
+              items:
+                additionalProperties: false
+                example:
+                  id: 5a497439-ea63-4553-b8b4-e110496433ea
+                  type: user
+                properties:
+                  id:
+                    description: User Id
+                    format: uuid
+                    type: string
+                  type:
+                    enum:
+                    - user
+                    - account_user_group
+                    type: string
+                required:
+                - id
+                - type
+                type: object
+              minItems: 0
+              type: array
+            member_options_type:
+              enum:
+              - all_project_members
+              - custom
+              type: string
+            notify_members:
+              description: ''
+              type: boolean
+          required:
+          - notify_members
+          - member_options_type
+          - custom_members
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: UserMultiDefinition
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          nullable: true
+          type: boolean
+        adobe_user_id:
+          description: Adobe user ID
+          nullable: true
+          type: string
+        avatar_url:
+          description: User avatar image url
+          nullable: true
+          type: string
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          nullable: true
+          type: string
+        name:
+          description: User name
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    UpdateRatingDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          max_value: 5
+        field_type: rating
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            color:
+              description: 'Color value hex code for the `style` icon symbols. ex: #fbd400'
+              nullable: false
+              type: string
+            max_value:
+              maximum: 5
+              minimum: 0
+              type: integer
+            style:
+              description: Field type
+              enum:
+              - star
+              - heart
+              - thumbs_up
+              nullable: false
+              type: string
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateRatingDefinitionParams
+      type: object
+    TextDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/TextDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: c399f513-ec62-4b45-bb86-5fcee5002b30
+        field_configuration: {}
+        field_type: text
+        id: 48d3a3de-c8d0-4400-8012-d5e51d162302
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: TextDefinitionWithIncludes
+      type: object
+    UpdateTextDefinitionParams:
+      additionalProperties: false
+      example:
+        field_type: text
+        name: Fields definition name
+      properties:
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateTextDefinitionParams
+      type: object
+    UpdateSelectMultiDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+          - display_name: Option 2
+        field_type: select_multi
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            enable_add_new:
+              default: true
+              description: Allow or disallow adding in new option(s) from the grid/list view
+              type: boolean
+            options:
+              items:
+                additionalProperties: false
+                example:
+                  display_name: Display name
+                properties:
+                  color:
+                    description: 'Color value hex code for the `display_name`. ex: #fbd400'
+                    nullable: false
+                    type: string
+                  display_name:
+                    description: Option display name
+                    type: string
+                required:
+                - display_name
+                type: object
+              maxItems: 50
+              minItems: 1
+              type: array
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateSelectMultiDefinitionParams
+      type: object
+    SelectDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+          - display_name: Option 2
+        field_type: select
+        name: Fields definition name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            enable_add_new:
+              default: true
+              description: Allow or disallow adding in new option(s) from the grid/list view
+              type: boolean
+            options:
+              items:
+                additionalProperties: false
+                example:
+                  display_name: Display name
+                properties:
+                  color:
+                    description: 'Color value hex code for the `display_name`. ex: #fbd400'
+                    nullable: false
+                    type: string
+                  display_name:
+                    description: Option display name
+                    type: string
+                required:
+                - display_name
+                type: object
+              maxItems: 50
+              minItems: 1
+              type: array
+          required:
+          - options
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      - field_configuration
+      title: SelectDefinitionParams
+      type: object
+    NumberDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/NumberDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: cc2f8410-ddc4-4d2d-98d9-499cd153e1db
+        field_configuration:
+          number_format: framerate
+          scale: 3
+        field_type: number
+        id: 70320e7b-b6a6-4d20-a65e-8df9f4f72495
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: NumberDefinitionWithIncludes
+      type: object
+    UserSingleDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: dc5cac72-1ba6-4e65-94ff-91298120ea32
+        field_configuration:
+          custom_members:
+          - id: 258d8e3e-c4b2-4556-bafe-ed5a4a3b4571
+            type: user
+          - id: acde8409-0894-41ba-b02d-d3d8bd5c326a
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_single
+        id: 21ded9ac-5cb9-4d3c-93d3-2ff9d37b1f2b
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            custom_members:
+              items:
+                additionalProperties: false
+                example:
+                  id: c5b65f24-db83-46da-a53d-d7eff0e43583
+                  type: user
+                properties:
+                  id:
+                    description: User Id
+                    format: uuid
+                    type: string
+                  type:
+                    enum:
+                    - user
+                    - account_user_group
+                    type: string
+                required:
+                - id
+                - type
+                type: object
+              minItems: 0
+              type: array
+            member_options_type:
+              enum:
+              - all_project_members
+              - custom
+              type: string
+            notify_members:
+              description: ''
+              type: boolean
+          required:
+          - notify_members
+          - member_options_type
+          - custom_members
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: UserSingleDefinition
+      type: object
+    LongTextDefinitionParams:
+      additionalProperties: false
+      example:
+        field_type: text
+        name: Fields definition name
+      properties:
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      title: LongTextDefinitionParams
+      type: object
+    TextDefinitionParams:
+      additionalProperties: false
+      example:
+        field_type: text
+        name: Fields definition name
+      properties:
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - name
+      - field_type
+      title: TextDefinitionParams
+      type: object
+    TextDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: c399f513-ec62-4b45-bb86-5fcee5002b30
+        field_configuration: {}
+        field_type: text
+        id: 48d3a3de-c8d0-4400-8012-d5e51d162302
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties: {}
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: TextDefinition
+      type: object
+    UpdateUserMultiDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          custom_members:
+          - id: 6b97449f-c1d5-46f9-bc0d-23fa0965891b
+            type: user
+          - id: c339f738-c13c-4bda-8330-626a82b75366
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_multi
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            custom_members:
+              items:
+                additionalProperties: false
+                example:
+                  id: 388aceaa-b0b0-495a-a2ab-21f1ba757d0b
+                  type: user
+                properties:
+                  id:
+                    description: User Id
+                    format: uuid
+                    type: string
+                  type:
+                    enum:
+                    - user
+                    - account_user_group
+                    type: string
+                required:
+                - id
+                - type
+                type: object
+              minItems: 1
+              type: array
+            member_options_type:
+              enum:
+              - all_project_members
+              - custom
+              type: string
+            notify_members:
+              description: ''
+              type: boolean
+          required:
+          - notify_members
+          - member_options_type
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateUserMultiDefinitionParams
+      type: object
+    UpdateSelectDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+          - display_name: Option 2
+        field_type: select
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            enable_add_new:
+              default: true
+              description: Allow or disallow adding in new option(s) from the grid/list view
+              type: boolean
+            options:
+              items:
+                additionalProperties: false
+                example:
+                  display_name: Display name
+                properties:
+                  color:
+                    description: 'Color value hex code for the `display_name`. ex: #fbd400'
+                    nullable: false
+                    type: string
+                  display_name:
+                    description: Option display name
+                    type: string
+                required:
+                - display_name
+                type: object
+              maxItems: 50
+              minItems: 1
+              type: array
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateSelectDefinitionParams
+      type: object
+    DateDefinition:
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: 599601e4-4927-43df-8173-07cc69da8a41
+        field_configuration:
+          display_format: local
+          display_timezone: true
+          include_time: false
+          time_format: twelve_hour
+        field_type: date
+        id: 6a2ccb64-2c1a-4ebe-99c3-3d2eead60da1
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        creator_id:
+          description: Field definition creator ID
+          format: uuid
+          type: string
+        field_configuration:
+          additionalProperties: false
+          properties:
+            display_format:
+              default: local
+              enum:
+              - local
+              - friendly
+              - usa
+              - euro
+              - iso
+              type: string
+            display_timezone:
+              default: false
+              type: boolean
+            include_time:
+              default: false
+              description: ''
+              type: boolean
+            time_format:
+              default: twelve_hour
+              enum:
+              - twelve_hour
+              - twenty_four_hour
+              type: string
+          required:
+          - display_format
+          type: object
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - user_single
+          - user_multi
+          - date
+          type: string
+        id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        mutable:
+          description: Field definition mutability. System fields cannot be updated.
+          type: boolean
+        name:
+          description: FieldDefinition Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - field_type
+      - creator_id
+      - created_at
+      - mutable
+      - updated_at
+      - field_configuration
+      title: DateDefinition
+      type: object
+    UpdateUserSingleDefinitionParams:
+      additionalProperties: false
+      example:
+        field_configuration:
+          custom_members:
+          - id: 991e3fef-ecb1-41df-895a-b39490c83d84
+            type: user
+          - id: 5b4831d5-91c1-4ad9-9d95-0ee6c8f1bbe7
+            type: user
+          member_options_type: custom
+          notify_members: false
+        field_type: user_single
+        name: Updated-Field-Name
+      properties:
+        field_configuration:
+          additionalProperties: false
+          properties:
+            custom_members:
+              items:
+                additionalProperties: false
+                example:
+                  id: 6e043daf-3463-4f02-939b-887bdf69bf2c
+                  type: user
+                properties:
+                  id:
+                    description: User Id
+                    format: uuid
+                    type: string
+                  type:
+                    enum:
+                    - user
+                    - account_user_group
+                    type: string
+                required:
+                - id
+                - type
+                type: object
+              minItems: 1
+              type: array
+            member_options_type:
+              enum:
+              - all_project_members
+              - custom
+              type: string
+            notify_members:
+              description: ''
+              type: boolean
+          required:
+          - notify_members
+          - member_options_type
+          type: object
+        field_type:
+          description: Field type of the field definition to be updated
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - date
+          - user_multi
+          - user_single
+          type: string
+        name:
+          description: Field definition name
+          maxLength: 250
+          minLength: 1
+          type: string
+      required:
+      - field_type
+      title: UpdateUserSingleDefinitionParams
+      type: object
+    SelectMultiDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/SelectMultiDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: 68c9e62a-d1fe-4b0d-b2d7-46fd010b6eaf
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+            id: abe856bd-5811-4cec-9cfb-689f3e08e7bf
+          - display_name: Option 2
+            id: c7664c75-f0b6-4bb8-b360-f8b8ab6f8922
+        field_type: select
+        id: 5fefb542-32ae-4c02-aba4-ee4889073ad0
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: SelectMultiDefinitionWithIncludes
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    FieldDefinitionWithIncludes:
+      discriminator:
+        mapping:
+          date: '#/components/schemas/DateDefinitionWithIncludes'
+          long_text: '#/components/schemas/LongTextDefinitionWithIncludes'
+          number: '#/components/schemas/NumberDefinitionWithIncludes'
+          rating: '#/components/schemas/RatingDefinitionWithIncludes'
+          select: '#/components/schemas/SelectDefinitionWithIncludes'
+          select_multi: '#/components/schemas/SelectMultiDefinitionWithIncludes'
+          text: '#/components/schemas/TextDefinitionWithIncludes'
+          toggle: '#/components/schemas/ToggleDefinitionWithIncludes'
+          user_multi: '#/components/schemas/UserMultiDefinitionWithIncludes'
+          user_single: '#/components/schemas/UserSingleDefinitionWithIncludes'
+        propertyName: field_type
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator_id: 0e55487c-4ce3-4333-b4d6-cb29806f9ff2
+        field_configuration:
+          enable_add_new: false
+          options:
+          - display_name: Option 1
+            id: 515964d7-eb7e-45a2-94ab-c6b70ef003a2
+          - display_name: Option 2
+            id: 2780656a-2771-4380-a105-6056dde7346b
+        field_type: select
+        id: 90f670d4-ca2a-43ef-85dd-e9c82b6de225
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      oneOf:
+      - $ref: '#/components/schemas/TextDefinitionWithIncludes'
+      - $ref: '#/components/schemas/LongTextDefinitionWithIncludes'
+      - $ref: '#/components/schemas/RatingDefinitionWithIncludes'
+      - $ref: '#/components/schemas/NumberDefinitionWithIncludes'
+      - $ref: '#/components/schemas/ToggleDefinitionWithIncludes'
+      - $ref: '#/components/schemas/DateDefinitionWithIncludes'
+      - $ref: '#/components/schemas/SelectDefinitionWithIncludes'
+      - $ref: '#/components/schemas/SelectMultiDefinitionWithIncludes'
+      - $ref: '#/components/schemas/UserSingleDefinitionWithIncludes'
+      - $ref: '#/components/schemas/UserMultiDefinitionWithIncludes'
+      title: FieldDefinitionWithIncludes
+      type: object
+    RatingDefinitionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/RatingDefinition'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: 6679397d-a022-4bf2-995f-f3c4814e67fc
+        field_configuration:
+          color: '#ff34DD'
+          max_value: 5
+          style: star
+        field_type: rating
+        id: 1f5d47ab-1ab8-4c6a-a856-0eb89ff85b04
+        mutable: true
+        name: Fields definition name
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: RatingDefinitionWithIncludes
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    bearer:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    s2s_auth:
+      description: Server to server authentication flow
+      flows:
+        clientCredentials:
+          scopes:
+            AdobeID: Adobe ID
+            frame.s2s.all: Frame.io Server to Server access
+            openid: Sign in a user
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+x-tagGroups:
+- name: Accounts, Users and Permissions
+  tags:
+  - Accounts
+  - Users
+  - Account Permissions
+  - Workspace Permissions
+  - Project Permissions
+  - Folder Permissions
+  - Groups
+- name: Workspace Management
+  tags:
+  - Projects
+  - Workspaces
+  - Shares
+- name: Assets
+  tags:
+  - Files
+  - Folders
+  - Version Stacks
+- name: Comments
+  tags:
+  - Comments
+- name: Collections
+  tags:
+  - Collections
+- name: Metadata
+  tags:
+  - Metadata Fields
+  - Metadata
+- name: Integrations
+  tags:
+  - Webhooks
+  - Custom Actions

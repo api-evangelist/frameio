@@ -1,0 +1,1330 @@
+openapi: 3.0.0
+info:
+  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  license:
+    name: Adobe
+    url: https://www.adobe.com/legal/terms.html
+  title: Frame.io Account Permissions Collections API
+  version: v4.0
+servers:
+- url: https://api.frame.io
+  variables: {}
+security:
+- OAuth2: []
+- bearer: []
+tags:
+- description: Manage Collections and related operations.
+  name: Collections
+paths:
+  /v4/accounts/{account_id}/projects/{project_id}/collections:
+    get:
+      callbacks: {}
+      description: 'List collections for a project. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: collections.index
+      parameters:
+      - description: ''
+        example: ab98158e-d53c-46c8-b1e8-ba4cf5573a96
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        example: 539ef89d-5f91-4750-a9f6-2dc66f5150d5
+        in: path
+        name: project_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        in: query
+        name: include
+        required: false
+        schema:
+          $ref: '#/components/schemas/CollectionInclude'
+      - description: 'Opaque Cursor query param for requests returning paginated results.
+
+          <br/>
+
+          NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+          '
+        in: query
+        name: after
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestAfterOpaqueCursor'
+      - description: ''
+        in: query
+        name: page_size
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequestPageSize'
+      - description: ''
+        in: query
+        name: include_total_count
+        required: false
+        schema:
+          $ref: '#/components/schemas/IncludeTotalCount'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionsResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: List collections
+      tags:
+      - Collections
+  /v4/accounts/{account_id}/collections/{collection_id}:
+    get:
+      callbacks: {}
+      description: 'Show collection details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: collections.show
+      parameters:
+      - description: ''
+        example: a5685337-e9f4-4efe-8229-59a9022cd11d
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        example: ab4e7052-f235-436b-8ada-f7ba7222ae1e
+        in: path
+        name: collection_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: ''
+        in: query
+        name: include
+        required: false
+        schema:
+          $ref: '#/components/schemas/CollectionInclude'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Show collection
+      tags:
+      - Collections
+components:
+  schemas:
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    Project:
+      description: Frame.io Project
+      example:
+        adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+        created_at: '2024-01-25T19:18:29.614189Z'
+        id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+        name: My Project
+        restricted: false
+        root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
+        status: active
+        storage: 15000
+        updated_at: '2024-02-07T16:44:41.986478Z'
+        view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+        workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+      properties:
+        adobe_id:
+          description: Adobe cloud storage directory ID associated with the project, when available.
+          nullable: true
+          type: string
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        id:
+          description: Project ID
+          format: uuid
+          type: string
+        name:
+          description: Project Name
+          type: string
+        restricted:
+          description: Whether the project is restricted or not
+          type: boolean
+        root_folder_id:
+          description: Root Folder ID
+          format: uuid
+          type: string
+        status:
+          description: Project Status
+          enum:
+          - active
+          - inactive
+          type: string
+        storage:
+          default: 0
+          description: Storage Usage
+          type: integer
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+        view_url:
+          description: URL to view the project in the Frame.io web application
+          type: string
+        workspace_id:
+          description: Workspace ID
+          format: uuid
+          type: string
+      required:
+      - id
+      - name
+      - status
+      - storage
+      - workspace_id
+      - root_folder_id
+      - created_at
+      - updated_at
+      - view_url
+      title: Project
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    Share:
+      example:
+        access: public
+        collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
+        commenting_enabled: true
+        created_at: '2024-02-02T21:19:24.828948Z'
+        description: Description of share
+        downloading_enabled: true
+        enabled: true
+        expiration: '2026-07-17T22:34:21.758403Z'
+        id: f82d1488-3ee2-4573-aa7c-c727e6266080
+        last_viewed_at: '2024-03-02T21:19:24.828948Z'
+        name: Test Share
+        passphrase: as!dfj39sd(*
+        short_url: https://f.io/GGa9wPw5
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        access:
+          enum:
+          - public
+          - secure
+          type: string
+        collection_id:
+          description: Collection ID
+          format: uuid
+          type: string
+        commenting_enabled:
+          description: Whether commenting is enabled on the share
+          type: boolean
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        description:
+          description: Share description
+          nullable: true
+          type: string
+        downloading_enabled:
+          description: Whether downloading is enabled on the share
+          type: boolean
+        enabled:
+          description: Whether the share link is active
+          type: boolean
+        expiration:
+          description: Expiration timestamp
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          description: Share ID
+          format: uuid
+          type: string
+        last_viewed_at:
+          description: Last viewed timestamp
+          format: date-time
+          nullable: true
+          type: string
+        name:
+          description: Share name
+          nullable: true
+          type: string
+        passphrase:
+          description: Passphrase to access share, if passphrase is required and not given it will be generated
+          maxLength: 255
+          nullable: true
+          type: string
+        short_url:
+          description: Share URL
+          nullable: true
+          type: string
+        updated_at:
+          description: Update timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - description
+      - collection_id
+      - short_url
+      - access
+      - enabled
+      - commenting_enabled
+      - downloading_enabled
+      - expiration
+      - last_viewed_at
+      - created_at
+      - updated_at
+      title: Share
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      nullable: true
+      title: RequestAfterOpaqueCursor
+      type: string
+    CollectionsResponse:
+      example:
+        data:
+        - aggregation_mode: dynamic
+          auto_generated: false
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of collection
+          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+          name: Test Collection
+          private: false
+          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        - aggregation_mode: dynamic
+          auto_generated: false
+          created_at: '2024-02-02T21:19:24.828948Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          description: Description of collection
+          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+          name: Test Collection
+          private: false
+          project:
+            adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+            created_at: '2024-01-25T19:18:29.614189Z'
+            id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+            name: My Project
+            restricted: false
+            root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
+            status: active
+            storage: 15000
+            updated_at: '2024-02-07T16:44:41.986478Z'
+            view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+            workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+          shares:
+          - access: public
+            collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
+            commenting_enabled: true
+            created_at: '2024-02-02T21:19:24.828948Z'
+            description: Description of share
+            downloading_enabled: true
+            enabled: true
+            expiration: '2026-07-17T22:34:21.758403Z'
+            id: f82d1488-3ee2-4573-aa7c-c727e6266080
+            last_viewed_at: '2024-03-02T21:19:24.828948Z'
+            name: Test Share
+            passphrase: as!dfj39sd(*
+            short_url: https://f.io/GGa9wPw5
+            updated_at: '2024-02-02T21:19:24.828948Z'
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        links:
+          next: /v4/accounts/123/projects/123/collections
+        total_count: 10
+      properties:
+        data:
+          description: Collections
+          items:
+            $ref: '#/components/schemas/Collection'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          nullable: true
+          type: integer
+      required:
+      - data
+      - links
+      title: CollectionsResponse
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          nullable: true
+          type: string
+      required:
+      - next
+      title: Links
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    Collection:
+      example:
+        aggregation_mode: dynamic
+        auto_generated: false
+        created_at: '2024-02-02T21:19:24.828948Z'
+        description: Description of collection
+        id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+        name: Test Collection
+        private: false
+        project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+        root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        aggregation_mode:
+          enum:
+          - static
+          - dynamic
+          type: string
+        auto_generated:
+          type: boolean
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        creator:
+          $ref: '#/components/schemas/User'
+        description:
+          description: Collection description
+          nullable: true
+          type: string
+        id:
+          description: Collection ID
+          format: uuid
+          type: string
+        name:
+          description: Collection name
+          nullable: true
+          type: string
+        private:
+          type: boolean
+        project:
+          $ref: '#/components/schemas/Project'
+        project_id:
+          description: Project ID
+          format: uuid
+          type: string
+        root_folder_id:
+          description: Root folder ID
+          format: uuid
+          nullable: true
+          type: string
+        shares:
+          description: Shares
+          items:
+            $ref: '#/components/schemas/Share'
+          type: array
+        updated_at:
+          description: Update timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - description
+      - root_folder_id
+      - project_id
+      - auto_generated
+      - private
+      - aggregation_mode
+      - created_at
+      - updated_at
+      title: Collection
+      type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          nullable: true
+          type: boolean
+        adobe_user_id:
+          description: Adobe user ID
+          nullable: true
+          type: string
+        avatar_url:
+          description: User avatar image url
+          nullable: true
+          type: string
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          nullable: true
+          type: string
+        name:
+          description: User name
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    CollectionResponse:
+      example:
+        data:
+          aggregation_mode: dynamic
+          auto_generated: false
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of collection
+          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+          name: Test Collection
+          private: false
+          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/Collection'
+      required:
+      - data
+      title: CollectionResponse
+      type: object
+    CollectionInclude:
+      description: Include query parameter for collections
+      example: creator,project
+      title: CollectionInclude
+      type: string
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    bearer:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    s2s_auth:
+      description: Server to server authentication flow
+      flows:
+        clientCredentials:
+          scopes:
+            AdobeID: Adobe ID
+            frame.s2s.all: Frame.io Server to Server access
+            openid: Sign in a user
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+x-tagGroups:
+- name: Accounts, Users and Permissions
+  tags:
+  - Accounts
+  - Users
+  - Account Permissions
+  - Workspace Permissions
+  - Project Permissions
+  - Folder Permissions
+  - Groups
+- name: Workspace Management
+  tags:
+  - Projects
+  - Workspaces
+  - Shares
+- name: Assets
+  tags:
+  - Files
+  - Folders
+  - Version Stacks
+- name: Comments
+  tags:
+  - Comments
+- name: Collections
+  tags:
+  - Collections
+- name: Metadata
+  tags:
+  - Metadata Fields
+  - Metadata
+- name: Integrations
+  tags:
+  - Webhooks
+  - Custom Actions

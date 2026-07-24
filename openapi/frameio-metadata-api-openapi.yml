@@ -1,0 +1,1314 @@
+openapi: 3.0.0
+info:
+  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  license:
+    name: Adobe
+    url: https://www.adobe.com/legal/terms.html
+  title: Frame.io Account Permissions Metadata API
+  version: v4.0
+servers:
+- url: https://api.frame.io
+  variables: {}
+security:
+- OAuth2: []
+- bearer: []
+tags:
+- description: Manage Metadata and related operations.
+  name: Metadata
+paths:
+  /v4/accounts/{account_id}/files/{file_id}/metadata:
+    get:
+      callbacks: {}
+      description: 'Show the metadata of a file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      operationId: metadata.show
+      parameters:
+      - description: ''
+        example: d89eaa6a-3d6b-40f2-ba6e-687f7da4cc3d
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: 1272fe57-efde-4f06-bffe-8d707009048c
+        in: path
+        name: file_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        in: query
+        name: show_null
+        required: false
+        schema:
+          description: Enables display of null values and field details when true
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataResponse'
+          description: OK
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Show metadata
+      tags:
+      - Metadata
+  /v4/accounts/{account_id}/projects/{project_id}/metadata/values:
+    patch:
+      callbacks: {}
+      description: 'Update metadata values across multiple files. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      operationId: metadata.bulk_update
+      parameters:
+      - description: ''
+        example: 738b1b3e-0d02-44d2-871b-e2ab26aa6dfe
+        in: path
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      - description: ''
+        example: 710c5da7-9051-4561-be96-0deb4d003b98
+        in: path
+        name: project_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/FrameOrAdobeId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkUpdateMetadataParams'
+        description: Request body
+        required: true
+      responses:
+        '204':
+          content:
+            '*':
+              schema:
+                $ref: '#/components/schemas/NoContent'
+          description: No Content
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+          description: Unauthorized
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
+          description: Forbidden
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Not found
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conflict'
+          description: Conflict
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContent'
+          description: Unprocessable content
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequests'
+          description: Too many requests
+          headers:
+            x-ratelimit-limit:
+              description: Rate limit
+              example: 100
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-remaining:
+              description: Rate limit remaining
+              example: 99
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+            x-ratelimit-window:
+              description: Rate limit window in milliseconds
+              example: 60000
+              required: true
+              schema:
+                format: int32
+                minimum: 0
+                type: integer
+              style: simple
+      summary: Update metadata across multiple files
+      tags:
+      - Metadata
+components:
+  schemas:
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    IntegerValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            nullable: true
+            type: integer
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: rating
+        mutable: true
+        value: 4
+      required:
+      - value
+      title: IntegerValue
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    SelectOption:
+      example:
+        display_name: Display name
+        id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+      properties:
+        display_name:
+          description: Option display name
+          type: string
+        id:
+          description: Option ID
+          format: uuid
+          type: string
+      required:
+      - id
+      - display_name
+      title: SelectOption
+      type: object
+    DateValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            format: datetime
+            nullable: true
+            type: string
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: date
+        mutable: true
+        value: '2026-07-17 21:34:21.954509Z'
+      required:
+      - value
+      title: DateValue
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    MultiUserValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          custom_members:
+            description: Populated with custom member options only if `member_options_type` is set to 'custom'.
+            items:
+              $ref: '#/components/schemas/UserValue'
+            type: array
+          member_options_type:
+            enum:
+            - custom
+            - all_project_members
+            type: string
+          value:
+            items:
+              $ref: '#/components/schemas/UserValue'
+            type: array
+        type: object
+      example:
+        custom_members: []
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: user_multi
+        member_options_type: all_project_members
+        mutable: true
+        value:
+        - id: 43033894-3018-4670-9692-d908b691a0e4
+          type: user
+        - id: ff69e361-ce99-41b9-940f-20f5f9951c94
+          type: user
+      required:
+      - value
+      title: MultiUserValue
+      type: object
+    BulkUpdateMetadataParams:
+      example:
+        data:
+          file_ids:
+          - fef1d987-e209-4421-87a5-216148eeeddb
+          - c794014d-cbb5-4ef2-8932-aebec1e1d3a2
+          values:
+          - field_definition_id: 6eb448e9-39e4-4f39-8fd2-4a1711bf6d01
+            value:
+            - id: 1ab3fd1a-2f92-4fe0-94d8-f823c0edd66a
+              type: user
+            - id: 545c4dd6-3315-4fc1-887d-cec3624b6f82
+              type: account_user_group
+      properties:
+        data:
+          properties:
+            file_ids:
+              description: Files for bulk updates
+              items:
+                $ref: '#/components/schemas/FrameOrAdobeId'
+              maxItems: 100
+              minItems: 1
+              type: array
+            values:
+              description: "Metadata field and value mapping params. \nNote: Select and MultiSelect field values should be passed as lists, eg: [<uuid>]. Users and MultiUser values should be passed as lists formatted as follows: [{id: <user_id>, type: \"user\"}, {id: <user_group_id>, type: \"account_user_group\"}"
+              items:
+                properties:
+                  field_definition_id:
+                    format: uuid
+                    type: string
+                  value: {}
+                required:
+                - field_definition_id
+                - value
+                type: object
+              maxItems: 100
+              minItems: 1
+              type: array
+          required:
+          - file_ids
+          - values
+          type: object
+      required:
+      - data
+      title: BulkUpdateMetadataParams
+      type: object
+    MetadataResponse:
+      example:
+        data:
+          file_id: 4ba15760-a13d-4131-9b91-2d14f52c88fa
+          metadata:
+          - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+            field_definition_name: Fields definition name
+            field_options:
+            - display_name: Display name
+              id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+            - display_name: Display name 2
+              id: 774fc8c5-d709-4b3f-af68-b6fb5622a6c7
+            field_type: select_multi
+            mutable: true
+            value:
+            - display_name: Display name
+              id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+          - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+            field_definition_name: Fields definition name
+            field_type: text
+            mutable: true
+            value: text value
+      properties:
+        data:
+          $ref: '#/components/schemas/MetadataWithDefinition'
+      required:
+      - data
+      title: MetadataResponse
+      type: object
+    SelectValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          field_options:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            type: array
+          value:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            maxItems: 1
+            minItems: 0
+            type: array
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_options:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+        - display_name: Display name 2
+          id: e5530483-30c0-4589-8313-6d3634c15e43
+        field_type: select
+        mutable: true
+        value:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+      required:
+      - value
+      title: SelectValue
+      type: object
+    MetadataField:
+      discriminator:
+        mapping:
+          date: '#/components/schemas/DateValue'
+          long_text: '#/components/schemas/TextValue'
+          number: '#/components/schemas/NumberValue'
+          rating: '#/components/schemas/IntegerValue'
+          select: '#/components/schemas/SelectValue'
+          select_multi: '#/components/schemas/MultiSelectValue'
+          text: '#/components/schemas/TextValue'
+          toggle: '#/components/schemas/BooleanValue'
+          user_multi: '#/components/schemas/MultiUserValue'
+          user_single: '#/components/schemas/SingleUserValue'
+          users: '#/components/schemas/MultiUserValue'
+        propertyName: field_type
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_options:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+        - display_name: Display name 2
+          id: e5530483-30c0-4589-8313-6d3634c15e43
+        field_type: select
+        mutable: true
+        value:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+      oneOf:
+      - $ref: '#/components/schemas/TextValue'
+      - $ref: '#/components/schemas/IntegerValue'
+      - $ref: '#/components/schemas/NumberValue'
+      - $ref: '#/components/schemas/BooleanValue'
+      - $ref: '#/components/schemas/DateValue'
+      - $ref: '#/components/schemas/MultiSelectValue'
+      - $ref: '#/components/schemas/SelectValue'
+      - $ref: '#/components/schemas/SingleUserValue'
+      - $ref: '#/components/schemas/MultiUserValue'
+      title: MetadataField
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    SingleUserValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          custom_members:
+            description: Populated with custom member options only if `member_options_type` is set to 'custom'.
+            items:
+              $ref: '#/components/schemas/UserValue'
+            type: array
+          member_options_type:
+            enum:
+            - custom
+            - all_project_members
+            type: string
+          value:
+            items:
+              $ref: '#/components/schemas/UserValue'
+            maxItems: 1
+            minItems: 0
+            type: array
+        type: object
+      example:
+        custom_members:
+        - id: 43033894-3018-4670-9692-d908b691a0e4
+          type: user
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: user_single
+        member_options_type: custom
+        mutable: true
+        value:
+        - id: 43033894-3018-4670-9692-d908b691a0e4
+          type: user
+      required:
+      - value
+      title: SingleUserValue
+      type: object
+    BooleanValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            nullable: true
+            type: boolean
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: toggle
+        mutable: true
+        value: true
+      required:
+      - value
+      title: BooleanValue
+      type: object
+    TextValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            nullable: true
+            type: string
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: text
+        mutable: true
+        value: text value
+      required:
+      - value
+      title: TextValue
+      type: object
+    NumberValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            nullable: true
+            type: number
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: number
+        mutable: true
+        value: 2.0
+      required:
+      - value
+      title: NumberValue
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    UserValue:
+      example:
+        id: 43033894-3018-4670-9692-d908b691a0e4
+        type: user
+      properties:
+        id:
+          description: User Id or Account User Group Id
+          format: uuid
+          type: string
+        type:
+          enum:
+          - user
+          - account_user_group
+          type: string
+      required:
+      - id
+      - type
+      title: UserValue
+      type: object
+    MetadataWithDefinition:
+      example:
+        file_id: 4ba15760-a13d-4131-9b91-2d14f52c88fa
+        metadata:
+        - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+          field_definition_name: Fields definition name
+          field_options:
+          - display_name: Display name
+            id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+          - display_name: Display name 2
+            id: 774fc8c5-d709-4b3f-af68-b6fb5622a6c7
+          field_type: select_multi
+          mutable: true
+          value:
+          - display_name: Display name
+            id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+        - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+          field_definition_name: Fields definition name
+          field_type: text
+          mutable: true
+          value: text value
+      properties:
+        file_id:
+          description: File ID
+          format: uuid
+          type: string
+        metadata:
+          description: Metadata fields values
+          items:
+            $ref: '#/components/schemas/MetadataField'
+          type: array
+      required:
+      - file_id
+      - metadata
+      title: MetadataWithDefinition
+      type: object
+    MultiSelectValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          field_options:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            type: array
+          value:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            type: array
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_options:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+        - display_name: Display name 2
+          id: 774fc8c5-d709-4b3f-af68-b6fb5622a6c7
+        field_type: select_multi
+        mutable: true
+        value:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+      required:
+      - value
+      title: MultiSelectValue
+      type: object
+    FieldValueCommon:
+      description: Metadata field value
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: select
+        mutable: true
+      properties:
+        field_definition_id:
+          description: Field definition ID
+          format: uuid
+          type: string
+        field_definition_name:
+          description: Field definition name
+          type: string
+        field_type:
+          description: Field type
+          enum:
+          - text
+          - long_text
+          - select
+          - select_multi
+          - rating
+          - number
+          - toggle
+          - users
+          - date
+          - users
+          - user_multi
+          - user_single
+          type: string
+        mutable:
+          description: Metadata mutability. System field values cannot be updated.
+          type: boolean
+      required:
+      - field_definition_name
+      - field_definition_id
+      - field_type
+      - mutable
+      title: FieldValueCommon
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    bearer:
+      description: 'For more information, see: https://developer.adobe.com/frameio'
+      flows:
+        authorizationCode:
+          authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+          refreshUrl: https://ims-na1.adobelogin.com/ims/token/v3
+          scopes:
+            additional_info.roles: Adobe Commerce Admin
+            offline_access: Maintain access to the data the user had consented to for refresh tokens
+            openid: Sign in a user
+            profile: Read the user's basic information
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+    s2s_auth:
+      description: Server to server authentication flow
+      flows:
+        clientCredentials:
+          scopes:
+            AdobeID: Adobe ID
+            frame.s2s.all: Frame.io Server to Server access
+            openid: Sign in a user
+          tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+      type: oauth2
+x-tagGroups:
+- name: Accounts, Users and Permissions
+  tags:
+  - Accounts
+  - Users
+  - Account Permissions
+  - Workspace Permissions
+  - Project Permissions
+  - Folder Permissions
+  - Groups
+- name: Workspace Management
+  tags:
+  - Projects
+  - Workspaces
+  - Shares
+- name: Assets
+  tags:
+  - Files
+  - Folders
+  - Version Stacks
+- name: Comments
+  tags:
+  - Comments
+- name: Collections
+  tags:
+  - Collections
+- name: Metadata
+  tags:
+  - Metadata Fields
+  - Metadata
+- name: Integrations
+  tags:
+  - Webhooks
+  - Custom Actions
