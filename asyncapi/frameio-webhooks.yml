@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/frameio-v4-openapi.json
+spec_type: Webhooks
+description: Frame.io V4 webhook surface. Webhooks are created per workspace via the
+  Webhooks API and deliver events over HTTP to a subscriber URL. Event list captured
+  verbatim from the OpenAPI WebhookEvents schema example.
+management:
+  create: webhooks.create (POST /v4/accounts/{account_id}/workspaces/{workspace_id}/webhooks)
+  list: webhooks.index
+  show: webhooks.show
+  update: webhooks.update
+  delete: webhooks.delete
+docs: https://next.developer.frame.io/platform/v4/docs/guides/webhooks
+events:
+- file.created
+- file.deleted
+- file.ready
+- file.updated
+- file.upload.completed
+- file.versioned
+- file.copied
+- folder.created
+- folder.deleted
+- folder.updated
+- folder.copied
+- comment.completed
+- comment.created
+- comment.deleted
+- comment.uncompleted
+- comment.updated
+- customfield.created
+- customfield.updated
+- customfield.deleted
+- metadata.value.updated
+- project.created
+- project.deleted
+- project.updated
+- collection.created
+- collection.updated
+- collection.deleted
+- share.created
+- share.updated
+- share.deleted
+- share.viewed

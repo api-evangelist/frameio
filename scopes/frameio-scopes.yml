@@ -1,0 +1,67 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/frameio-v4-openapi.json
+docs: https://next.developer.frame.io/platform/v4/docs/guides/authentication/overview
+note: Frame.io delegates auth to Adobe IMS; scopes are coarse Adobe IMS scopes (not
+  fine-grained Frame.io read/write scopes). Server-to-server default scope set is
+  "openid AdobeID frame.s2s.all"; user flows use "openid email profile offline_access
+  additional_info.roles".
+schemes:
+- name: OAuth2
+  source: openapi/frameio-v4-openapi.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+  description: 'For more information, see: https://developer.adobe.com/frameio'
+- name: bearer
+  source: openapi/frameio-v4-openapi.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://ims-na1.adobelogin.com/ims/authorize/v2
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+  description: 'For more information, see: https://developer.adobe.com/frameio'
+- name: s2s_auth
+  source: openapi/frameio-v4-openapi.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://ims-na1.adobelogin.com/ims/token/v3
+  description: Server to server authentication flow
+scopes:
+- scope: AdobeID
+  description: Adobe ID
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/frameio-v4-openapi.json
+- scope: additional_info.roles
+  description: Adobe Commerce Admin
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/frameio-v4-openapi.json
+- scope: frame.s2s.all
+  description: Frame.io Server to Server access
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/frameio-v4-openapi.json
+- scope: offline_access
+  description: Maintain access to the data the user had consented to for refresh tokens
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/frameio-v4-openapi.json
+- scope: openid
+  description: Sign in a user
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/frameio-v4-openapi.json
+- scope: profile
+  description: Read the user's basic information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/frameio-v4-openapi.json

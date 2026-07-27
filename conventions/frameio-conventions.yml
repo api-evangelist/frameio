@@ -1,0 +1,48 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/frameio-v4-openapi.json
+docs: https://next.developer.frame.io/platform/v4/docs/overview
+api_base: https://api.frame.io
+version_path: /v4
+authentication:
+  style: oauth2
+  flows: [authorizationCode, clientCredentials]
+  provider: Adobe IMS (ims-na1.adobelogin.com)
+  scheme_ref: authentication/frameio-authentication.yml
+  scopes_ref: scopes/frameio-scopes.yml
+idempotency:
+  supported: false
+  note: Frame.io V4 does not document an Idempotency-Key header; no idempotency-key
+    parameter appears in the OpenAPI. Writes are not idempotent by contract.
+pagination:
+  style: cursor
+  params:
+  - name: after
+    in: query
+    description: Opaque cursor for the next page.
+  - name: page_size
+    in: query
+    description: Number of items per page.
+  - name: sort
+    in: query
+    description: Sort key (e.g. name_asc, created_at_asc).
+  - name: filters
+    in: query
+    description: Structured filter expression.
+includes:
+  style: sparse-expansion
+  param: include
+  description: Related resources are side-loaded via the `include` query parameter
+    (e.g. include=owner, include=creator).
+error_envelope:
+  format: json-api-style
+  media_type: application/json
+  shape: '{ errors: [ { title, detail, source: { pointer } } ] }'
+  ref: errors/frameio-problem-types.yml
+rate_limits:
+  signaled: true
+  headers: [x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-window]
+versioning:
+  scheme: uri-path
+  current: v4
+  ref: lifecycle/frameio-lifecycle.yml

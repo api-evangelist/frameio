@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: searched
+source: https://next.developer.frame.io/platform/v4/docs/overview
+versioning:
+  scheme: uri-path
+  current: v4
+  docs: https://next.developer.frame.io/platform/v4/docs/overview
+deprecation:
+  policy: 'V2 API endpoints will be removed on December 1, 2026; V4 is the current
+    generation. Developers are directed to migrate from V2 to V4.'
+  deprecated_version: v2
+  sunset_date: '2026-12-01'
+  migration_docs: https://next.developer.frame.io/platform/v4/docs/overview
+status_page: https://status.frame.io
+changelog: https://next.developer.frame.io/platform/changelog
+deprecated_operations: []

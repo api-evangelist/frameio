@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/Frameio/fioctl
+name: fioctl
+description: Official command-line interface to the Frame.io API, written in Python.
+binary: fioctl
+package: pypi/fioctl
+install:
+- method: pip
+  command: pip install fioctl
+auth:
+  note: Configured with a Frame.io developer/OAuth token; stores config locally.
+command_groups:
+- name: assets
+  description: List, upload, download, and manage assets/files.
+- name: projects
+  description: List and inspect projects.
+- name: comments
+  description: List and manage comments on assets.
+- name: users
+  description: Inspect the authenticated user and account membership.
+notes: Surface derived from the published fioctl repository; run `fioctl --help` for
+  the authoritative command tree.

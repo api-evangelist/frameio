@@ -1,0 +1,35 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/frameio-v4-openapi.json
+format: json-api-errors
+envelope:
+  media_type: application/json
+  field: errors
+  member_schema:
+    title: string
+    detail: string
+    source: { pointer: string }
+note: Frame.io V4 returns a JSON:API-style error envelope (errors[] with title/detail/source.pointer),
+  not RFC 9457 application/problem+json. Status codes below appear uniformly across
+  all 90 operations in the OpenAPI.
+problems:
+- status: 400
+  title: Bad Request
+  schema: BadRequest
+- status: 401
+  title: Unauthorized
+  remediation: Provide a valid Adobe IMS bearer token / re-authenticate.
+- status: 403
+  title: Forbidden
+  remediation: Token lacks the scope or the user lacks the role for this resource.
+- status: 404
+  title: Not Found
+- status: 409
+  title: Conflict
+- status: 422
+  title: Unprocessable Entity
+  remediation: Validation failed; inspect errors[].source.pointer for the offending
+    field.
+- status: 429
+  title: Too Many Requests
+  remediation: Back off; honor x-ratelimit-* headers.

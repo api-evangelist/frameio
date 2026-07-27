@@ -1,0 +1,22 @@
+# Frame.io API Documentation
+
+## Instructions for AI Agents
+
+- For clean Markdown of any page, append `.md` to the page URL
+- For section-specific indexes, append `/llms.txt` to any section URL
+- For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://next.developer.frame.io/_mcp/server
+
+## Products
+
+- [Platform](https://next.developer.frame.io/platform/llms.txt): Build powerful integrations
+  - [Welcome](https://next.developer.frame.io/platform/v4/welcome.md)
+  - [Overview](https://next.developer.frame.io/platform/v4/docs/overview.md)
+  - [Getting Started](https://next.developer.frame.io/platform/v4/docs/getting-started.md)
+  - [Quick Start](https://next.developer.frame.io/platform/v4/docs/quick-start.md)
+  - [Overview](https://next.developer.frame.io/platform/v4/docs/guides/authentication/overview.md)
+- [Camera to Cloud](https://next.developer.frame.io/camera-to-cloud/llms.txt): Integrate your cameras and devices
+  - [Welcome](https://next.developer.frame.io/camera-to-cloud/welcome.md)
+  - [Become a C2C Certified Connection](https://next.developer.frame.io/camera-to-cloud/getting-started-with-cloud-device-integrations.md)
+  - [The Zen of Camera to Cloud](https://next.developer.frame.io/camera-to-cloud/the-zen-of-camera-to-cloud.md)
+  - [Concepts and Fundamentals](https://next.developer.frame.io/camera-to-cloud/concepts-and-fundamentals.md)
+  - [Integration Architecture](https://next.developer.frame.io/camera-to-cloud/integration-architecture.md)

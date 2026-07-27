@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Frame.io V4 API
+  version: 1.0.0
+extends: openapi/frameio-v4-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-apievangelist-authentication: authentication/frameio-authentication.yml
+    x-apievangelist-scopes: scopes/frameio-scopes.yml
+    x-apievangelist-conventions: conventions/frameio-conventions.yml
+    x-apievangelist-errors: errors/frameio-problem-types.yml
+    x-apievangelist-lifecycle: lifecycle/frameio-lifecycle.yml
+    x-apievangelist-webhooks: asyncapi/frameio-webhooks.yml
+- target: $.info
+  update:
+    x-ratelimit-headers:
+    - x-ratelimit-limit
+    - x-ratelimit-remaining
+    - x-ratelimit-window

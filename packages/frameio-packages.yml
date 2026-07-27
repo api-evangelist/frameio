@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/Frameio
+packages:
+- language: python
+  registry: pypi
+  name: frameioclient
+  url: https://pypi.org/project/frameioclient/
+  install: pip install frameioclient
+  source: https://github.com/frameio/python-frameio-client
+  version: 1.1.0
+  official: true
+  description: Official Python client library for the Frame.io API.
+- language: python
+  registry: pypi
+  name: fioctl
+  url: https://pypi.org/project/fioctl/
+  install: pip install fioctl
+  source: https://github.com/Frameio/fioctl
+  version: '1.1'
+  official: true
+  description: Official Frame.io command-line interface (CLI). Catalogued in cli/ as
+    its command surface.

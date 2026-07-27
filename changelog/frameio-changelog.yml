@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: searched
+source: https://next.developer.frame.io/platform/changelog
+scheme: dated
+current_version: v4
+entries:
+- date: '2026-06-14'
+  breaking: false
+  type: added
+  highlights:
+  - 'Added GET List invited projects (invited-projects.index) — sortable, supports
+    include=owner, paginated.'
+  - 'Added GET List projects by account (account-projects.index) — sortable, supports
+    include=owner, paginated.'
+  url: https://next.developer.frame.io/platform/changelog/2026/6/14
+- date: '2026-05-03'
+  breaking: false
+  type: added
+  highlights:
+  - 'Added GET List actions (custom-actions actions.index) — supports include=creator,
+    paginated.'
+  - 'Added GET Show custom action details (actions.show) — supports include=creator.'
+  url: https://next.developer.frame.io/platform/changelog/2026/5/3
+notes: Recent window only; the live changelog at the source URL is authoritative.

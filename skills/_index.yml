@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/frameio-v4-openapi.json
+skills:
+- file: frameio-upload-and-review.md
+  name: Upload media and collect review comments
+  api: openapi/frameio-v4-openapi.json
+  operations: [files.create_local_upload, files.show_file_upload_status, files.show, comments.index]
+- file: frameio-share-for-review.md
+  name: Share assets with external reviewers
+  api: openapi/frameio-v4-openapi.json
+  operations: [shares.create, shares.add_asset, shares.add_reviewers, shares.show]
+- file: frameio-webhook-automation.md
+  name: Automate workflows with webhooks
+  api: openapi/frameio-v4-openapi.json
+  operations: [webhooks.create, webhooks.index, webhooks.show]

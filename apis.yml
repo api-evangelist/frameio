@@ -1,8 +1,14 @@
 aid: frameio
 name: Frame.io
-description: 'Frame.io is a company surfaced as a portfolio company of accel, insight-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: media. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Frame.io is a cloud-based video review and collaboration platform, now
+  part of Adobe, used by video and media production teams to upload media, leave frame-accurate
+  comments, manage versions, and route work through review and approval. Its V4 developer
+  platform exposes a REST API (base https://api.frame.io/v4) covering accounts, workspaces,
+  projects, folders, files and uploads, comments, version stacks, shares and reviewers,
+  collections, groups, custom actions, metadata fields, and webhooks. Authentication
+  is OAuth2 via Adobe IMS (authorization-code for user apps and client-credentials
+  for server-to-server), plus a Camera to Cloud (C2C) device-integration surface,
+  an official Python SDK, the fioctl CLI, and a hosted MCP server.'
 url: https://raw.githubusercontent.com/api-evangelist/frameio/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,18 +17,418 @@ x-backed-by:
 - insight-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://github.com/Frameio.png
 tags:
 - Company
 - Media
-apis: []
+- Video
+- Collaboration
+- Review and Approval
+- Media Production
+- Adobe
+- Content
+apis:
+- aid: frameio:frameio-account-permissions-api
+  name: Frame.io Account Permissions API
+  description: Manage Account Permissions and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Account Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-account-permissions-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-accounts-api
+  name: Frame.io Accounts API
+  description: Manage Accounts and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-accounts-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-collections-api
+  name: Frame.io Collections API
+  description: Manage Collections and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-collections-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-comments-api
+  name: Frame.io Comments API
+  description: Manage Comments and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-comments-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-custom-actions-api
+  name: Frame.io Custom Actions API
+  description: Manage Custom Actions and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Custom Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-custom-actions-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-files-api
+  name: Frame.io Files API
+  description: Manage Files and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-files-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-folder-permissions-api
+  name: Frame.io Folder Permissions API
+  description: Manage Folder Permissions and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Folder Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-folder-permissions-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-folders-api
+  name: Frame.io Folders API
+  description: Manage Folders and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-folders-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-groups-api
+  name: Frame.io Groups API
+  description: Manage Groups and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-groups-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-metadata-api
+  name: Frame.io Metadata API
+  description: Manage Metadata and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-metadata-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-metadata-fields-api
+  name: Frame.io Metadata Fields API
+  description: Manage Metadata Fields and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Metadata Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-metadata-fields-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-project-permissions-api
+  name: Frame.io Project Permissions API
+  description: Manage Project Permissions and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Project Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-project-permissions-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-projects-api
+  name: Frame.io Projects API
+  description: Manage Projects and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-projects-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-search-api
+  name: Frame.io Search API
+  description: Manage Search and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-search-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-shares-api
+  name: Frame.io Shares API
+  description: Manage Shares and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Shares
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-shares-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-users-api
+  name: Frame.io Users API
+  description: Manage Users and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-users-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-version-stacks-api
+  name: Frame.io Version Stacks API
+  description: Manage Version Stacks and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Version Stacks
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-version-stacks-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-webhooks-api
+  name: Frame.io Webhooks API
+  description: Manage Webhooks and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-webhooks-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-workspace-permissions-api
+  name: Frame.io Workspace Permissions API
+  description: Manage Workspace Permissions and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Workspace Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-workspace-permissions-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-workspaces-api
+  name: Frame.io Workspaces API
+  description: Manage Workspaces and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-workspaces-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://developer.frame.io
+- type: Documentation
+  url: https://next.developer.frame.io/platform/v4/docs/overview
+- type: APIReference
+  url: https://next.developer.frame.io/platform/v4/api-reference
+- type: GettingStarted
+  url: https://next.developer.frame.io/platform/v4/docs/getting-started
+- type: Support
+  url: https://help.frame.io
+- type: Blog
+  url: https://blog.frame.io
+- type: Pricing
+  url: https://frame.io/pricing
+- type: SignUp
+  url: https://app.frame.io
+- type: GitHubOrganization
+  url: https://github.com/Frameio
+- type: StatusPage
+  url: https://status.frame.io
+- type: Deprecation
+  url: lifecycle/frameio-lifecycle.yml
+- type: Lifecycle
+  url: lifecycle/frameio-lifecycle.yml
+- type: ChangeLog
+  url: changelog/frameio-changelog.yml
+- type: Authentication
+  url: authentication/frameio-authentication.yml
+- type: OAuthScopes
+  url: scopes/frameio-scopes.yml
+- type: Conventions
+  url: conventions/frameio-conventions.yml
+- type: Conformance
+  url: conformance/frameio-conformance.yml
+- type: Compliance
+  url: https://frame.io/security
+- type: TrustCenter
+  url: security/frameio-trust-center.yml
+- type: DomainSecurity
+  url: security/frameio-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/frameio-agentic-access.yml
+- type: Packages
+  url: packages/frameio-packages.yml
+- type: SDKs
+  url: packages/frameio-packages.yml
+- type: CLI
+  url: cli/frameio-cli.yml
+- type: MCPServer
+  url: mcp/frameio-mcp.yml
+- type: LLMsTxt
+  url: llms/frameio-llms.txt
+- type: WellKnown
+  url: well-known/frameio-well-known.yml
+- type: AgentSkill
+  url: skills/_index.yml
 - type: Website
   url: http://www.frame.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

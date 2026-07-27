@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+hosts:
+- host: https://next.developer.frame.io
+  documents:
+  - path: /.well-known/api-catalog
+    status: 200
+    file: frameio-api-catalog.json
+    note: RFC 9727 api-catalog; served as an (empty) linkset {"linkset":[]}.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://api.frame.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+- host: https://frame.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+notes: OAuth/OIDC discovery is delegated to Adobe IMS (ims-na1.adobelogin.com), not
+  hosted on Frame.io domains.
