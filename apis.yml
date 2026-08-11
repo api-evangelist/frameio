@@ -369,6 +369,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/frameio-v4-overlay.yaml
 - type: DeveloperPortal
   url: https://developer.frame.io
 - type: Documentation
