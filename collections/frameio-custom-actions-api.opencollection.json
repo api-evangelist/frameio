@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Custom Actions API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show custom action details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/actions/:action_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "18cc4f80-d986-4ba6-95fc-0ea831118ff6",
+                "type": "path"
+              },
+              {
+                "name": "action_id",
+                "value": "9bc586b9-e6f4-40fd-8de3-e9f122a3f0ec",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show custom action details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update custom action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/actions/:action_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "601b2413-8c72-42f5-83bc-9ea11e2118c1",
+                "type": "path"
+              },
+              {
+                "name": "action_id",
+                "value": "86bbba3f-22b8-4647-be59-1eff1ce4ff6b",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update custom action details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete custom action",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/actions/:action_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "d1cace13-78ef-41d8-8275-10afc7433b6a",
+                "type": "path"
+              },
+              {
+                "name": "action_id",
+                "value": "64feb8e8-bbd0-4af8-a046-811799a2e1e1",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a custom action. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/actions",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "08049eb3-f477-45c5-b414-241813274340",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "b2f62cb7-6279-4bc7-aefe-22928ec2e5e9",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List actions in a given workspace. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create custom action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/actions",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "c6b24cbb-4bf9-4295-b520-e3ac6babd323",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "70c57c1e-673e-41eb-8456-f779587c62cf",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a custom action in a workspace. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

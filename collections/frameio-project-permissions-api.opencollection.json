@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Project Permissions API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update user roles for the given project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id/users/:user_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "3b2e437d-296e-4fc8-99d5-565e6871a2e1",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "e739fa23-17de-4866-af63-8a8c57e4fa39",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "090f3091-f891-422f-8279-f922baff4eca",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user roles for the given project if the user is already added to the project. If the user is\n    not added to the project, the user will be added with the given role. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Remove a user from a given project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id/users/:user_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "3943fb70-ec2f-4d1d-a8de-76b4638468eb",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "aaca9f93-ac52-4fb2-b512-0ded76bb4c0e",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "50958a32-e79f-4767-9683-6adc9b8fdba1",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a user from a given project. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List project user roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id/users",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "9972e2fb-ce96-4fe0-9603-094f17588369",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "2bbbd6d8-2761-4244-be3a-d345ed41900d",
+                "type": "path"
+              },
+              {
+                "name": "include_deactivated",
+                "value": "",
+                "type": "query",
+                "description": "Supports including deactivated users in the response. Default is false."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort users by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List user roles for a given project. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3085 @@
+{
+  "item": [
+    {
+      "id": "3926f4df-89fd-41ea-b2fa-a492a2907feb",
+      "name": "Groups",
+      "description": {
+        "content": "Manage Groups and related operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8bb6a6e1-098c-4cdc-92af-b34c0e2a3a0e",
+          "name": "List groups",
+          "request": {
+            "name": "List groups",
+            "description": {
+              "content": "List groups in account. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort groups by query params"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_total_count",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88504fdc-535c-4168-ad45-43c45078d621",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1d443213-ff0a-ec48-c5c0-dbb43778aeef\",\n      \"name\": \"string\",\n      \"emoji\": \"string\",\n      \"member_count\": 2953,\n      \"source\": \"workfront\",\n      \"creator_id\": \"ac50ef60-65b5-f10a-d6bd-2c9bbad54df5\",\n      \"created_at\": \"2000-05-12T03:03:09.295Z\",\n      \"updated_at\": \"2005-09-04T09:23:39.509Z\",\n      \"creator\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"avatar_url\": \"string\",\n        \"active\": true,\n        \"adobe_user_id\": \"string\"\n      }\n    },\n    {\n      \"id\": \"7b2b2b87-a90f-bdac-7e2a-e6663af4ac17\",\n      \"name\": \"string\",\n      \"emoji\": \"string\",\n      \"member_count\": 4612,\n      \"source\": \"adobe\",\n      \"creator_id\": \"ed549a66-4af8-5a7c-6554-57b1e03cbfb5\",\n      \"created_at\": \"1968-07-30T03:05:05.411Z\",\n      \"updated_at\": \"1986-10-03T12:06:18.709Z\",\n      \"creator\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"avatar_url\": \"string\",\n        \"active\": true,\n        \"adobe_user_id\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"next\": \"/v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==\"\n  },\n  \"total_count\": 9145\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc401310-d81b-4ec8-aff5-613793310857",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c2926ac-4443-4d3a-8e20-2de896edf311",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75f10da1-01ca-45b9-bb5f-7df1c5168ef0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e88fe5ca-a5bf-43c5-bae1-7860b1fb205e",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "111f45d2-eac0-49fe-a537-1cbcdb778206",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d94884a-8a29-4728-bc1a-463a39fec652",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Unprocessable content\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26c1f5e5-cc09-4241-9592-97e22a1b149c",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at_asc"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Too many requests\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "620b8c4e-b93b-44ce-b2a3-db067cdad630",
+          "name": "Create group",
+          "request": {
+            "name": "Create group",
+            "description": {
+              "content": "Create group for the current account. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"emoji\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b2cb5e84-0d48-4ef8-940a-1e2994fb151f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"98571bb6-3ac2-748d-ce4d-6d902efb2116\",\n    \"name\": \"string\",\n    \"emoji\": \"string\",\n    \"member_count\": 1632,\n    \"source\": \"adobe\",\n    \"creator_id\": \"00f9cd9a-1be4-a91d-c37a-1bf3d57d58b2\",\n    \"created_at\": \"1968-09-06T03:06:58.190Z\",\n    \"updated_at\": \"2002-07-11T14:12:07.655Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b06c150-3605-4cdc-bbc4-a0b70e05de8b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db7580e3-9965-4abb-bb48-306609062583",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59f01c9a-d655-4c4e-9134-2f06f8937e2e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0489ec24-f91c-42d4-8ea8-3bb2bc220c82",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ac1d2f0-908c-4468-900b-2b022f2857fa",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2163b12-218a-4d6d-828f-c62f5f65d316",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06f9064e-1482-4bb1-a3de-52c948b4efcc",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "329a6377-c6ae-40d6-8add-802a5534e6d4",
+          "name": "Show group",
+          "request": {
+            "name": "Show group",
+            "description": {
+              "content": "Show group details. <br>Rate Limits: 100 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "groups",
+                ":group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94f4f308-1fa4-42c5-b430-2a790f77acb8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"e8f4e99e-e969-4f2e-c03d-6b3909b38809\",\n    \"name\": \"string\",\n    \"emoji\": \"string\",\n    \"member_count\": 9577,\n    \"source\": \"adobe\",\n    \"creator_id\": \"bf89ae68-cfd3-68ca-d63f-46a930bdea5a\",\n    \"created_at\": \"1984-08-21T17:51:15.667Z\",\n    \"updated_at\": \"2015-06-20T23:10:03.276Z\",\n    \"creator\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"avatar_url\": \"string\",\n      \"active\": true,\n      \"adobe_user_id\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc664a4d-39e6-4bc4-8ae5-e4249ba05e22",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48842d6a-340c-4497-a21f-2550cb4ed8ac",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95d537af-e388-4efd-9c9b-ba8042cd7e73",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fb720d7-6b9b-4a64-bbae-ee831c62474e",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89468e51-e0b7-4da4-ac69-a60669b03bdd",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0abe8b4-e971-400c-8ca6-dab2ad52f1a7",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38b8457f-8d84-4792-8992-4047fa13da2f",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f96bfbd-8b49-44bc-b056-9338d8136089",
+          "name": "Update group",
+          "request": {
+            "name": "Update group",
+            "description": {
+              "content": "Update group details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "groups",
+                ":group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"emoji\": \"<string>\",\n    \"name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85375e7b-246f-4fdb-8da5-85080d486a92",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"98571bb6-3ac2-748d-ce4d-6d902efb2116\",\n    \"name\": \"string\",\n    \"emoji\": \"string\",\n    \"member_count\": 1632,\n    \"source\": \"adobe\",\n    \"creator_id\": \"00f9cd9a-1be4-a91d-c37a-1bf3d57d58b2\",\n    \"created_at\": \"1968-09-06T03:06:58.190Z\",\n    \"updated_at\": \"2002-07-11T14:12:07.655Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a3c9720-9faa-4279-b19a-94c11ae8564d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea8545d0-59bc-4c11-9177-8471537b8d19",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab376a99-7677-4290-808d-e44aed77da2d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0922909-411f-4d07-a7ec-7c6bf774544e",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb09a6cb-4812-4f22-866d-4e983f8b4d55",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a23a6b6-5881-4815-8908-531f55cef901",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cb3b494-a8e3-4bc6-aebc-a3109287e152",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "groups",
+                    ":group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"emoji\": \"smile\",\n    \"name\": \"group-1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frame.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "additional_info.roles offline_access openid profile"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/authorize/v2"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7ae6ebd7-eca9-4c65-9686-ed7d06aa9f7a",
+    "name": "Frame.io Account Permissions Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For more information, see: <a href=\"https://developer.adobe.com/frameio\">https://developer.adobe.com/frameio</a>",
+      "type": "text/plain"
+    }
+  }
+}

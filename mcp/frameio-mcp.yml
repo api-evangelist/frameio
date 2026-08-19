@@ -6,8 +6,15 @@ server:
   name: frameio
   transport: http
   url: https://next.developer.frame.io/_mcp/server
-  description: Official Frame.io documentation/platform MCP server, advertised in the
-    provider's llms.txt for AI client integration (Claude Code, Cursor, etc.). Responds
-    200 to GET at the endpoint above.
-notes: Provider-hosted remote MCP server. Tool list is served dynamically by the endpoint
-  and negotiated over the MCP protocol; not enumerated statically here.
+  description: Official Frame.io documentation/platform MCP server, advertised in the provider's llms.txt
+    for AI client integration (Claude Code, Cursor, etc.). Responds 200 to GET at the endpoint above.
+notes: Provider-hosted remote MCP server. Tool list is served dynamically by the endpoint and negotiated
+  over the MCP protocol; not enumerated statically here.
+deployment:
+  mode: remote
+  endpoint: https://next.developer.frame.io/_mcp/server
+  verified: probed
+  probe: live
+  tools: 1
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Webhooks API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/webhooks",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "53c56ed9-ff07-411d-86c7-84a40cdce1ae",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "60fbccf9-3573-476a-bae0-eefc8c3232c8",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List webhooks for the given workspace. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/webhooks",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "254185cc-716b-4e62-b03b-2f3e9187c645",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "faa64472-a63f-4a84-814f-244a5ee0f8a8",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a single webhook with secret.<br/><br/>Valid events:<p><code>\nfile.created, file.deleted, file.ready, file.updated, file.upload.completed, file.versioned, file.copied, folder.created, folder.deleted, folder.updated, folder.copied, comment.completed, comment.created, comment.deleted, comment.uncompleted, comment.updated, customfield.created, customfield.updated, customfield.deleted, metadata.value.updated, project.created, project.deleted, project.updated, collection.created, collection.u"
+        },
+        {
+          "info": {
+            "name": "Show webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "5d399eff-9150-4b05-8bd2-47c816e5b8ac",
+                "type": "path"
+              },
+              {
+                "name": "webhook_id",
+                "value": "a85c2e03-4d9f-4471-979c-a21a0d3938b0",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show webhook details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "0ffb5448-1727-47a0-be06-8db925635d0d",
+                "type": "path"
+              },
+              {
+                "name": "webhook_id",
+                "value": "806e9584-2358-4c21-9e14-12c6c963b67a",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update webhook details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "33701a8d-30ae-436e-9427-f0c826360819",
+                "type": "path"
+              },
+              {
+                "name": "webhook_id",
+                "value": "5902b832-cfa2-4098-bd5d-d9818f86dc0d",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

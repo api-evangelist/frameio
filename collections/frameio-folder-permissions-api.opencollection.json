@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Folder Permissions API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folder Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List folder user roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/users",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "f42b495c-abbf-4315-a597-7efec3df5431",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "c9c47544-de89-4fef-bbaa-f89218003079",
+                "type": "path"
+              },
+              {
+                "name": "include_deactivated",
+                "value": "",
+                "type": "query",
+                "description": "Supports including deactivated users in the response. Default is false."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List user roles for a given folder. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update user roles for the given folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/users/:user_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "93f60820-6b16-4334-8130-b8d2c502503a",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "a411d02f-34ff-4485-b532-5344d6afa690",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "b85a0570-e1b5-488c-b777-ca0309757ca9",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user roles for the given folder if the user is already added to the folder. If the user is\n    not added to the folder, the user will be added with the given role. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Remove a user from a given folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/users/:user_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "2f36cc43-0bbd-46d0-b44d-4ca80ab3b1bc",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "e1ab4254-8297-4fca-98dc-8e6d04a73d21",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "9848c38e-27ae-4247-b16c-35ecd7c3bb02",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a user from a given folder. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

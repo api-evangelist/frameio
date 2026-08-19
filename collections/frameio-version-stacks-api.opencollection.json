@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Version Stacks API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Version Stacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Move version stack",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/version_stacks/:version_stack_id/move",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "d2d151e9-4bc6-46ae-9332-e600ebcc2ba4",
+                "type": "path"
+              },
+              {
+                "name": "version_stack_id",
+                "value": "cdaa0588-6ee1-4324-b11b-3ab1b7ddb4e1",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move version stack to a folder. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List version stacks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/version_stacks",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "65941a80-6ea0-48ef-9412-b05a062f75ff",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "7f961218-3179-491d-80de-2e8d9e3f60c1",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List version stacks in a given folder.  <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create version stack",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/version_stacks",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "591175e3-ff91-412d-ada3-613d2f5b18ff",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "1c2e59de-2cc5-44f5-b1db-040c4851b525",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Version Stack under the parent folder. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Show version stack",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/version_stacks/:version_stack_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "568de325-71f5-4e35-bcee-cf113306f0c2",
+                "type": "path"
+              },
+              {
+                "name": "version_stack_id",
+                "value": "33e25797-4a5d-4b32-86be-6bbc7a955521",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show version stack details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List version stack children",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/version_stacks/:version_stack_id/children",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "8cd4f1e3-2ee9-4802-998c-c2178af9cc25",
+                "type": "path"
+              },
+              {
+                "name": "version_stack_id",
+                "value": "50e2fcf5-f22a-41e0-a59d-d592a9156120",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the children (files) in a given version stack.\n<br/>\nUse the `include` query parameter to selectively include additional properties in the response.\n<br/>\nNote: if you include `media_links.original` and the user does not have permission to download files\nin the corresponding project, then this endpoint will respond with a `403 Forbidden` error.\nIf the content is inaccessible because watermarking is required for this user and isn't supported by\nthe requested media_links, then the request wil"
+        },
+        {
+          "info": {
+            "name": "Copy version stack",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/version_stacks/:version_stack_id/copy",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "24e194ad-2420-40e8-97ad-fcfce805a1a2",
+                "type": "path"
+              },
+              {
+                "name": "version_stack_id",
+                "value": "50c296ea-f9de-4435-b5be-ab03022624bd",
+                "type": "path"
+              },
+              {
+                "name": "copy_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Whether to copy metadata values along with the version stack"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy version stack. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user<br><br>\n\nCurrently, copying version stacks between Adobe storage backed projects is not supported. Copying individual\nfiles within a version stack and then restacking them is currently the supported method for copying version\nstacks for these projects.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

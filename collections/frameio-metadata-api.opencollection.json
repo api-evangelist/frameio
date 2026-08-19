@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Metadata API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id/metadata",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "d89eaa6a-3d6b-40f2-ba6e-687f7da4cc3d",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "1272fe57-efde-4f06-bffe-8d707009048c",
+                "type": "path"
+              },
+              {
+                "name": "show_null",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show the metadata of a file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update metadata across multiple files",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id/metadata/values",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "738b1b3e-0d02-44d2-871b-e2ab26aa6dfe",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "710c5da7-9051-4561-be96-0deb4d003b98",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata values across multiple files. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

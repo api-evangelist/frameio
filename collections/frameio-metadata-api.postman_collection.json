@@ -1,0 +1,1577 @@
+{
+  "item": [
+    {
+      "id": "2de630a4-676a-4892-a3d0-10391be0c95c",
+      "name": "Metadata",
+      "description": {
+        "content": "Manage Metadata and related operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec1b0973-4910-48e8-ae61-b3504c94f5cf",
+          "name": "Show metadata",
+          "request": {
+            "name": "Show metadata",
+            "description": {
+              "content": "Show the metadata of a file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "files",
+                ":file_id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "show_null",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "file_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "667e908f-cf6a-42f8-9020-ad49dcada5a7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"file_id\": \"854cdc2c-a39b-6736-fb45-6a34819e7bf9\",\n    \"metadata\": [\n      {\n        \"field_definition_id\": \"520662f7-6b13-4bad-bd72-0b6be0088e71\",\n        \"field_definition_name\": \"Fields definition name\",\n        \"field_type\": \"text\",\n        \"mutable\": true,\n        \"value\": \"text value\"\n      },\n      {\n        \"field_definition_id\": \"520662f7-6b13-4bad-bd72-0b6be0088e71\",\n        \"field_definition_name\": \"Fields definition name\",\n        \"field_type\": \"text\",\n        \"mutable\": true,\n        \"value\": \"text value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c862650-813b-4df4-a929-37b604a9fe92",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d52bb53-673d-41c2-bddd-0f0908be8935",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a0e0e06-b5f1-440a-870a-0c1479c6d353",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "173021a7-9df3-43f5-a316-0abcaae004e4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e66d935e-f701-4dc7-9d34-e9773e17fa29",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22d474e4-460a-4263-a939-a02fd8994e30",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Unprocessable content\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1c475de-af61-436b-a5c5-827b2fb9fbae",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "files",
+                    ":file_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_null",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Too many requests\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26da6984-6609-4039-9d39-b64d16f9dbf7",
+          "name": "Update metadata across multiple files",
+          "request": {
+            "name": "Update metadata across multiple files",
+            "description": {
+              "content": "Update metadata values across multiple files. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "projects",
+                ":project_id",
+                "metadata",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"<string>\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3869886-9f36-4899-8893-56c8aeaa193d",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2413d781-fb1c-45aa-9d7f-8e422f7535dd",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2623c08b-f019-4f4e-a97d-0de2f6e1d4a2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "126dc57a-bdb1-4370-a26c-138ad4ae5311",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd04657d-8d12-404f-915a-c475794f5a6d",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43220f73-7a12-4b9b-8166-47a1c8d431ae",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc3c4591-0772-4fe6-aaf1-b066cb9fc933",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "facffe4b-27c6-4264-9a2d-661c8de207a0",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "metadata",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"file_ids\": [\n      \"710c5da7-9051-4561-be96-0deb4d003b98\"\n    ],\n    \"values\": [\n      {\n        \"field_definition_id\": \"<uuid>\",\n        \"value\": \"\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frame.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "additional_info.roles offline_access openid profile"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/authorize/v2"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bcaf06b9-0632-46c5-b6e6-538b2df99867",
+    "name": "Frame.io Account Permissions Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For more information, see: <a href=\"https://developer.adobe.com/frameio\">https://developer.adobe.com/frameio</a>",
+      "type": "text/plain"
+    }
+  }
+}

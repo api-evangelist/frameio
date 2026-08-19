@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Workspaces API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "fa07bafe-ab23-4b46-9814-af314982b63f",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort workspaces by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List workspaces for a given account. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "39fcd8fa-4256-41f8-aa54-007129a9bb22",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create workspace from an account. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Show workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "7d557081-e783-46c1-b6be-f7ec912835ae",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "f0ec0714-c2f2-40e2-8e74-32c4ae38fdef",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show workspace details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "376c3600-abcb-4093-9bd9-fe248015c64f",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "e3b22eeb-24f9-463a-a74a-514d60199e63",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a workspace. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "232cf6fe-d794-4a9d-ada3-6788957ed03d",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "5b3a73f2-6db6-4d8b-a42a-28a48dafc9aa",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete workspace from account. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

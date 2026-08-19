@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Collections API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id/collections",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "ab98158e-d53c-46c8-b1e8-ba4cf5573a96",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "539ef89d-5f91-4750-a9f6-2dc66f5150d5",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List collections for a project. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Show collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/collections/:collection_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "a5685337-e9f4-4efe-8229-59a9022cd11d",
+                "type": "path"
+              },
+              {
+                "name": "collection_id",
+                "value": "ab4e7052-f235-436b-8ada-f7ba7222ae1e",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show collection details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

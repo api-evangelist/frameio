@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Projects API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "9e9e4550-3368-4f8d-85a8-d7efc9e9e0fb",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "f70f0618-1e3b-4402-97a5-efee8b03d0d7",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show project details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "f632ac0f-2b61-45bd-b8ca-0028fc735ca4",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "2ed0a900-1a49-4470-9aa6-d663a6449a04",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update project details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "3863f4e5-3068-453c-b17a-707bae0b5a27",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "57ff2f4e-3a72-4888-a3b3-5801d9034d22",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a project. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List projects by account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "7f3caba1-8f09-4b3a-a5b8-77d5924cb2d5",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort projects by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all projects the authenticated user has access to within the specified account. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/projects",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "1a6358c4-9d21-46a6-92ef-ec527274c0b4",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "df600cde-3907-45d4-a889-e97c252ca163",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort projects by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List projects in a given workspace. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/projects",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "b2c1d013-3fb1-49a3-a053-b5c6ab3cebd7",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "8957f30c-9461-4fbf-a49a-296e38dd5eb8",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create project in a given workspace. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List invited projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/invited_projects",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "c4a5a0b1-1437-4919-a96d-0f36f995ed73",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort projects by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List projects that the current user has been invited to within the specified account,\nbut does not have workspace-level access to. These are projects where the user has\nproject-specific collaborator access without broader team/workspace permissions.\n\nRate Limits: 100 calls per 1.00 minute(s) per account_user\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

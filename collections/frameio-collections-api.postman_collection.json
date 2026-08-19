@@ -1,0 +1,1658 @@
+{
+  "item": [
+    {
+      "id": "fe20c971-751a-4a41-b0fb-97f1da97e521",
+      "name": "Collections",
+      "description": {
+        "content": "Manage Collections and related operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c416dc5-7b32-47e3-956a-b8f816267958",
+          "name": "List collections",
+          "request": {
+            "name": "List collections",
+            "description": {
+              "content": "List collections for a project. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "projects",
+                ":project_id",
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_total_count",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "986e34d8-bd09-4ff9-97a4-0c0067669a28",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"c49c3f37-3a27-2285-fa07-2f12d44dd49a\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"root_folder_id\": \"c32dce17-4b8a-f9a7-030d-811f0a43af97\",\n      \"project_id\": \"54402439-5830-1d9e-a3be-96d899f17afa\",\n      \"auto_generated\": true,\n      \"private\": false,\n      \"aggregation_mode\": \"static\",\n      \"created_at\": \"1975-11-15T17:01:00.427Z\",\n      \"updated_at\": \"1951-02-01T04:22:30.381Z\",\n      \"creator\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"avatar_url\": \"string\",\n        \"active\": false,\n        \"adobe_user_id\": \"string\"\n      },\n      \"project\": {\n        \"id\": \"1d3b4255-d264-30cd-5e38-236844a47779\",\n        \"name\": \"string\",\n        \"status\": \"active\",\n        \"storage\": 0,\n        \"workspace_id\": \"8ab2949f-349a-93b1-68cc-a04de9e8ad2f\",\n        \"root_folder_id\": \"d622160b-38a1-6530-8f7f-19d09b1389fe\",\n        \"created_at\": \"1947-08-01T04:04:51.613Z\",\n        \"updated_at\": \"2016-12-09T16:33:41.703Z\",\n        \"view_url\": \"string\",\n        \"adobe_id\": \"string\",\n        \"restricted\": false\n      },\n      \"shares\": [\n        {\n          \"id\": \"88b10e38-f93c-fb24-02ae-cb12cf234488\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"collection_id\": \"c1f93a4a-46d0-853e-43c9-686240da0b11\",\n          \"short_url\": \"string\",\n          \"access\": \"public\",\n          \"enabled\": false,\n          \"commenting_enabled\": true,\n          \"downloading_enabled\": true,\n          \"expiration\": \"1952-09-18T20:34:44.819Z\",\n          \"last_viewed_at\": \"1964-08-14T11:21:01.395Z\",\n          \"created_at\": \"1976-06-18T17:16:42.574Z\",\n          \"updated_at\": \"2009-08-18T16:14:14.154Z\",\n          \"passphrase\": \"string\"\n        },\n        {\n          \"id\": \"91d11c37-d63d-5947-a133-738b07324006\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"collection_id\": \"c6c4f2ae-ae5d-f0e1-55f2-5378e09dab20\",\n          \"short_url\": \"string\",\n          \"access\": \"secure\",\n          \"enabled\": true,\n          \"commenting_enabled\": true,\n          \"downloading_enabled\": true,\n          \"expiration\": \"1972-07-04T18:34:12.285Z\",\n          \"last_viewed_at\": \"1957-07-12T17:55:15.410Z\",\n          \"created_at\": \"1994-07-25T07:18:09.938Z\",\n          \"updated_at\": \"2015-03-18T11:47:32.847Z\",\n          \"passphrase\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"7cd7bd9f-ee3a-6e93-58ac-7d251607bfb3\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"root_folder_id\": \"7fcae1e7-2c82-0aea-382b-a95f2e4d42ba\",\n      \"project_id\": \"9d7d4d06-3dfd-4bf0-0b1d-87ccb7561457\",\n      \"auto_generated\": false,\n      \"private\": false,\n      \"aggregation_mode\": \"static\",\n      \"created_at\": \"1987-12-03T17:04:33.540Z\",\n      \"updated_at\": \"1997-05-10T07:08:37.017Z\",\n      \"creator\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"avatar_url\": \"string\",\n        \"active\": false,\n        \"adobe_user_id\": \"string\"\n      },\n      \"project\": {\n        \"id\": \"cf9ad92e-eb68-a717-4def-033723e20413\",\n        \"name\": \"string\",\n        \"status\": \"active\",\n        \"storage\": 0,\n        \"workspace_id\": \"41aa3436-b253-ac58-46d2-c34cb9904c49\",\n        \"root_folder_id\": \"2fd79d26-e6cb-5602-9ed4-69a97b457693\",\n        \"created_at\": \"1988-05-16T15:05:23.505Z\",\n        \"updated_at\": \"1998-01-16T07:46:09.530Z\",\n        \"view_url\": \"string\",\n        \"adobe_id\": \"string\",\n        \"restricted\": true\n      },\n      \"shares\": [\n        {\n          \"id\": \"1dafa98d-1950-5b6a-7a1e-3db6c18440ea\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"collection_id\": \"bb164d57-1938-155c-2af7-3eb6e4781258\",\n          \"short_url\": \"string\",\n          \"access\": \"secure\",\n          \"enabled\": false,\n          \"commenting_enabled\": false,\n          \"downloading_enabled\": true,\n          \"expiration\": \"1952-12-17T18:41:28.752Z\",\n          \"last_viewed_at\": \"2010-07-29T05:27:34.342Z\",\n          \"created_at\": \"2020-06-26T16:32:12.057Z\",\n          \"updated_at\": \"1996-11-04T23:14:46.009Z\",\n          \"passphrase\": \"string\"\n        },\n        {\n          \"id\": \"af5bfc1f-3ac3-9dec-a7e1-9658a1614060\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"collection_id\": \"0925f040-f46b-ed1a-1c96-b9eab92385b6\",\n          \"short_url\": \"string\",\n          \"access\": \"secure\",\n          \"enabled\": true,\n          \"commenting_enabled\": false,\n          \"downloading_enabled\": false,\n          \"expiration\": \"1960-01-01T13:07:59.477Z\",\n          \"last_viewed_at\": \"1976-04-08T09:00:17.031Z\",\n          \"created_at\": \"2019-08-14T12:51:49.702Z\",\n          \"updated_at\": \"1966-09-19T19:20:29.873Z\",\n          \"passphrase\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"links\": {\n    \"next\": \"/v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==\"\n  },\n  \"total_count\": 6196\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a1118ca-f491-4e62-a67c-7223e9e7e148",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Bad request\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "259b8b4b-0b98-486f-806a-699af830334e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Unauthorized\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1478910-5210-4cd9-805a-c138daf3c35b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Forbidden\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6040adee-3ad0-4894-bb2e-3d130e4c1188",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f6bb30a-4d6f-4561-833e-85023d33dbc6",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Conflict\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a5bd735-ea24-4f08-9889-84eb166afd49",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Unprocessable content\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c34506f7-b87c-479d-9e35-a441a6895204",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "projects",
+                    ":project_id",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<opaque_cursor>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "include_total_count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"Too many requests\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a880558b-c8eb-44c6-8b5e-13ca147d3006",
+          "name": "Show collection",
+          "request": {
+            "name": "Show collection",
+            "description": {
+              "content": "Show collection details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                ":account_id",
+                "collections",
+                ":collection_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "collection_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "151933bb-c55d-4cc3-bf9d-565a467b22e2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"703735f7-42c8-86ba-3197-868faa27ca3d\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"root_folder_id\": \"64a11999-7db9-9dc9-e131-a243cd916849\",\n    \"project_id\": \"3071474f-82bb-a4d9-27ae-6ee8b1a68093\",\n    \"auto_generated\": false,\n    \"private\": false,\n    \"aggregation_mode\": \"dynamic\",\n    \"created_at\": \"2001-10-10T03:04:34.450Z\",\n    \"updated_at\": \"1959-04-15T12:46:41.757Z\",\n    \"creator\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"avatar_url\": \"string\",\n      \"active\": false,\n      \"adobe_user_id\": \"string\"\n    },\n    \"project\": {\n      \"id\": \"6202de3d-afc2-5fe7-7c5d-21a2a79b8e38\",\n      \"name\": \"string\",\n      \"status\": \"active\",\n      \"storage\": 0,\n      \"workspace_id\": \"9cc252fc-88fd-c09a-b743-abd0d453a8fe\",\n      \"root_folder_id\": \"18fa3092-711e-8a8c-603b-1eb58905b1be\",\n      \"created_at\": \"1958-07-20T20:53:27.306Z\",\n      \"updated_at\": \"2010-09-16T01:02:46.105Z\",\n      \"view_url\": \"string\",\n      \"adobe_id\": \"string\",\n      \"restricted\": true\n    },\n    \"shares\": [\n      {\n        \"id\": \"663cd7d1-0108-f71b-1e7d-481a9f3c3136\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"collection_id\": \"42dc3982-ea5d-690f-3bd8-22bb6cf77458\",\n        \"short_url\": \"string\",\n        \"access\": \"public\",\n        \"enabled\": false,\n        \"commenting_enabled\": true,\n        \"downloading_enabled\": false,\n        \"expiration\": \"1973-10-09T13:31:17.999Z\",\n        \"last_viewed_at\": \"2023-03-20T21:36:20.949Z\",\n        \"created_at\": \"1959-06-21T01:31:02.026Z\",\n        \"updated_at\": \"2021-10-03T22:58:40.866Z\",\n        \"passphrase\": \"string\"\n      },\n      {\n        \"id\": \"beb81551-7951-c145-926a-beb9bc28da35\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"collection_id\": \"1d7cb4a2-f2e1-3039-d65d-5b42602ad344\",\n        \"short_url\": \"string\",\n        \"access\": \"public\",\n        \"enabled\": false,\n        \"commenting_enabled\": false,\n        \"downloading_enabled\": false,\n        \"expiration\": \"1953-04-23T18:01:00.275Z\",\n        \"last_viewed_at\": \"1998-07-29T12:52:59.484Z\",\n        \"created_at\": \"1962-08-19T00:50:17.503Z\",\n        \"updated_at\": \"2009-02-14T06:59:26.319Z\",\n        \"passphrase\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f2b1ce8-54d6-4112-b97e-9eb4bbc813b2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c1bd19f-06d2-476b-acb1-80cd8a0c9d6d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0774598a-6d02-4bcb-8616-45b279c56dfa",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eab42448-92e9-4663-acae-95212eb095ec",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ece60b7c-f961-4dff-aeb9-45822d96e660",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f852553-0237-4eeb-a305-c73b52d93fcb",
+              "name": "Unprocessable content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0af865d4-a862-4e2e-93f7-d48f866bb34c",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    ":account_id",
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": "creator,project"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "collection_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit",
+                  "key": "x-ratelimit-limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit remaining",
+                  "key": "x-ratelimit-remaining",
+                  "value": "99"
+                },
+                {
+                  "disabled": false,
+                  "description": "(Required) Rate limit window in milliseconds",
+                  "key": "x-ratelimit-window",
+                  "value": "60000"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frame.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "additional_info.roles offline_access openid profile"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/token/v3"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://ims-na1.adobelogin.com/ims/authorize/v2"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0d843f45-d79f-4336-85e7-ddfe3cc8fd39",
+    "name": "Frame.io Account Permissions Collections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For more information, see: <a href=\"https://developer.adobe.com/frameio\">https://developer.adobe.com/frameio</a>",
+      "type": "text/plain"
+    }
+  }
+}

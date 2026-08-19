@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Workspace Permissions API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspace Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update user roles for the given workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/users/:user_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "b754ae40-3b7a-4d89-b23d-dba2255f2fec",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "6c6567b3-20af-4cc8-a4fd-9aa52196de7c",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "72575ceb-f56c-4447-bc4b-2cd773b3860b",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user roles for the given workspace if the user is already added to the workspace. If the user is\n  not added to the workspace, the user will be added with the given role. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Remove a user from a given workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/users/:user_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "3aebf3b5-8b71-436c-8c1d-6c9aa1099bf6",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "5481dcfa-6825-45cc-ad03-b6d1a03e12d3",
+                "type": "path"
+              },
+              {
+                "name": "user_id",
+                "value": "9007b7b2-b3d9-4a13-bf00-2b8626dfb2ee",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a user from a given workspace. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List workspace user roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/workspaces/:workspace_id/users",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "217af13a-ff57-4d99-84db-eb55c855ebb0",
+                "type": "path"
+              },
+              {
+                "name": "workspace_id",
+                "value": "9cdc08c3-bd0f-46cc-aa78-c61534a54fbf",
+                "type": "path"
+              },
+              {
+                "name": "include_deactivated",
+                "value": "",
+                "type": "query",
+                "description": "Supports including deactivated users in the response. Default is false."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort users by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List user roles for a given workspace. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

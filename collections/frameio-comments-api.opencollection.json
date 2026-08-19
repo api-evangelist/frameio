@@ -1,0 +1,260 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Comments API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete comment attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/comments/:comment_id/attachments/:attachment_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "669978f7-2e79-4bce-a03b-6a348eedfafa",
+                "type": "path"
+              },
+              {
+                "name": "comment_id",
+                "value": "3f57e071-2443-4959-8935-d278f6a34938",
+                "type": "path"
+              },
+              {
+                "name": "attachment_id",
+                "value": "32e6e5bd-7748-431b-8f16-bbc17c50bfd5",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an attachment from a comment. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create comment attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/comments/:comment_id/attachments",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "f660423f-018b-47aa-84c2-e968f80c9b5a",
+                "type": "path"
+              },
+              {
+                "name": "comment_id",
+                "value": "a0a8ddeb-1dbf-42a6-a236-95c2ce7af593",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an attachment for an existing comment. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Show comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "66082a8b-7e17-40d1-ae77-d37e5af48d78",
+                "type": "path"
+              },
+              {
+                "name": "comment_id",
+                "value": "c1b0c99d-ac3f-435c-a1fb-ea916900d1ad",
+                "type": "path"
+              },
+              {
+                "name": "timestamp_as_timecode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show a single comment on a file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "6c7358f4-0e2b-4d65-81ce-2d86b2f74df8",
+                "type": "path"
+              },
+              {
+                "name": "comment_id",
+                "value": "51165bfc-7544-42e0-9aea-4f0c54d36599",
+                "type": "path"
+              },
+              {
+                "name": "timestamp_as_timecode",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update comment on given asset.<br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "3118d9c7-34c8-4242-aa54-d511db1a37ec",
+                "type": "path"
+              },
+              {
+                "name": "comment_id",
+                "value": "46728852-0f85-49ea-b9cb-6759b0d8c159",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete comment from an asset. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id/comments",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "d9536267-4d48-4969-a4ae-328027176e5a",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "ae27bb7b-efb4-4101-b445-acb0cb4933a7",
+                "type": "path"
+              },
+              {
+                "name": "timestamp_as_timecode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort comments by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List comments on a given asset. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id/comments",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "02efe07a-28a3-43f2-8611-764d7ccc61f0",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "4bd7f46d-95bb-43ac-b3bd-456a56f7da50",
+                "type": "path"
+              },
+              {
+                "name": "timestamp_as_timecode",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a comment on a file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

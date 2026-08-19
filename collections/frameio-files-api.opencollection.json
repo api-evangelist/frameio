@@ -1,0 +1,355 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Files API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create file (remote upload)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/files/remote_upload",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "b765dccf-a7ee-488e-beb4-816f7fe1bbaa",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "038e0d8b-1267-4671-a594-2a7c4ab781bb",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new file under parent folder through remote upload. <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create file (local upload)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/files/local_upload",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "47a0505c-0256-412d-933d-e54026cfd621",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "b81b3b5d-2953-414c-9988-3e5fe7bc576e",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new file under parent folder through local upload. <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Show file upload status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id/status",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "31b77eeb-908a-435e-98a9-cdd040d1b3f5",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "2426a946-16ca-4495-862f-b417e48c1b2d",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Show file upload status details. <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Move file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id/move",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "44643761-2dec-4d47-94c0-e8972c4b4308",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "7d3a9cfc-4f54-4351-b90d-fac83be3418a",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move file to a folder or version_stack. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Import file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/files/import",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "2d5a0e6e-b7f1-4c32-956d-4b4cf521b0d7",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "c624d6b8-e597-4470-9355-4847e6887a78",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import a file from a storage location configured on the account. <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Show file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "9a969458-00d7-4f35-aace-52d33653777a",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "b8d82fbe-bc08-4f6b-b543-11be54e8ef88",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show file details.\n<br/>\nUse the `include` query parameter to selectively include additional properties in the response.\n<br/>\nNote: if you include `media_links.original` and the user does not have permission to download the file\nthen this endpoint will respond with a `403 Forbidden` error. If the content is inaccessible because\nwatermarking is required for this user and isn't supported by the requested media_links, then the request will\nsucceed but the unsupported media links will be set to nul"
+        },
+        {
+          "info": {
+            "name": "Update file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "e79c3245-ab93-4f17-939d-d69c522a831d",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "602ca44b-bd31-4619-9e5d-574198ffc1cc",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update file details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "4d03cd29-ce64-4f01-b062-89e14fafce48",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "8f83e22b-c615-44ae-8ad3-2066ab669d16",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete file by ID. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/files",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "4d1b5ac9-c60c-4bf7-8fba-53c2ed8b152e",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "802785ec-83b9-4926-9c58-b7c719961a48",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort files by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List files in a given folder. <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/files",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "a734658f-323b-4654-af98-63c2a5dd5375",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "e4b6879b-de12-4c7f-bf73-e3e294ff749e",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new file under parent folder. `Create file (local upload)` and `Create file (remote upload)` have replaced this endpoint. <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Copy file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/files/:file_id/copy",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "f380566e-7f06-4e1a-9a66-b84bced166c4",
+                "type": "path"
+              },
+              {
+                "name": "file_id",
+                "value": "5f7b52ae-013c-4fbb-8808-8475ec94ece5",
+                "type": "path"
+              },
+              {
+                "name": "copy_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Whether to copy metadata values along with the file"
+              },
+              {
+                "name": "copy_comments",
+                "value": "",
+                "type": "query",
+                "description": "Which comments to copy along with the file"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy file. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

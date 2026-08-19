@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Metadata Fields API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update account level custom field definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/metadata/field_definitions/:field_definition_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "eef58532-bd3e-4cda-8c7e-0873e16f5ca9",
+                "type": "path"
+              },
+              {
+                "name": "field_definition_id",
+                "value": "bfae22b5-fc0f-478d-bfb5-c0e22bc9c3ef",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account level custom field definitions. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete account level custom field definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/metadata/field_definitions/:field_definition_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "2cc54d61-9c1a-4df6-b3b0-6de24bf3a876",
+                "type": "path"
+              },
+              {
+                "name": "field_definition_id",
+                "value": "3eccd30e-5b7b-48f9-b122-78bfe69ff900",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete account level custom field definitions. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List account level field definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/metadata/field_definitions",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "084355f7-3a30-4242-9631-55bbed7e1c19",
+                "type": "path"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field definitions by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List account level field definitions. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create account level field definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/metadata/field_definitions",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "b17d263e-700c-45b0-959b-bca55c3a09eb",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create account level field definitions. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,329 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Shares API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shares",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add new asset to share",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id/assets",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "00b3787d-0f86-483e-ac2f-3cfcf6546c99",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "a90557a4-e507-4c37-970d-e886f8064f7f",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new asset share. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Remove asset from share",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id/assets/:asset_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "d12add20-8c7d-4170-aaa7-5ab35f2f112d",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "0339bd06-a2f0-46f3-9c09-928c5ffa0f58",
+                "type": "path"
+              },
+              {
+                "name": "asset_id",
+                "value": "ea317046-67e0-4461-a4f6-7b198d695bea",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an asset currently in the share from that share. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Show Share",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "143a0253-19d4-4884-ae21-f71cffa704d6",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "f64ed8d9-b680-4141-8d53-25b1c934be21",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Show a single Share. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update share",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "4097f160-7e2b-41b7-9729-2ed9a07cf38b",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "db1e6c1e-8972-45ef-8e8c-d41fd053d024",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update share. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete share",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "f2846d4d-5f86-45b3-be5e-8ea79fab9837",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "8cb0ab14-2142-42ae-8d2e-003c50e60c36",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a share. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List share reviewers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id/reviewers",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "414634e9-d1eb-430a-86c5-181b2b1910f2",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "86e9ae85-2639-47ec-adaf-0946bd1fe1dd",
+                "type": "path"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort share reviewers by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List share reviewers. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Add reviewers to secure share",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id/reviewers",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "9ad93d98-158e-4c4f-8a97-9c19f2533af9",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "80754251-cd35-4917-8a64-54ed445af1c5",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add reviewers to secure share by three identifier types: `adobe_user_id`, `email`, and `user_id`.\n<br/>\nA request can only include one identifier type parameter.\n<br/>\n`email` is the only identifier able to add reviewers to a Share who don't have a Frame account member on the account where the Share belongs.\n<br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user\n"
+        },
+        {
+          "info": {
+            "name": "Removes reviewers from secure share",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/shares/:share_id/reviewers",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "7cec5c4b-d172-4bb0-a736-efb8b408c214",
+                "type": "path"
+              },
+              {
+                "name": "share_id",
+                "value": "a8841f75-dd03-4803-b9e3-2c924a95fcc6",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes reviewers from secure Share by three identifier types: `adobe_user_id`, `email`, and `user_id`.\n<br/>\nA request can only include one identifier type parameter.\n<br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user\n"
+        },
+        {
+          "info": {
+            "name": "List shares",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id/shares",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "66ad0395-0a3e-4917-822d-8080f842e66c",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "ae65e82a-eb0c-4d99-8af7-571081fea6dd",
+                "type": "path"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort shares by query params"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List shares on a project. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create share",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/projects/:project_id/shares",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "3ba7c7fa-7457-4652-8d47-4229fc908470",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "5f9c15ad-3852-4e4b-bee8-476c50e68bc5",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create share. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

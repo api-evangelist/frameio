@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Frame.io Account Permissions Folders API",
+    "version": "v4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://ims-na1.adobelogin.com/ims/authorize/v2",
+      "accessTokenUrl": "https://ims-na1.adobelogin.com/ims/token/v3",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "4337f9c2-dafa-4f03-aa76-88a8f7f74bc2",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "b58b03cb-4414-4ab0-a2a2-3954bada1960",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Show folder details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Update folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "e031e93a-604b-4f98-8cdf-277efdd86767",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "2bd690c3-4a97-4cca-9049-b7380d3b7099",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update folder details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Delete folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "8832ba67-1356-461e-9a29-1322c02a0659",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "fa364e1a-a4d9-4c7a-8bd7-c9fa2d2a9945",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete folder by id. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List folder children",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/children",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "57671895-79dd-451c-a842-b56f67f31d33",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "c00defd4-05eb-4ef1-8890-b793fa2cf5b4",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the children in the given folder.\n<br/>\nUse the `include` query parameter to selectively include additional properties in the response.\n<br/>\nNote: if you include `media_links.original` and the user does not have permission to download files\nin the corresponding project, then this endpoint will respond with a `403 Forbidden` error.\nIf the content is inaccessible because watermarking is required for this user and isn't supported by\nthe requested media_links, then the request will succeed but"
+        },
+        {
+          "info": {
+            "name": "Move folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/move",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "104e61ac-e6aa-4609-afe4-ab952f4cea7f",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "cd7d7b0c-9521-4ec8-a5ef-a2733d34ef2f",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move folder to a folder. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "List folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/folders",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "b843d738-beb6-4ccf-85ee-e1ecd9d80ef2",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "8859cedf-7d36-4f32-8137-de252ada4fb6",
+                "type": "path"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Opaque Cursor query param for requests returning paginated results.\n<br/>\nNOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.\n"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_total_count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List folders in a given folder. <br/>Rate Limits: 5 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Create folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/folders",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "a562f423-76e7-4f8e-a06a-e3de3f03fb0f",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "8f7c8c8d-eba3-4053-9c42-731d2e4df41a",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new folder inside the given <i>folder_id</i> path param. <br/>Rate Limits: 3 calls per 1 second(s) per account_user"
+        },
+        {
+          "info": {
+            "name": "Copy folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frame.io/v4/accounts/:account_id/folders/:folder_id/copy",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "88e953bd-e472-4ae8-a522-dd126109e204",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "0c10369e-7dca-4688-8de2-5302bef523c7",
+                "type": "path"
+              },
+              {
+                "name": "copy_metadata",
+                "value": "",
+                "type": "query",
+                "description": "Whether to copy metadata values along with the folder"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy folder. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
