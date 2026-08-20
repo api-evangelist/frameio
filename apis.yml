@@ -49,6 +49,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Accountpermissions
+  tags_raw:
   - Account Permissions
   properties:
   - type: OpenAPI
@@ -65,6 +67,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -81,6 +85,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -129,6 +135,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -177,6 +185,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -209,6 +219,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Metadata - Fields
+  tags_raw:
   - Metadata Fields
   properties:
   - type: OpenAPI
@@ -241,6 +253,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -289,6 +303,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -321,6 +337,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -337,6 +355,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Workspace permissions
+  tags_raw:
   - Workspace Permissions
   properties:
   - type: OpenAPI
