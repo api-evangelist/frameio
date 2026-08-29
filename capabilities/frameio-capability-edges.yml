@@ -1,0 +1,76 @@
+slug: frameio
+provider: Frame.io
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Metadata
+  spec_file: frameio-metadata-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.8
+  evidence: GET /v4/accounts/{account_id}/files/{file_id}/metadata metadata.show Show metadata; PATCH
+    .../metadata/values Update metadata across multiple files
+  reason: Reading and bulk-updating descriptive metadata values on media files is exactly metadata cataloguing
+    of assets.
+- tag: Version Stacks
+  spec_file: frameio-version-stacks-api-openapi.yml
+  capability_id: BC-3710.60
+  capability_id_l1: BC-3710
+  capability_name: Content Identifier & Versioning Management
+  confidence: 0.8
+  evidence: version_stacks.create  Create version stack; version_stacks.index  List version stack children
+  reason: Version stacks group successive edits/renditions of a media file, and the operations create,
+    list, copy and move those version records — matching Content Identifier & Versioning Management (version
+    records describing each edit and rendition) within media asset management.
+- tag: Files
+  spec_file: frameio-files-api-openapi.yml
+  capability_id: BC-3710.10
+  capability_id_l1: BC-3710
+  capability_name: Asset Ingest & Quality Control
+  confidence: 0.7
+  evidence: POST /v4/accounts/{account_id}/folders/{folder_id}/files/local_upload files.create_local_upload
+    Create file (local upload); GET /v4/accounts/{account_id}/files/{file_id}/status Show file upload
+    status; POST .../files/import Import file
+  reason: Operations onboard media source material into the platform (remote/local upload, import, upload
+    status) plus lifecycle moves/copies, which is media asset ingest within Media Asset Management.
+- tag: Folder Permissions
+  spec_file: frameio-folder-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: PATCH /v4/accounts/{account_id}/folders/{folder_id}/users/{user_id} folder_user_roles.update
+    Update user roles for the given folder; DELETE ... Remove a user from a given folder
+  reason: Grant, update and revocation of user roles on a resource is access management; schemas UserRole/UpdateUserRolesParams
+    confirm authorisation rather than any content capability.
+- tag: Metadata Fields
+  spec_file: frameio-metadata-fields-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.7
+  evidence: 'POST /v4/accounts/{account_id}/metadata/field_definitions Create account level field definitions;
+    schemas: FieldDefinition, TextDefinition, SelectMultiDefinitionParams'
+  reason: Defining the custom metadata field schema that describes media assets underpins metadata cataloguing;
+    it is schema authoring for asset metadata rather than generic data governance tooling.
+- tag: Project Permissions
+  spec_file: frameio-project-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: PATCH /v4/accounts/{account_id}/projects/{project_id}/users/{user_id} project_user_roles.update
+    Update user roles for the given project
+  reason: Assignment and removal of user roles on projects is access authorisation management, evidenced
+    by UserRole and UpdateUserRolesParams schemas.
