@@ -61,7 +61,7 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
-  - Accountpermissions
+  - Account Permissions
   tags_raw:
   - Account Permissions
   properties:
@@ -231,7 +231,7 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
-  - Metadata - Fields
+  - Metadata Fields
   tags_raw:
   - Metadata Fields
   properties:
@@ -367,7 +367,7 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
-  - Workspace permissions
+  - Workspace Permissions
   tags_raw:
   - Workspace Permissions
   properties:
