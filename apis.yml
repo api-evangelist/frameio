@@ -55,24 +55,6 @@ tags:
 - Adobe
 - Content
 apis:
-- aid: frameio:frameio-account-permissions-api
-  name: Frame.io Account Permissions API
-  description: Manage Account Permissions and related operations.
-  humanURL: https://developer.frame.io
-  baseURL: https://api.frame.io
-  tags:
-  - Accountpermissions
-  tags_raw:
-  - Account Permissions
-  properties:
-  - type: OpenAPI
-    url: openapi/frameio-account-permissions-api-openapi.yml
-  - type: Webhooks
-    url: asyncapi/frameio-webhooks.yml
-  - type: ErrorCatalog
-    url: errors/frameio-problem-types.yml
-  - type: DataModel
-    url: data-model/frameio-data-model.yml
 - aid: frameio:frameio-accounts-api
   name: Frame.io Accounts API
   description: Manage Accounts and related operations.
@@ -389,6 +371,22 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/frameio-workspaces-api-openapi.yml
+  - type: Webhooks
+    url: asyncapi/frameio-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/frameio-problem-types.yml
+  - type: DataModel
+    url: data-model/frameio-data-model.yml
+- aid: frameio:frameio-accountpermissions-api
+  name: Frame.io Accountpermissions API
+  description: Manage Account Permissions and related operations.
+  humanURL: https://developer.frame.io
+  baseURL: https://api.frame.io
+  tags:
+  - Accountpermissions
+  properties:
+  - type: OpenAPI
+    url: openapi/frameio-accountpermissions-api-openapi.yml
   - type: Webhooks
     url: asyncapi/frameio-webhooks.yml
   - type: ErrorCatalog
