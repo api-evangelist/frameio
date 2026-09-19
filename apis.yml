@@ -281,6 +281,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Share
+  tags_raw:
   - Shares
   properties:
   - type: OpenAPI
@@ -367,6 +369,8 @@ apis:
   humanURL: https://developer.frame.io
   baseURL: https://api.frame.io
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
