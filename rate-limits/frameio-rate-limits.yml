@@ -1,0 +1,47 @@
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://next.developer.frame.io/platform/v2/rate-limits
+sources:
+- https://next.developer.frame.io/platform/v2/rate-limits
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: true
+note: Page also has a table of per-resource limits (e.g. Assets create 5 / 1,000 ms) not expressible as
+  verbatim phrases.
+limit_count: 5
+limits:
+- name: Minimum endpoint limit
+  limit_text: 10 requests/minute
+  limit: 10
+  window: minute
+  scope: user
+- name: Maximum endpoint limit
+  limit_text: 100 requests/second
+  limit: 100
+  window: second
+  scope: user
+- name: Asset children listing
+  limit_text: 40 requests per 60,000 ms
+  limit: 40
+  scope: endpoint
+  endpoint: GET v2/assets/:id/children
+- name: Data-creating paths
+  limit_text: 100 calls per minute
+  limit: 100
+  window: minute
+  scope: endpoint
+  endpoint: resource paths that create new data
+- name: Asset list fetching
+  limit_text: 200 calls per minute
+  limit: 200
+  window: minute
+  scope: endpoint
+  endpoint: resource paths that fetch lists of assets
+headers:
+- x-ratelimit-limit
+- x-ratelimit-remaining
+- x-ratelimit-window
+exceeded_status: 429
