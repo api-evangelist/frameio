@@ -1,0 +1,47 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://frame.io/pricing
+sources:
+- https://frame.io/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: per-seat
+published: true
+note: Monthly/annual toggle; annual saves 13%. Enterprise is custom-priced (Select and Prime packages).
+plan_count: 4
+currency: USD
+plans:
+- name: Free
+  price_text: $0/mo
+  price: 0
+  currency: USD
+  period: month
+  unit: per member
+  included_quota: Up to 2 members, 2GB storage, 2GB Mounted Storage, up to 2 projects
+- name: Pro
+  price_text: $15/mo
+  price: 15
+  currency: USD
+  period: month
+  unit: per member + tax per month
+  included_quota: Up to 5 members, 2 TB included + 2TB per additional member, 250GB Mounted Storage, unlimited
+    projects
+- name: Team
+  price_text: $25/mo
+  price: 25
+  currency: USD
+  period: month
+  unit: per member + tax per month
+  included_quota: Up to 15 members, 3TB included + 2TB per additional member, 500GB Mounted Storage
+- name: Enterprise
+  price_text: Custom
+  period: none
+  included_quota: Custom members and storage, SSO, 2TB Mounted Storage
+rate_limit_statements:
+- Up to 2 members
+- Up to 5 members
+- Up to 15 members
