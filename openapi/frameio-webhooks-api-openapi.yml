@@ -1,10 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  description: 'For more information, see: https://developer.adobe.com/frameio'
   license:
     name: Adobe
     url: https://www.adobe.com/legal/terms.html
-  title: Frame.io Account Permissions Webhooks API
+  title: Frame.io Webhooks API
   version: v4.0
 servers:
 - url: https://api.frame.io
@@ -19,7 +19,9 @@ paths:
   /v4/accounts/{account_id}/workspaces/{workspace_id}/webhooks:
     get:
       callbacks: {}
-      description: 'List webhooks for the given workspace. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'List webhooks for the given workspace.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: webhooks.index
       parameters:
       - description: ''
@@ -349,13 +351,18 @@ paths:
       - Webhooks
     post:
       callbacks: {}
-      description: 'Creates a single webhook with secret.<br/><br/>Valid events:<p><code>
+      description: 'Creates a single webhook with secret.
+
+
+        Valid events:
+
 
         file.created, file.deleted, file.ready, file.updated, file.upload.completed, file.versioned, file.copied, folder.created, folder.deleted, folder.updated, folder.copied, comment.completed, comment.created, comment.deleted, comment.uncompleted, comment.updated, customfield.created, customfield.updated, customfield.deleted, metadata.value.updated, project.created, project.deleted, project.updated, collection.created, collection.updated, collection.deleted, share.created, share.updated, share.deleted, share.viewed
 
-        </code>
 
-        </p>. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+        .
+
+        Rate Limits: 10 calls per 1.00 minute(s) per account_user'
       operationId: webhooks.create
       parameters:
       - description: ''
@@ -658,7 +665,9 @@ paths:
   /v4/accounts/{account_id}/webhooks/{webhook_id}:
     delete:
       callbacks: {}
-      description: 'Delete a webhook. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user'
+      description: 'Delete a webhook.
+
+        Rate Limits: 60 calls per 1.00 minute(s) per account_user'
       operationId: webhooks.delete
       parameters:
       - description: ''
@@ -925,7 +934,9 @@ paths:
       - Webhooks
     get:
       callbacks: {}
-      description: 'Show webhook details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'Show webhook details.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: webhooks.show
       parameters:
       - description: ''
@@ -1231,7 +1242,9 @@ paths:
       - Webhooks
     patch:
       callbacks: {}
-      description: 'Update webhook details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      description: 'Update webhook details.
+
+        Rate Limits: 10 calls per 1.00 minute(s) per account_user'
       operationId: webhooks.update
       parameters:
       - description: ''
@@ -1533,222 +1546,6 @@ paths:
       - Webhooks
 components:
   schemas:
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    NotFound:
-      example:
-        errors:
-        - detail: Not found
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: NotFound
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    WebhookWithIncludes:
-      allOf:
-      - $ref: '#/components/schemas/Webhook'
-      - properties:
-          creator:
-            $ref: '#/components/schemas/User'
-        type: object
-      example:
-        active: 'true'
-        created_at: '2024-02-12T21:34:58.501275Z'
-        creator:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        events:
-        - file.created
-        - file.deleted
-        - file.ready
-        - file.updated
-        - file.upload.completed
-        - file.versioned
-        - file.copied
-        - folder.created
-        - folder.deleted
-        - folder.updated
-        - folder.copied
-        - comment.completed
-        - comment.created
-        - comment.deleted
-        - comment.uncompleted
-        - comment.updated
-        - customfield.created
-        - customfield.updated
-        - customfield.deleted
-        - metadata.value.updated
-        - project.created
-        - project.deleted
-        - project.updated
-        - collection.created
-        - collection.updated
-        - collection.deleted
-        - share.created
-        - share.updated
-        - share.deleted
-        - share.viewed
-        id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
-        name: My First Webhook
-        updated_at: '2024-02-12T21:34:58.501275Z'
-        url: https://my.webhook.url.dev
-        workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
-      title: WebhookWithIncludes
-      type: object
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      nullable: true
-      title: RequestAfterOpaqueCursor
-      type: string
     WebhookEvents:
       example:
       - file.created
@@ -1787,349 +1584,6 @@ components:
       title: WebhookEvents
       type: array
       uniqueItems: true
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          nullable: true
-          type: string
-      required:
-      - next
-      title: Links
-      type: object
-    WebhookCreateResponse:
-      additionalProperties: false
-      description: Returns a single webhook with secret.
-      example:
-        data:
-          active: 'true'
-          created_at: '2024-02-12T21:34:58.501275Z'
-          events:
-          - file.created
-          - file.deleted
-          - file.ready
-          - file.updated
-          - file.upload.completed
-          - file.versioned
-          - file.copied
-          - folder.created
-          - folder.deleted
-          - folder.updated
-          - folder.copied
-          - comment.completed
-          - comment.created
-          - comment.deleted
-          - comment.uncompleted
-          - comment.updated
-          - customfield.created
-          - customfield.updated
-          - customfield.deleted
-          - metadata.value.updated
-          - project.created
-          - project.deleted
-          - project.updated
-          - collection.created
-          - collection.updated
-          - collection.deleted
-          - share.created
-          - share.updated
-          - share.deleted
-          - share.viewed
-          id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
-          name: My First Webhook
-          secret: <secret>
-          updated_at: '2024-02-12T21:34:58.501275Z'
-          url: https://my.webhook.url.dev
-          workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Webhook'
-          - properties:
-              secret:
-                description: Secret used to validate webhook requests. Make sure to store your secret. You won’t be able to see it again!
-                type: string
-            required:
-            - secret
-            type: object
-      required:
-      - data
-      title: WebhookCreateResponse
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    WebhooksWithIncludesResponse:
-      additionalProperties: false
-      description: Frame.io webhooks
-      example:
-        data:
-        - active: 'true'
-          created_at: '2024-02-12T21:34:58.501275Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          events:
-          - file.created
-          - file.deleted
-          - file.ready
-          - file.updated
-          - file.upload.completed
-          - file.versioned
-          - file.copied
-          - folder.created
-          - folder.deleted
-          - folder.updated
-          - folder.copied
-          - comment.completed
-          - comment.created
-          - comment.deleted
-          - comment.uncompleted
-          - comment.updated
-          - customfield.created
-          - customfield.updated
-          - customfield.deleted
-          - metadata.value.updated
-          - project.created
-          - project.deleted
-          - project.updated
-          - collection.created
-          - collection.updated
-          - collection.deleted
-          - share.created
-          - share.updated
-          - share.deleted
-          - share.viewed
-          id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
-          name: My First Webhook
-          updated_at: '2024-02-12T21:34:58.501275Z'
-          url: https://my.webhook.url.dev
-          workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
-        links:
-          next: /v4/accounts/123/workspaces/123/webhooks
-        total_count: 10
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/WebhookWithIncludes'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          nullable: true
-          type: integer
-      required:
-      - data
-      - links
-      title: WebhooksWithIncludesResponse
-      type: object
-    WebhookWithIncludesResponse:
-      additionalProperties: false
-      example:
-        data:
-          active: 'true'
-          created_at: '2024-02-12T21:34:58.501275Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          events:
-          - file.created
-          - file.deleted
-          - file.ready
-          - file.updated
-          - file.upload.completed
-          - file.versioned
-          - file.copied
-          - folder.created
-          - folder.deleted
-          - folder.updated
-          - folder.copied
-          - comment.completed
-          - comment.created
-          - comment.deleted
-          - comment.uncompleted
-          - comment.updated
-          - customfield.created
-          - customfield.updated
-          - customfield.deleted
-          - metadata.value.updated
-          - project.created
-          - project.deleted
-          - project.updated
-          - collection.created
-          - collection.updated
-          - collection.deleted
-          - share.created
-          - share.updated
-          - share.deleted
-          - share.viewed
-          id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
-          name: My First Webhook
-          updated_at: '2024-02-12T21:34:58.501275Z'
-          url: https://my.webhook.url.dev
-          workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
-      properties:
-        data:
-          $ref: '#/components/schemas/WebhookWithIncludes'
-      required:
-      - data
-      title: WebhookWithIncludesResponse
-      type: object
-    WebhookCreateParams:
-      additionalProperties: false
-      description: Webhook creation parameters
-      example:
-        data:
-          events:
-          - file.created
-          - file.deleted
-          - file.ready
-          - file.updated
-          - file.upload.completed
-          - file.versioned
-          - file.copied
-          - folder.created
-          - folder.deleted
-          - folder.updated
-          - folder.copied
-          - comment.completed
-          - comment.created
-          - comment.deleted
-          - comment.uncompleted
-          - comment.updated
-          - customfield.created
-          - customfield.updated
-          - customfield.deleted
-          - metadata.value.updated
-          - project.created
-          - project.deleted
-          - project.updated
-          - collection.created
-          - collection.updated
-          - collection.deleted
-          - share.created
-          - share.updated
-          - share.deleted
-          - share.viewed
-          name: New Webhook
-          url: https://url.example.com
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            events:
-              $ref: '#/components/schemas/WebhookEvents'
-            name:
-              maxLength: 255
-              minLength: 1
-              type: string
-            url:
-              description: URL where `event` is sent
-              maxLength: 2000
-              minLength: 1
-              type: string
-          required:
-          - name
-          - events
-          - url
-          type: object
-      required:
-      - data
-      title: WebhookCreateParams
-      type: object
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
-      type: object
-    User:
-      description: User details
-      example:
-        active: true
-        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-        email: user_email@example.com
-        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-        name: Jon Doe
-      properties:
-        active:
-          description: User active status
-          nullable: true
-          type: boolean
-        adobe_user_id:
-          description: Adobe user ID
-          nullable: true
-          type: string
-        avatar_url:
-          description: User avatar image url
-          nullable: true
-          type: string
-        email:
-          description: User email
-          type: string
-        id:
-          description: User ID - can be null for invited users with no frame account
-          nullable: true
-          type: string
-        name:
-          description: User name
-          nullable: true
-          type: string
-      required:
-      - id
-      - name
-      - email
-      - avatar_url
-      - active
-      title: User
-      type: object
     Webhook:
       example:
         active: 'true'
@@ -2194,8 +1648,9 @@ components:
         workspace_id:
           description: Workspace ID
           format: uuid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - id
       - name
@@ -2204,6 +1659,32 @@ components:
       - created_at
       - updated_at
       title: Webhook
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
       type: object
     WebhookUpdateParams:
       additionalProperties: false
@@ -2267,6 +1748,152 @@ components:
       - data
       title: WebhookUpdateParams
       type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    WebhookCreateResponse:
+      additionalProperties: false
+      description: Returns a single webhook with secret.
+      example:
+        data:
+          active: 'true'
+          created_at: '2024-02-12T21:34:58.501275Z'
+          events:
+          - file.created
+          - file.deleted
+          - file.ready
+          - file.updated
+          - file.upload.completed
+          - file.versioned
+          - file.copied
+          - folder.created
+          - folder.deleted
+          - folder.updated
+          - folder.copied
+          - comment.completed
+          - comment.created
+          - comment.deleted
+          - comment.uncompleted
+          - comment.updated
+          - customfield.created
+          - customfield.updated
+          - customfield.deleted
+          - metadata.value.updated
+          - project.created
+          - project.deleted
+          - project.updated
+          - collection.created
+          - collection.updated
+          - collection.deleted
+          - share.created
+          - share.updated
+          - share.deleted
+          - share.viewed
+          id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
+          name: My First Webhook
+          secret: <secret>
+          updated_at: '2024-02-12T21:34:58.501275Z'
+          url: https://my.webhook.url.dev
+          workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Webhook'
+          - properties:
+              secret:
+                description: Secret used to validate webhook requests. Make sure to store your secret. You won’t be able to see it again!
+                type: string
+            required:
+            - secret
+            type: object
+      required:
+      - data
+      title: WebhookCreateResponse
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
     WebhookResponse:
       additionalProperties: false
       example:
@@ -2316,6 +1943,156 @@ components:
       - data
       title: WebhookResponse
       type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    WebhooksWithIncludesResponse:
+      additionalProperties: false
+      description: Frame.io webhooks
+      example:
+        data:
+        - active: 'true'
+          created_at: '2024-02-12T21:34:58.501275Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          events:
+          - file.created
+          - file.deleted
+          - file.ready
+          - file.updated
+          - file.upload.completed
+          - file.versioned
+          - file.copied
+          - folder.created
+          - folder.deleted
+          - folder.updated
+          - folder.copied
+          - comment.completed
+          - comment.created
+          - comment.deleted
+          - comment.uncompleted
+          - comment.updated
+          - customfield.created
+          - customfield.updated
+          - customfield.deleted
+          - metadata.value.updated
+          - project.created
+          - project.deleted
+          - project.updated
+          - collection.created
+          - collection.updated
+          - collection.deleted
+          - share.created
+          - share.updated
+          - share.deleted
+          - share.viewed
+          id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
+          name: My First Webhook
+          updated_at: '2024-02-12T21:34:58.501275Z'
+          url: https://my.webhook.url.dev
+          workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
+        links:
+          next: /v4/accounts/123/workspaces/123/webhooks
+        total_count: 10
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/WebhookWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
+      required:
+      - data
+      - links
+      title: WebhooksWithIncludesResponse
+      type: object
+    WebhookWithIncludesResponse:
+      additionalProperties: false
+      example:
+        data:
+          active: 'true'
+          created_at: '2024-02-12T21:34:58.501275Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          events:
+          - file.created
+          - file.deleted
+          - file.ready
+          - file.updated
+          - file.upload.completed
+          - file.versioned
+          - file.copied
+          - folder.created
+          - folder.deleted
+          - folder.updated
+          - folder.copied
+          - comment.completed
+          - comment.created
+          - comment.deleted
+          - comment.uncompleted
+          - comment.updated
+          - customfield.created
+          - customfield.updated
+          - customfield.deleted
+          - metadata.value.updated
+          - project.created
+          - project.deleted
+          - project.updated
+          - collection.created
+          - collection.updated
+          - collection.deleted
+          - share.created
+          - share.updated
+          - share.deleted
+          - share.viewed
+          id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
+          name: My First Webhook
+          updated_at: '2024-02-12T21:34:58.501275Z'
+          url: https://my.webhook.url.dev
+          workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
+      properties:
+        data:
+          $ref: '#/components/schemas/WebhookWithIncludes'
+      required:
+      - data
+      title: WebhookWithIncludesResponse
+      type: object
     Forbidden:
       example:
         errors:
@@ -2341,6 +2118,251 @@ components:
       required:
       - errors
       title: Forbidden
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    WebhookWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/Webhook'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        active: 'true'
+        created_at: '2024-02-12T21:34:58.501275Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        events:
+        - file.created
+        - file.deleted
+        - file.ready
+        - file.updated
+        - file.upload.completed
+        - file.versioned
+        - file.copied
+        - folder.created
+        - folder.deleted
+        - folder.updated
+        - folder.copied
+        - comment.completed
+        - comment.created
+        - comment.deleted
+        - comment.uncompleted
+        - comment.updated
+        - customfield.created
+        - customfield.updated
+        - customfield.deleted
+        - metadata.value.updated
+        - project.created
+        - project.deleted
+        - project.updated
+        - collection.created
+        - collection.updated
+        - collection.deleted
+        - share.created
+        - share.updated
+        - share.deleted
+        - share.viewed
+        id: 6083dcd2-a5fa-4364-9497-b34ddfa0d1c2
+        name: My First Webhook
+        updated_at: '2024-02-12T21:34:58.501275Z'
+        url: https://my.webhook.url.dev
+        workspace_id: bffe8bcf-3cac-4945-9c7e-569caa5de5bd
+      title: WebhookWithIncludes
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          type:
+          - boolean
+          - 'null'
+        adobe_user_id:
+          description: Adobe user ID
+          type:
+          - string
+          - 'null'
+        avatar_url:
+          description: User avatar image url
+          type:
+          - string
+          - 'null'
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          type:
+          - string
+          - 'null'
+        name:
+          description: User name
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    WebhookCreateParams:
+      additionalProperties: false
+      description: Webhook creation parameters
+      example:
+        data:
+          events:
+          - file.created
+          - file.deleted
+          - file.ready
+          - file.updated
+          - file.upload.completed
+          - file.versioned
+          - file.copied
+          - folder.created
+          - folder.deleted
+          - folder.updated
+          - folder.copied
+          - comment.completed
+          - comment.created
+          - comment.deleted
+          - comment.uncompleted
+          - comment.updated
+          - customfield.created
+          - customfield.updated
+          - customfield.deleted
+          - metadata.value.updated
+          - project.created
+          - project.deleted
+          - project.updated
+          - collection.created
+          - collection.updated
+          - collection.deleted
+          - share.created
+          - share.updated
+          - share.deleted
+          - share.viewed
+          name: New Webhook
+          url: https://url.example.com
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            events:
+              $ref: '#/components/schemas/WebhookEvents'
+            name:
+              maxLength: 255
+              minLength: 1
+              type: string
+            url:
+              description: URL where `event` is sent
+              maxLength: 2000
+              minLength: 1
+              type: string
+          required:
+          - name
+          - events
+          - url
+          type: object
+      required:
+      - data
+      title: WebhookCreateParams
       type: object
   securitySchemes:
     OAuth2:

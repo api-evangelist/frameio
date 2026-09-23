@@ -1,10 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  description: 'For more information, see: https://developer.adobe.com/frameio'
   license:
     name: Adobe
     url: https://www.adobe.com/legal/terms.html
-  title: Frame.io Account Permissions Workspaces API
+  title: Frame.io Workspaces API
   version: v4.0
 servers:
 - url: https://api.frame.io
@@ -19,7 +19,9 @@ paths:
   /v4/accounts/{account_id}/workspaces:
     get:
       callbacks: {}
-      description: 'List workspaces for a given account. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'List workspaces for a given account.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: workspaces.index
       parameters:
       - description: ''
@@ -356,7 +358,9 @@ paths:
       - Workspaces
     post:
       callbacks: {}
-      description: 'Create workspace from an account. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      description: 'Create workspace from an account.
+
+        Rate Limits: 10 calls per 1.00 minute(s) per account_user'
       operationId: workspaces.create
       parameters:
       - description: ''
@@ -652,7 +656,9 @@ paths:
   /v4/accounts/{account_id}/workspaces/{workspace_id}:
     delete:
       callbacks: {}
-      description: 'Delete workspace from account. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user'
+      description: 'Delete workspace from account.
+
+        Rate Limits: 60 calls per 1.00 minute(s) per account_user'
       operationId: workspaces.delete
       parameters:
       - description: ''
@@ -919,7 +925,9 @@ paths:
       - Workspaces
     get:
       callbacks: {}
-      description: 'Show workspace details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'Show workspace details.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: workspaces.show
       parameters:
       - description: ''
@@ -1225,7 +1233,9 @@ paths:
       - Workspaces
     patch:
       callbacks: {}
-      description: 'Update a workspace. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      description: 'Update a workspace.
+
+        Rate Limits: 10 calls per 1.00 minute(s) per account_user'
       operationId: workspaces.update
       parameters:
       - description: ''
@@ -1527,32 +1537,6 @@ paths:
       - Workspaces
 components:
   schemas:
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
     Unauthorized:
       example:
         errors:
@@ -1579,10 +1563,54 @@ components:
       - errors
       title: Unauthorized
       type: object
-    NotFound:
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    WorkspaceWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/Workspace'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
+        name: My Workspace
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: WorkspaceWithIncludes
+      type: object
+    UnprocessableContent:
       example:
         errors:
-        - detail: Not found
+        - detail: Unprocessable content
       properties:
         errors:
           items:
@@ -1603,8 +1631,19 @@ components:
           type: array
       required:
       - errors
-      title: NotFound
+      title: UnprocessableContent
       type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
     RequestPageSize:
       default: 50
       description: Page size query param for requests
@@ -1614,10 +1653,28 @@ components:
       minimum: 1
       title: RequestPageSize
       type: integer
-    BadRequest:
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    Conflict:
       example:
         errors:
-        - detail: Bad request
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -1638,7 +1695,7 @@ components:
           type: array
       required:
       - errors
-      title: BadRequest
+      title: Conflict
       type: object
     Workspace:
       description: Frame.io workspace
@@ -1676,6 +1733,125 @@ components:
       - updated_at
       title: Workspace
       type: object
+    WorkspaceResponse:
+      description: Frame.io workspace details
+      example:
+        data:
+          account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
+          created_at: '2024-01-25T19:18:29.614189Z'
+          id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
+          name: My Workspace
+          updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/Workspace'
+      required:
+      - data
+      title: WorkspaceResponse
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    WorkspaceParams:
+      description: Workspace params
+      example:
+        data:
+          name: My Workspace
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            name:
+              description: Workspace Name
+              maxLength: 255
+              minLength: 1
+              type: string
+          type: object
+      required:
+      - data
+      title: WorkspaceParams
+      type: object
     WorkspacesWithIncludesResponse:
       description: Frame.io workspace details
       example:
@@ -1704,8 +1880,9 @@ components:
           $ref: '#/components/schemas/Links'
         total_count:
           description: Total count
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
       required:
       - data
       - links
@@ -1733,133 +1910,6 @@ components:
       - data
       title: WorkspaceWithIncludesResponse
       type: object
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      nullable: true
-      title: RequestAfterOpaqueCursor
-      type: string
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          nullable: true
-          type: string
-      required:
-      - next
-      title: Links
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
-      type: object
-    WorkspaceParams:
-      description: Workspace params
-      example:
-        data:
-          name: My Workspace
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            name:
-              description: Workspace Name
-              maxLength: 255
-              minLength: 1
-              type: string
-          type: object
-      required:
-      - data
-      title: WorkspaceParams
-      type: object
     User:
       description: User details
       example:
@@ -1871,27 +1921,32 @@ components:
       properties:
         active:
           description: User active status
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         adobe_user_id:
           description: Adobe user ID
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         avatar_url:
           description: User avatar image url
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         email:
           description: User email
           type: string
         id:
           description: User ID - can be null for invited users with no frame account
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         name:
           description: User name
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - id
       - name
@@ -1900,31 +1955,10 @@ components:
       - active
       title: User
       type: object
-    WorkspaceWithIncludes:
-      allOf:
-      - $ref: '#/components/schemas/Workspace'
-      - properties:
-          creator:
-            $ref: '#/components/schemas/User'
-        type: object
-      example:
-        account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
-        created_at: '2024-01-25T19:18:29.614189Z'
-        creator:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
-        name: My Workspace
-        updated_at: '2024-02-07T16:44:41.986478Z'
-      title: WorkspaceWithIncludes
-      type: object
-    Forbidden:
+    BadRequest:
       example:
         errors:
-        - detail: Forbidden
+        - detail: Bad request
       properties:
         errors:
           items:
@@ -1945,23 +1979,7 @@ components:
           type: array
       required:
       - errors
-      title: Forbidden
-      type: object
-    WorkspaceResponse:
-      description: Frame.io workspace details
-      example:
-        data:
-          account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
-          created_at: '2024-01-25T19:18:29.614189Z'
-          id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
-          name: My Workspace
-          updated_at: '2024-02-07T16:44:41.986478Z'
-      properties:
-        data:
-          $ref: '#/components/schemas/Workspace'
-      required:
-      - data
-      title: WorkspaceResponse
+      title: BadRequest
       type: object
   securitySchemes:
     OAuth2:

@@ -1,10 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  description: 'For more information, see: https://developer.adobe.com/frameio'
   license:
     name: Adobe
     url: https://www.adobe.com/legal/terms.html
-  title: Frame.io Account Permissions Accounts API
+  title: Frame.io Accounts API
   version: v4.0
 servers:
 - url: https://api.frame.io
@@ -19,7 +19,9 @@ paths:
   /v4/accounts:
     get:
       callbacks: {}
-      description: 'List accounts for the current user. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'List accounts for the current user.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: accounts.index
       parameters:
       - description: Sort accounts by query params
@@ -339,7 +341,9 @@ paths:
   /v4/accounts/{account_id}/audit_logs:
     get:
       callbacks: {}
-      description: 'List audit logs with filtering capabilities via query params. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'List audit logs with filtering capabilities via query params.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: auditlog.index
       parameters:
       - description: ''
@@ -677,50 +681,16 @@ paths:
       - Accounts
 components:
   schemas:
-    User:
-      description: User details
-      example:
-        active: true
-        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-        email: user_email@example.com
-        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-        name: Jon Doe
-      properties:
-        active:
-          description: User active status
-          nullable: true
-          type: boolean
-        adobe_user_id:
-          description: Adobe user ID
-          nullable: true
-          type: string
-        avatar_url:
-          description: User avatar image url
-          nullable: true
-          type: string
-        email:
-          description: User email
-          type: string
-        id:
-          description: User ID - can be null for invited users with no frame account
-          nullable: true
-          type: string
-        name:
-          description: User name
-          nullable: true
-          type: string
-      required:
-      - id
-      - name
-      - email
-      - avatar_url
-      - active
-      title: User
-      type: object
-    UnprocessableContent:
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    Forbidden:
       example:
         errors:
-        - detail: Unprocessable content
+        - detail: Forbidden
       properties:
         errors:
           items:
@@ -741,12 +711,12 @@ components:
           type: array
       required:
       - errors
-      title: UnprocessableContent
+      title: Forbidden
       type: object
-    Conflict:
+    TooManyRequests:
       example:
         errors:
-        - detail: Conflict
+        - detail: Too many requests
       properties:
         errors:
           items:
@@ -767,8 +737,404 @@ components:
           type: array
       required:
       - errors
-      title: Conflict
+      title: TooManyRequests
       type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    AuditLogwithIncludes:
+      description: Frame.io Audit Event
+      example:
+        account_id: df2a76a7-7f19-44c9-b546-8031e25dc01f
+        event_type: comment_created
+        inserted_at: '2024-08-23T14:39:29.125812Z'
+        ip_address: 162.198.0.1
+        project_id: aeac4749-df08-417c-a2ee-382fd7a1f811
+        resource_id: e1902386-d7b2-4387-b2e3-4f4ce10e8962
+        resource_type: comment
+        user:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        user_id: 8ffeb010-fb15-44df-b677-69a11dc5c19b
+        workspace_id: c3e0c251-7e7b-47ff-8b92-1fd23be2d9d0
+      properties:
+        account_id:
+          format: uuid
+          type: string
+        event_type:
+          enum:
+          - access_request_approved
+          - access_request_denied
+          - access_request_submitted
+          - account_aup_migration_created
+          - account_aup_migration_deleted
+          - account_aup_migration_downgrade_completed
+          - account_aup_migration_downgrade_failed
+          - account_aup_migration_downgrade_requested
+          - account_aup_migration_product_migrated
+          - account_aup_migration_started
+          - account_aup_migration_updated
+          - account_aup_user_migration_completed
+          - account_aup_user_migration_created
+          - account_aup_user_migration_deleted
+          - account_aup_user_migration_failed
+          - account_aup_user_migration_on_hold
+          - account_aup_user_migration_started
+          - account_aup_user_migration_unheld
+          - account_aup_user_migration_updated
+          - account_delinquent
+          - account_field_created
+          - account_field_deleted
+          - account_field_updated
+          - account_fio_version_migrated
+          - account_locked
+          - account_member_created
+          - account_member_deleted
+          - account_member_updated
+          - account_mfa_enforced
+          - account_ownership_transferred
+          - account_permissions_granted_to_user
+          - account_restored
+          - account_updated
+          - account_user_deleted
+          - account_user_group_created
+          - account_user_group_deleted
+          - account_user_group_members_added
+          - account_user_group_members_removed
+          - account_user_group_sync_triggered
+          - account_user_group_updated
+          - account_user_updated
+          - action_created
+          - action_deleted
+          - action_updated
+          - admin_update_to_v4
+          - allowed_domain_created
+          - allowed_domain_deleted
+          - anonymous_user_created
+          - asset_assignee_changed
+          - asset_copied
+          - asset_created
+          - asset_deleted
+          - asset_metadata_created
+          - asset_moved
+          - asset_restored
+          - asset_status_changed
+          - asset_updated
+          - asset_versioned
+          - assets_unversioned
+          - bulk_account_deletion_started
+          - bulk_assets_deleted
+          - bulk_assets_restored
+          - bulk_assets_retranscoded
+          - bulk_emails_updated
+          - bulk_projects_activated
+          - bulk_projects_deactivated
+          - bulk_projects_mounted_storage_status_updated
+          - bulk_users_removed
+          - collaborator_added
+          - collaborator_deleted
+          - collection_updated
+          - comment_completed
+          - comment_created
+          - comment_deleted
+          - comment_liked
+          - comment_uncompleted
+          - comment_updated
+          - controlled_domain_created
+          - controlled_domain_updated
+          - email_address_change_failure
+          - email_address_changed
+          - email_change_confirmation_requested
+          - email_confirmed
+          - file_uploaded
+          - google_auth_disabled
+          - google_auth_enabled
+          - high_risk_sign_up
+          - join_presentation_request_approved
+          - join_project_request_approved
+          - join_request_accepted
+          - join_request_created
+          - join_request_declined
+          - join_request_deleted
+          - join_request_reset
+          - join_review_link_request_approved
+          - join_team_request_approved
+          - label_updated
+          - labs_experiment_enrolled
+          - labs_experiment_unenrolled
+          - labs_terms_accepted
+          - login_factor_created
+          - login_factor_validated
+          - media_created
+          - media_deleted
+          - metadata_value_updated
+          - new_device_login
+          - new_user_email_confirmation_requested
+          - oauth_app_created
+          - oauth_app_deleted
+          - oauth_app_disabled
+          - oauth_app_enabled
+          - oauth_app_updated
+          - password_changed
+          - password_reset_requested
+          - pending_account_member_created
+          - pending_account_member_deleted
+          - pending_collaborator_created
+          - pending_collaborator_deleted
+          - pending_reviewer_created
+          - pending_reviewer_deleted
+          - pending_team_member_created
+          - pending_team_member_deleted
+          - plan_created
+          - plan_deleted
+          - plan_updated
+          - preference_updated
+          - presentation_created
+          - presentation_deleted
+          - presentation_updated
+          - project_activated
+          - project_archive_completed
+          - project_archived
+          - project_created
+          - project_deactivated
+          - project_deleted
+          - project_field_created
+          - project_field_deleted
+          - project_field_updated
+          - project_invite_link_created
+          - project_invite_link_revoked
+          - project_moved
+          - project_permissions_granted_to_account_user_group
+          - project_permissions_granted_to_user
+          - project_restored
+          - project_unarchive_completed
+          - project_unarchived
+          - project_updated
+          - push_tokens_added
+          - push_tokens_deleted
+          - resource_control_policies_updated
+          - resource_invite_sent
+          - review_link_assets_added
+          - review_link_assets_deleted
+          - review_link_created
+          - review_link_deleted
+          - review_link_emailed
+          - review_link_updated
+          - reviewer_created
+          - reviewer_deleted
+          - role_added
+          - role_removed
+          - sbwm_template_created
+          - sbwm_template_deleted
+          - sbwm_template_updated
+          - session_refreshed
+          - session_revoked
+          - share_activity_tracking_consent_changed
+          - share_branding_preset_updated
+          - share_created
+          - share_deleted
+          - share_invites_sent
+          - share_list_created
+          - share_list_deleted
+          - share_list_updated
+          - share_reviewers_added
+          - share_reviewers_removed
+          - share_updated
+          - share_viewed
+          - subscription_cancelled
+          - subscription_card_updated
+          - subscription_created
+          - subscription_line_item_created
+          - subscription_line_item_deleted
+          - subscription_restored
+          - subscription_updated
+          - team_created
+          - team_creator_updated
+          - team_deleted
+          - team_lifecycle_policy_updated
+          - team_member_created
+          - team_member_deleted
+          - team_member_reset
+          - team_member_updated
+          - team_updated
+          - transcript_completed_self
+          - transcript_diarization_consent_changed
+          - transfer_batch_completed
+          - user_anonymized
+          - user_deactivated
+          - user_login
+          - user_login_attempt
+          - user_logout
+          - user_mfa_enforced
+          - user_reactivated
+          - user_signup
+          - user_token_created
+          - user_token_deleted
+          - user_token_disabled
+          - user_token_enabled
+          - user_token_updated
+          - user_updated
+          - v4_migration_role_override_changed
+          - v4_planned_migration_creation_failed
+          - v4_planned_migration_date_updated
+          - webhook_created
+          - webhook_deleted
+          - webhook_updated
+          - workfront_asset_approval_status_updated
+          - workspace_permissions_granted_to_account_user_group
+          - workspace_permissions_granted_to_user
+          type: string
+        inserted_at:
+          type: string
+        ip_address:
+          type: string
+        project_id:
+          format: uuid
+          type:
+          - string
+          - 'null'
+        resource_id:
+          format: uuid
+          type: string
+        resource_type:
+          enum:
+          - account
+          - account_field_definition
+          - account_member
+          - account_user_group
+          - account_v4_migration_eligibility
+          - action
+          - allowed_domain
+          - anonymous_user
+          - asset
+          - asset_metadata
+          - collaborator
+          - collection
+          - comment
+          - comment_impression
+          - controlled_domain
+          - folder
+          - join_request
+          - labs_experiment
+          - login_factor
+          - media
+          - oauth_app
+          - pending_account_member
+          - pending_collaborator
+          - pending_reviewer
+          - pending_team_member
+          - plan
+          - presentation
+          - project
+          - project_field_definition
+          - project_invite_link
+          - project_preference
+          - reset_token
+          - review_link
+          - reviewer
+          - sbwm_template
+          - share
+          - share_list
+          - subscription
+          - subscription_line_item
+          - team
+          - team_member
+          - transfer_batch
+          - user
+          - user_token
+          - v4_planned_migration
+          - version_stack
+          - webhook
+          type: string
+        user:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          type:
+          - object
+          - 'null'
+        user_id:
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workspace_id:
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - user_id
+      - account_id
+      - project_id
+      - workspace_id
+      - resource_id
+      - resource_type
+      - event_type
+      - ip_address
+      - inserted_at
+      title: AuditLogwithIncludes
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
     RequestAfterOpaqueCursor:
       description: 'Opaque Cursor query param for requests returning paginated results.
 
@@ -778,9 +1144,73 @@ components:
 
         '
       example: <opaque_cursor>
-      nullable: true
       title: RequestAfterOpaqueCursor
-      type: string
+      type:
+      - string
+      - 'null'
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    AuditLogsWithIncludesResponse:
+      description: Frame.io Audit log events
+      example:
+        data:
+        - account_id: df2a76a7-7f19-44c9-b546-8031e25dc01f
+          event_type: comment_created
+          inserted_at: '2024-08-23T14:39:29.125812Z'
+          ip_address: 162.198.0.1
+          project_id: aeac4749-df08-417c-a2ee-382fd7a1f811
+          resource_id: e1902386-d7b2-4387-b2e3-4f4ce10e8962
+          resource_type: comment
+          user:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          user_id: 8ffeb010-fb15-44df-b677-69a11dc5c19b
+          workspace_id: c3e0c251-7e7b-47ff-8b92-1fd23be2d9d0
+        links:
+          next: /v4/accounts/123/audit_logs
+        total_count: 10
+      properties:
+        data:
+          description: Audit logs
+          items:
+            $ref: '#/components/schemas/AuditLogwithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
+      required:
+      - data
+      - links
+      title: AuditLogsWithIncludesResponse
+      type: object
     Filters:
       additionalProperties: false
       description: Audit logs search filter parameters
@@ -1090,121 +1520,6 @@ components:
           type: string
       title: Filters
       type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          nullable: true
-          type: string
-      required:
-      - next
-      title: Links
-      type: object
-    NotFound:
-      example:
-        errors:
-        - detail: Not found
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: NotFound
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
     AccountsResponse:
       additionalProperties: false
       example:
@@ -1233,69 +1548,13 @@ components:
           $ref: '#/components/schemas/Links'
         total_count:
           description: Total count
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
       required:
       - data
       - links
       title: AccountsResponse
-      type: object
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
       type: object
     Account:
       additionalProperties: false
@@ -1315,8 +1574,9 @@ components:
       properties:
         adobe_id:
           description: Adobe IMS Organization ID associated with the account, when available.
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         created_at:
           description: Created Timestamp
           format: date-time
@@ -1330,8 +1590,9 @@ components:
           type: string
         image:
           description: The account image url
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         roles:
           description: Account User Roles
           items:
@@ -1343,8 +1604,9 @@ components:
           type: array
         storage_limit:
           description: The number of bytes of non-archived storage in the account. Value is nil when there is no limit
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         storage_usage:
           description: The number of bytes of non-archived storage the account is using
           type: integer
@@ -1355,8 +1617,9 @@ components:
         v4_migrated_at:
           description: Migration timestamp
           format: date-time
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - id
       - display_name
@@ -1367,375 +1630,133 @@ components:
       - updated_at
       title: Account
       type: object
-    AuditLogwithIncludes:
-      description: Frame.io Audit Event
+    UnprocessableContent:
       example:
-        account_id: df2a76a7-7f19-44c9-b546-8031e25dc01f
-        event_type: comment_created
-        inserted_at: '2024-08-23T14:39:29.125812Z'
-        ip_address: 162.198.0.1
-        project_id: aeac4749-df08-417c-a2ee-382fd7a1f811
-        resource_id: e1902386-d7b2-4387-b2e3-4f4ce10e8962
-        resource_type: comment
-        user:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        user_id: 8ffeb010-fb15-44df-b677-69a11dc5c19b
-        workspace_id: c3e0c251-7e7b-47ff-8b92-1fd23be2d9d0
+        errors:
+        - detail: Unprocessable content
       properties:
-        account_id:
-          format: uuid
-          type: string
-        event_type:
-          enum:
-          - access_request_approved
-          - access_request_denied
-          - access_request_submitted
-          - account_aup_migration_created
-          - account_aup_migration_deleted
-          - account_aup_migration_downgrade_completed
-          - account_aup_migration_downgrade_failed
-          - account_aup_migration_downgrade_requested
-          - account_aup_migration_product_migrated
-          - account_aup_migration_started
-          - account_aup_migration_updated
-          - account_aup_user_migration_completed
-          - account_aup_user_migration_created
-          - account_aup_user_migration_deleted
-          - account_aup_user_migration_failed
-          - account_aup_user_migration_on_hold
-          - account_aup_user_migration_started
-          - account_aup_user_migration_unheld
-          - account_aup_user_migration_updated
-          - account_delinquent
-          - account_field_created
-          - account_field_deleted
-          - account_field_updated
-          - account_fio_version_migrated
-          - account_locked
-          - account_member_created
-          - account_member_deleted
-          - account_member_updated
-          - account_mfa_enforced
-          - account_ownership_transferred
-          - account_permissions_granted_to_user
-          - account_restored
-          - account_updated
-          - account_user_deleted
-          - account_user_group_created
-          - account_user_group_deleted
-          - account_user_group_members_added
-          - account_user_group_members_removed
-          - account_user_group_sync_triggered
-          - account_user_group_updated
-          - account_user_updated
-          - action_created
-          - action_deleted
-          - action_updated
-          - admin_update_to_v4
-          - allowed_domain_created
-          - allowed_domain_deleted
-          - anonymous_user_created
-          - asset_assignee_changed
-          - asset_copied
-          - asset_created
-          - asset_deleted
-          - asset_metadata_created
-          - asset_moved
-          - asset_restored
-          - asset_status_changed
-          - asset_updated
-          - asset_versioned
-          - assets_unversioned
-          - bulk_account_deletion_started
-          - bulk_assets_deleted
-          - bulk_assets_restored
-          - bulk_assets_retranscoded
-          - bulk_emails_updated
-          - bulk_projects_activated
-          - bulk_projects_deactivated
-          - bulk_projects_mounted_storage_status_updated
-          - bulk_users_removed
-          - collaborator_added
-          - collaborator_deleted
-          - collection_updated
-          - comment_completed
-          - comment_created
-          - comment_deleted
-          - comment_liked
-          - comment_uncompleted
-          - comment_updated
-          - controlled_domain_created
-          - controlled_domain_updated
-          - email_address_change_failure
-          - email_address_changed
-          - email_change_confirmation_requested
-          - email_confirmed
-          - file_uploaded
-          - google_auth_disabled
-          - google_auth_enabled
-          - high_risk_sign_up
-          - join_presentation_request_approved
-          - join_project_request_approved
-          - join_request_accepted
-          - join_request_created
-          - join_request_declined
-          - join_request_deleted
-          - join_request_reset
-          - join_review_link_request_approved
-          - join_team_request_approved
-          - label_updated
-          - labs_experiment_enrolled
-          - labs_experiment_unenrolled
-          - labs_terms_accepted
-          - login_factor_created
-          - login_factor_validated
-          - media_created
-          - media_deleted
-          - metadata_value_updated
-          - new_device_login
-          - new_user_email_confirmation_requested
-          - oauth_app_created
-          - oauth_app_deleted
-          - oauth_app_disabled
-          - oauth_app_enabled
-          - oauth_app_updated
-          - password_changed
-          - password_reset_requested
-          - pending_account_member_created
-          - pending_account_member_deleted
-          - pending_collaborator_created
-          - pending_collaborator_deleted
-          - pending_reviewer_created
-          - pending_reviewer_deleted
-          - pending_team_member_created
-          - pending_team_member_deleted
-          - plan_created
-          - plan_deleted
-          - plan_updated
-          - preference_updated
-          - presentation_created
-          - presentation_deleted
-          - presentation_updated
-          - project_activated
-          - project_archive_completed
-          - project_archived
-          - project_created
-          - project_deactivated
-          - project_deleted
-          - project_field_created
-          - project_field_deleted
-          - project_field_updated
-          - project_invite_link_created
-          - project_invite_link_revoked
-          - project_moved
-          - project_permissions_granted_to_account_user_group
-          - project_permissions_granted_to_user
-          - project_restored
-          - project_unarchive_completed
-          - project_unarchived
-          - project_updated
-          - push_tokens_added
-          - push_tokens_deleted
-          - resource_control_policies_updated
-          - resource_invite_sent
-          - review_link_assets_added
-          - review_link_assets_deleted
-          - review_link_created
-          - review_link_deleted
-          - review_link_emailed
-          - review_link_updated
-          - reviewer_created
-          - reviewer_deleted
-          - role_added
-          - role_removed
-          - sbwm_template_created
-          - sbwm_template_deleted
-          - sbwm_template_updated
-          - session_refreshed
-          - session_revoked
-          - share_activity_tracking_consent_changed
-          - share_branding_preset_updated
-          - share_created
-          - share_deleted
-          - share_invites_sent
-          - share_list_created
-          - share_list_deleted
-          - share_list_updated
-          - share_reviewers_added
-          - share_reviewers_removed
-          - share_updated
-          - share_viewed
-          - subscription_cancelled
-          - subscription_card_updated
-          - subscription_created
-          - subscription_line_item_created
-          - subscription_line_item_deleted
-          - subscription_restored
-          - subscription_updated
-          - team_created
-          - team_creator_updated
-          - team_deleted
-          - team_lifecycle_policy_updated
-          - team_member_created
-          - team_member_deleted
-          - team_member_reset
-          - team_member_updated
-          - team_updated
-          - transcript_completed_self
-          - transcript_diarization_consent_changed
-          - transfer_batch_completed
-          - user_anonymized
-          - user_deactivated
-          - user_login
-          - user_login_attempt
-          - user_logout
-          - user_mfa_enforced
-          - user_reactivated
-          - user_signup
-          - user_token_created
-          - user_token_deleted
-          - user_token_disabled
-          - user_token_enabled
-          - user_token_updated
-          - user_updated
-          - v4_migration_role_override_changed
-          - v4_planned_migration_creation_failed
-          - v4_planned_migration_date_updated
-          - webhook_created
-          - webhook_deleted
-          - webhook_updated
-          - workfront_asset_approval_status_updated
-          - workspace_permissions_granted_to_account_user_group
-          - workspace_permissions_granted_to_user
-          type: string
-        inserted_at:
-          type: string
-        ip_address:
-          type: string
-        project_id:
-          format: uuid
-          nullable: true
-          type: string
-        resource_id:
-          format: uuid
-          type: string
-        resource_type:
-          enum:
-          - account
-          - account_field_definition
-          - account_member
-          - account_user_group
-          - account_v4_migration_eligibility
-          - action
-          - allowed_domain
-          - anonymous_user
-          - asset
-          - asset_metadata
-          - collaborator
-          - collection
-          - comment
-          - comment_impression
-          - controlled_domain
-          - folder
-          - join_request
-          - labs_experiment
-          - login_factor
-          - media
-          - oauth_app
-          - pending_account_member
-          - pending_collaborator
-          - pending_reviewer
-          - pending_team_member
-          - plan
-          - presentation
-          - project
-          - project_field_definition
-          - project_invite_link
-          - project_preference
-          - reset_token
-          - review_link
-          - reviewer
-          - sbwm_template
-          - share
-          - share_list
-          - subscription
-          - subscription_line_item
-          - team
-          - team_member
-          - transfer_batch
-          - user
-          - user_token
-          - v4_planned_migration
-          - version_stack
-          - webhook
-          type: string
-        user:
-          allOf:
-          - $ref: '#/components/schemas/User'
-          nullable: true
-          type: object
-        user_id:
-          format: uuid
-          nullable: true
-          type: string
-        workspace_id:
-          format: uuid
-          nullable: true
-          type: string
-      required:
-      - user_id
-      - account_id
-      - project_id
-      - workspace_id
-      - resource_id
-      - resource_type
-      - event_type
-      - ip_address
-      - inserted_at
-      title: AuditLogwithIncludes
-      type: object
-    AuditLogsWithIncludesResponse:
-      description: Frame.io Audit log events
-      example:
-        data:
-        - account_id: df2a76a7-7f19-44c9-b546-8031e25dc01f
-          event_type: comment_created
-          inserted_at: '2024-08-23T14:39:29.125812Z'
-          ip_address: 162.198.0.1
-          project_id: aeac4749-df08-417c-a2ee-382fd7a1f811
-          resource_id: e1902386-d7b2-4387-b2e3-4f4ce10e8962
-          resource_type: comment
-          user:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          user_id: 8ffeb010-fb15-44df-b677-69a11dc5c19b
-          workspace_id: c3e0c251-7e7b-47ff-8b92-1fd23be2d9d0
-        links:
-          next: /v4/accounts/123/audit_logs
-        total_count: 10
-      properties:
-        data:
-          description: Audit logs
+        errors:
           items:
-            $ref: '#/components/schemas/AuditLogwithIncludes'
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
           type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          nullable: true
-          type: integer
       required:
-      - data
-      - links
-      title: AuditLogsWithIncludesResponse
+      - errors
+      title: UnprocessableContent
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          type:
+          - boolean
+          - 'null'
+        adobe_user_id:
+          description: Adobe user ID
+          type:
+          - string
+          - 'null'
+        avatar_url:
+          description: User avatar image url
+          type:
+          - string
+          - 'null'
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          type:
+          - string
+          - 'null'
+        name:
+          description: User name
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
       type: object
   securitySchemes:
     OAuth2:

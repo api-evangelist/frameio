@@ -1,10 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  description: 'For more information, see: https://developer.adobe.com/frameio'
   license:
     name: Adobe
     url: https://www.adobe.com/legal/terms.html
-  title: Frame.io Account Permissions Users API
+  title: Frame.io Users API
   version: v4.0
 servers:
 - url: https://api.frame.io
@@ -19,7 +19,9 @@ paths:
   /v4/me:
     get:
       callbacks: {}
-      description: 'Inspect details of the user associated with the bearer token. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'Inspect details of the user associated with the bearer token.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: users.show
       parameters: []
       responses:
@@ -300,10 +302,10 @@ paths:
       - Users
 components:
   schemas:
-    UnprocessableContent:
+    Forbidden:
       example:
         errors:
-        - detail: Unprocessable content
+        - detail: Forbidden
       properties:
         errors:
           items:
@@ -324,126 +326,7 @@ components:
           type: array
       required:
       - errors
-      title: UnprocessableContent
-      type: object
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
-      type: object
-    ProfileResponse:
-      description: User profile
-      example:
-        data:
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 9571e103-40c4-481a-8549-8f13495c537d
-          name: Name
-      properties:
-        data:
-          $ref: '#/components/schemas/Profile'
-      required:
-      - data
-      title: ProfileResponse
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    NotFound:
-      example:
-        errors:
-        - detail: Not found
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: NotFound
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
+      title: Forbidden
       type: object
     TooManyRequests:
       example:
@@ -471,10 +354,10 @@ components:
       - errors
       title: TooManyRequests
       type: object
-    Forbidden:
+    NotFound:
       example:
         errors:
-        - detail: Forbidden
+        - detail: Not found
       properties:
         errors:
           items:
@@ -495,7 +378,33 @@ components:
           type: array
       required:
       - errors
-      title: Forbidden
+      title: NotFound
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
       type: object
     Profile:
       description: User details
@@ -507,8 +416,9 @@ components:
       properties:
         avatar_url:
           description: User avatar image url
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         email:
           description: User email
           type: string
@@ -525,6 +435,99 @@ components:
       - avatar_url
       - id
       title: Profile
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    ProfileResponse:
+      description: User profile
+      example:
+        data:
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 9571e103-40c4-481a-8549-8f13495c537d
+          name: Name
+      properties:
+        data:
+          $ref: '#/components/schemas/Profile'
+      required:
+      - data
+      title: ProfileResponse
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
       type: object
   securitySchemes:
     OAuth2:

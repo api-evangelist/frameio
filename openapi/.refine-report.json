@@ -1,26 +1,7 @@
 {
   "provider": "frameio",
   "sources": [
-    "frameio-account-permissions-api-openapi.yml",
-    "frameio-accounts-api-openapi.yml",
-    "frameio-collections-api-openapi.yml",
-    "frameio-comments-api-openapi.yml",
-    "frameio-custom-actions-api-openapi.yml",
-    "frameio-files-api-openapi.yml",
-    "frameio-folder-permissions-api-openapi.yml",
-    "frameio-folders-api-openapi.yml",
-    "frameio-groups-api-openapi.yml",
-    "frameio-metadata-api-openapi.yml",
-    "frameio-metadata-fields-api-openapi.yml",
-    "frameio-project-permissions-api-openapi.yml",
-    "frameio-projects-api-openapi.yml",
-    "frameio-search-api-openapi.yml",
-    "frameio-shares-api-openapi.yml",
-    "frameio-users-api-openapi.yml",
-    "frameio-version-stacks-api-openapi.yml",
-    "frameio-webhooks-api-openapi.yml",
-    "frameio-workspace-permissions-api-openapi.yml",
-    "frameio-workspaces-api-openapi.yml"
+    "_original/frameio-v4-openapi.json"
   ],
   "outputs": [
     "frameio-account-permissions-api-openapi.yml",
@@ -44,9 +25,37 @@
     "frameio-workspace-permissions-api-openapi.yml",
     "frameio-workspaces-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "frameio-v4-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: frameio-accountpermissions-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 20 total)"
+  ],
+  "skipped": [
+    "frameio-accountpermissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-custom-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-folder-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-metadata-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-project-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-shares-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-version-stacks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-workspace-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "frameio-workspaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

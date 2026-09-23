@@ -1,10 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  description: 'For more information, see: <a href="https://developer.adobe.com/frameio">https://developer.adobe.com/frameio</a>'
+  description: 'For more information, see: https://developer.adobe.com/frameio'
   license:
     name: Adobe
     url: https://www.adobe.com/legal/terms.html
-  title: Frame.io Account Permissions Custom Actions API
+  title: Frame.io Custom Actions API
   version: v4.0
 servers:
 - url: https://api.frame.io
@@ -19,7 +19,9 @@ paths:
   /v4/accounts/{account_id}/actions/{action_id}:
     delete:
       callbacks: {}
-      description: 'Delete a custom action. <br/>Rate Limits: 60 calls per 1.00 minute(s) per account_user'
+      description: 'Delete a custom action.
+
+        Rate Limits: 60 calls per 1.00 minute(s) per account_user'
       operationId: actions.delete
       parameters:
       - description: ''
@@ -286,7 +288,9 @@ paths:
       - Custom Actions
     get:
       callbacks: {}
-      description: 'Show custom action details. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'Show custom action details.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: actions.show
       parameters:
       - description: ''
@@ -592,7 +596,9 @@ paths:
       - Custom Actions
     patch:
       callbacks: {}
-      description: 'Update custom action details. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      description: 'Update custom action details.
+
+        Rate Limits: 10 calls per 1.00 minute(s) per account_user'
       operationId: actions.update
       parameters:
       - description: ''
@@ -895,7 +901,9 @@ paths:
   /v4/accounts/{account_id}/workspaces/{workspace_id}/actions:
     get:
       callbacks: {}
-      description: 'List actions in a given workspace. <br/>Rate Limits: 100 calls per 1.00 minute(s) per account_user'
+      description: 'List actions in a given workspace.
+
+        Rate Limits: 100 calls per 1.00 minute(s) per account_user'
       operationId: actions.index
       parameters:
       - description: ''
@@ -1225,7 +1233,9 @@ paths:
       - Custom Actions
     post:
       callbacks: {}
-      description: 'Create a custom action in a workspace. <br/>Rate Limits: 10 calls per 1.00 minute(s) per account_user'
+      description: 'Create a custom action in a workspace.
+
+        Rate Limits: 10 calls per 1.00 minute(s) per account_user'
       operationId: actions.create
       parameters:
       - description: ''
@@ -1527,32 +1537,6 @@ paths:
       - Custom Actions
 components:
   schemas:
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
     Unauthorized:
       example:
         errors:
@@ -1579,118 +1563,52 @@ components:
       - errors
       title: Unauthorized
       type: object
-    NotFound:
-      example:
-        errors:
-        - detail: Not found
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: NotFound
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
-    ActionUpdateParams:
+    Links:
       additionalProperties: false
-      description: Custom Action update parameters
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    ActionResponse:
+      description: Action details
       example:
         data:
           active: true
+          created_at: '2024-08-23T14:39:29.125812Z'
+          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
+          deleted_at: null
           description: customizing our workflow
           event: my.event
+          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
           multi_asset: true
           name: First Custom Action
           timeout: 7
+          updated_at: '2024-08-23T14:39:29.125812Z'
           url: https://example.com/custom-action
+          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
       properties:
         data:
-          additionalProperties: false
-          properties:
-            active:
-              description: Active Status
-              type: boolean
-            description:
-              description: Action description
-              maxLength: 255
-              minLength: 1
-              type: string
-            event:
-              description: Event name sent to `url`
-              maxLength: 255
-              minLength: 1
-              type: string
-            multi_asset:
-              description: Manages action trigger on multiple assets
-              type: boolean
-            name:
-              description: Action name
-              maxLength: 255
-              minLength: 1
-              type: string
-            timeout:
-              description: Timeout for the action requests in seconds
-              maximum: 10
-              minimum: 5
-              type: integer
-            url:
-              description: URL where `event` is sent
-              maxLength: 2000
-              minLength: 1
-              type: string
-          type: object
+          $ref: '#/components/schemas/Action'
       required:
       - data
-      title: ActionUpdateParams
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
+      title: ActionResponse
       type: object
     ActionWithIncludes:
       allOf:
@@ -1720,6 +1638,32 @@ components:
         url: https://example.com/custom-action
         workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
       title: ActionWithIncludes
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
       type: object
     ActionsWithIncludesResponse:
       description: Frame.io actions
@@ -1757,8 +1701,9 @@ components:
           $ref: '#/components/schemas/Links'
         total_count:
           description: Total count
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
       required:
       - data
       - links
@@ -1770,10 +1715,72 @@ components:
       example: false
       title: IncludeTotalCount
       type: boolean
-    TooManyRequests:
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    ActionWithIncludesResponse:
+      description: Frame.io action details
+      example:
+        data:
+          active: true
+          created_at: '2024-08-23T14:39:29.125812Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
+          deleted_at: null
+          description: customizing our workflow
+          event: my.event
+          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
+          multi_asset: true
+          name: First Custom Action
+          timeout: 7
+          updated_at: '2024-08-23T14:39:29.125812Z'
+          url: https://example.com/custom-action
+          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionWithIncludes'
+      required:
+      - data
+      title: ActionWithIncludesResponse
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    Conflict:
       example:
         errors:
-        - detail: Too many requests
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -1794,25 +1801,34 @@ components:
           type: array
       required:
       - errors
-      title: TooManyRequests
+      title: Conflict
       type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      nullable: true
-      title: RequestAfterOpaqueCursor
-      type: string
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
     ActionCreateParams:
       additionalProperties: false
       description: Custom Action creation parameters
@@ -1866,67 +1882,10 @@ components:
       - data
       title: ActionCreateParams
       type: object
-    ActionResponse:
-      description: Action details
-      example:
-        data:
-          active: true
-          created_at: '2024-08-23T14:39:29.125812Z'
-          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
-          deleted_at: null
-          description: customizing our workflow
-          event: my.event
-          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
-          multi_asset: true
-          name: First Custom Action
-          timeout: 7
-          updated_at: '2024-08-23T14:39:29.125812Z'
-          url: https://example.com/custom-action
-          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
-      properties:
-        data:
-          $ref: '#/components/schemas/Action'
-      required:
-      - data
-      title: ActionResponse
-      type: object
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          nullable: true
-          type: string
-      required:
-      - next
-      title: Links
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    Conflict:
+    TooManyRequests:
       example:
         errors:
-        - detail: Conflict
+        - detail: Too many requests
       properties:
         errors:
           items:
@@ -1947,8 +1906,14 @@ components:
           type: array
       required:
       - errors
-      title: Conflict
+      title: TooManyRequests
       type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
     Action:
       example:
         active: true
@@ -1977,8 +1942,9 @@ components:
           type: string
         deleted_at:
           format: date-time
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         description:
           description: Action Description
           type: string
@@ -2026,75 +1992,83 @@ components:
       - deleted_at
       title: Action
       type: object
-    User:
-      description: User details
+    NotFound:
       example:
-        active: true
-        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-        email: user_email@example.com
-        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-        name: Jon Doe
+        errors:
+        - detail: Not found
       properties:
-        active:
-          description: User active status
-          nullable: true
-          type: boolean
-        adobe_user_id:
-          description: Adobe user ID
-          nullable: true
-          type: string
-        avatar_url:
-          description: User avatar image url
-          nullable: true
-          type: string
-        email:
-          description: User email
-          type: string
-        id:
-          description: User ID - can be null for invited users with no frame account
-          nullable: true
-          type: string
-        name:
-          description: User name
-          nullable: true
-          type: string
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
       required:
-      - id
-      - name
-      - email
-      - avatar_url
-      - active
-      title: User
+      - errors
+      title: NotFound
       type: object
-    ActionWithIncludesResponse:
-      description: Frame.io action details
+    ActionUpdateParams:
+      additionalProperties: false
+      description: Custom Action update parameters
       example:
         data:
           active: true
-          created_at: '2024-08-23T14:39:29.125812Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
-          deleted_at: null
           description: customizing our workflow
           event: my.event
-          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
           multi_asset: true
           name: First Custom Action
           timeout: 7
-          updated_at: '2024-08-23T14:39:29.125812Z'
           url: https://example.com/custom-action
-          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
       properties:
         data:
-          $ref: '#/components/schemas/ActionWithIncludes'
+          additionalProperties: false
+          properties:
+            active:
+              description: Active Status
+              type: boolean
+            description:
+              description: Action description
+              maxLength: 255
+              minLength: 1
+              type: string
+            event:
+              description: Event name sent to `url`
+              maxLength: 255
+              minLength: 1
+              type: string
+            multi_asset:
+              description: Manages action trigger on multiple assets
+              type: boolean
+            name:
+              description: Action name
+              maxLength: 255
+              minLength: 1
+              type: string
+            timeout:
+              description: Timeout for the action requests in seconds
+              maximum: 10
+              minimum: 5
+              type: integer
+            url:
+              description: URL where `event` is sent
+              maxLength: 2000
+              minLength: 1
+              type: string
+          type: object
       required:
       - data
-      title: ActionWithIncludesResponse
+      title: ActionUpdateParams
       type: object
     ActionCreateResponse:
       additionalProperties: false
@@ -2130,10 +2104,55 @@ components:
       - data
       title: ActionCreateResponse
       type: object
-    Forbidden:
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          type:
+          - boolean
+          - 'null'
+        adobe_user_id:
+          description: Adobe user ID
+          type:
+          - string
+          - 'null'
+        avatar_url:
+          description: User avatar image url
+          type:
+          - string
+          - 'null'
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          type:
+          - string
+          - 'null'
+        name:
+          description: User name
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    BadRequest:
       example:
         errors:
-        - detail: Forbidden
+        - detail: Bad request
       properties:
         errors:
           items:
@@ -2154,7 +2173,7 @@ components:
           type: array
       required:
       - errors
-      title: Forbidden
+      title: BadRequest
       type: object
   securitySchemes:
     OAuth2:
