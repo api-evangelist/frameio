@@ -936,57 +936,68 @@ paths:
       - Folder Permissions
 components:
   schemas:
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
     IncludeTotalCount:
       default: false
       description: Page query param to include the count of all entities
       example: false
       title: IncludeTotalCount
       type: boolean
-    UpdateUserRolesParams:
-      additionalProperties: false
-      description: Update user roles params
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    UnprocessableContent:
       example:
-        data:
-          role: editor
+        errors:
+        - detail: Unprocessable content
       properties:
-        data:
-          additionalProperties: false
-          properties:
-            role:
-              enum:
-              - full_access
-              - editor
-              - edit_only
-              - commenter
-              - viewer
-              type: string
-          required:
-          - role
-          type: object
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
       required:
-      - data
-      title: UpdateUserRolesParams
-      type: object
-    UpdateUserRolesResponse:
-      example:
-        data:
-          role: editor
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            role:
-              enum:
-              - full_access
-              - editor
-              - edit_only
-              - commenter
-              - viewer
-              type: string
-          type: object
-      required:
-      - data
-      title: UpdateUserRolesResponse
+      - errors
+      title: UnprocessableContent
       type: object
     Forbidden:
       example:
@@ -1014,38 +1025,6 @@ components:
       - errors
       title: Forbidden
       type: object
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
     NotFound:
       example:
         errors:
@@ -1071,37 +1050,6 @@ components:
       required:
       - errors
       title: NotFound
-      type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
       type: object
     UserRolesResponse:
       description: Frame.io user role details
@@ -1134,158 +1082,6 @@ components:
       - data
       - links
       title: UserRolesResponse
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      title: RequestAfterOpaqueCursor
-      type:
-      - string
-      - 'null'
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          type:
-          - string
-          - 'null'
-      required:
-      - next
-      title: Links
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
-    UserRole:
-      description: Frame.io User Role
-      example:
-        role: full_access
-        user:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-      properties:
-        role:
-          enum:
-          - workspace_admin
-          - full_access
-          - editor
-          - edit_only
-          - commenter
-          - viewer
-          - admin
-          - owner
-          type: string
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - role
-      - user
-      title: UserRole
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
       type: object
     User:
       description: User details
@@ -1332,6 +1128,210 @@ components:
       - active
       title: User
       type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    UpdateUserRolesResponse:
+      example:
+        data:
+          role: editor
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            role:
+              enum:
+              - full_access
+              - editor
+              - edit_only
+              - commenter
+              - viewer
+              type: string
+          type: object
+      required:
+      - data
+      title: UpdateUserRolesResponse
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    UserRole:
+      description: Frame.io User Role
+      example:
+        role: full_access
+        user:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+      properties:
+        role:
+          enum:
+          - workspace_admin
+          - full_access
+          - editor
+          - edit_only
+          - commenter
+          - viewer
+          - admin
+          - owner
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - role
+      - user
+      title: UserRole
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    UpdateUserRolesParams:
+      additionalProperties: false
+      description: Update user roles params
+      example:
+        data:
+          role: editor
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            role:
+              enum:
+              - full_access
+              - editor
+              - edit_only
+              - commenter
+              - viewer
+              type: string
+          required:
+          - role
+          type: object
+      required:
+      - data
+      title: UpdateUserRolesParams
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
   securitySchemes:
     OAuth2:
       description: 'For more information, see: https://developer.adobe.com/frameio'

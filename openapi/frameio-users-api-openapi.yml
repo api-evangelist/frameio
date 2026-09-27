@@ -302,6 +302,58 @@ paths:
       - Users
 components:
   schemas:
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
     Forbidden:
       example:
         errors:
@@ -328,32 +380,6 @@ components:
       - errors
       title: Forbidden
       type: object
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
     NotFound:
       example:
         errors:
@@ -379,6 +405,21 @@ components:
       required:
       - errors
       title: NotFound
+      type: object
+    ProfileResponse:
+      description: User profile
+      example:
+        data:
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 9571e103-40c4-481a-8549-8f13495c537d
+          name: Name
+      properties:
+        data:
+          $ref: '#/components/schemas/Profile'
+      required:
+      - data
+      title: ProfileResponse
       type: object
     Unauthorized:
       example:
@@ -436,10 +477,10 @@ components:
       - id
       title: Profile
       type: object
-    UnprocessableContent:
+    TooManyRequests:
       example:
         errors:
-        - detail: Unprocessable content
+        - detail: Too many requests
       properties:
         errors:
           items:
@@ -460,48 +501,7 @@ components:
           type: array
       required:
       - errors
-      title: UnprocessableContent
-      type: object
-    ProfileResponse:
-      description: User profile
-      example:
-        data:
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 9571e103-40c4-481a-8549-8f13495c537d
-          name: Name
-      properties:
-        data:
-          $ref: '#/components/schemas/Profile'
-      required:
-      - data
-      title: ProfileResponse
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
+      title: TooManyRequests
       type: object
     Conflict:
       example:

@@ -1270,10 +1270,22 @@ paths:
       - Groups
 components:
   schemas:
-    GroupResponse:
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    GroupsWithIncludesResponse:
       example:
         data:
-          created_at: '2024-02-02T21:19:24.828948Z'
+        - created_at: '2024-02-02T21:19:24.828948Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
           creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
           emoji: smile
           id: 1b67ac33-b557-4122-bd3a-f071b5458e55
@@ -1281,12 +1293,104 @@ components:
           name: group-1
           source: frame
           updated_at: '2024-02-02T21:19:24.828948Z'
+        links:
+          next: /v4/accounts/123/groups
+        total_count: 10
       properties:
         data:
-          $ref: '#/components/schemas/GroupCommon'
+          description: Groups
+          items:
+            $ref: '#/components/schemas/GroupWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
       required:
       - data
-      title: GroupResponse
+      - links
+      title: GroupsWithIncludesResponse
+      type: object
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
       type: object
     GroupCommon:
       example:
@@ -1346,32 +1450,6 @@ components:
       - updated_at
       title: GroupCommon
       type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
     Links:
       additionalProperties: false
       description: Links to paginated data
@@ -1395,100 +1473,11 @@ components:
       - next
       title: Links
       type: object
-    GroupWithIncludesResponse:
-      example:
-        data:
-          created_at: '2024-02-02T21:19:24.828948Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
-          emoji: smile
-          id: 1b67ac33-b557-4122-bd3a-f071b5458e55
-          member_count: 5
-          name: group-1
-          source: frame
-          updated_at: '2024-02-02T21:19:24.828948Z'
-      properties:
-        data:
-          $ref: '#/components/schemas/GroupWithIncludes'
-      required:
-      - data
-      title: GroupWithIncludesResponse
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    CreateGroupParams:
-      additionalProperties: false
-      description: Frame.io create group params
-      example:
-        data:
-          emoji: smile
-          name: group-1
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            emoji:
-              description: Group emoji for UI display
-              maxLength: 255
-              minLength: 1
-              type: string
-            name:
-              description: Group name
-              maxLength: 255
-              minLength: 1
-              type: string
-          required:
-          - name
-          - emoji
-          type: object
-      required:
-      - data
-      title: CreateGroupParams
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
     RequestAfterOpaqueCursor:
       description: 'Opaque Cursor query param for requests returning paginated results.
 
@@ -1502,37 +1491,6 @@ components:
       type:
       - string
       - 'null'
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
-      type: object
     SyncGroupWithIncludes:
       allOf:
       - $ref: '#/components/schemas/GroupCommonWithIncludes'
@@ -1566,10 +1524,36 @@ components:
       - sync_status
       title: SyncGroupWithIncludes
       type: object
-    GroupsWithIncludesResponse:
+    UpdateGroupParams:
+      additionalProperties: false
+      description: Frame.io update group params
       example:
         data:
-        - created_at: '2024-02-02T21:19:24.828948Z'
+          emoji: smile
+          name: group-1
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            emoji:
+              description: Group emoji for UI display
+              maxLength: 255
+              minLength: 1
+              type: string
+            name:
+              description: Group name
+              maxLength: 255
+              minLength: 1
+              type: string
+          type: object
+      required:
+      - data
+      title: UpdateGroupParams
+      type: object
+    GroupWithIncludesResponse:
+      example:
+        data:
+          created_at: '2024-02-02T21:19:24.828948Z'
           creator:
             active: true
             avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
@@ -1583,52 +1567,12 @@ components:
           name: group-1
           source: frame
           updated_at: '2024-02-02T21:19:24.828948Z'
-        links:
-          next: /v4/accounts/123/groups
-        total_count: 10
       properties:
         data:
-          description: Groups
-          items:
-            $ref: '#/components/schemas/GroupWithIncludes'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          type:
-          - integer
-          - 'null'
+          $ref: '#/components/schemas/GroupWithIncludes'
       required:
       - data
-      - links
-      title: GroupsWithIncludesResponse
-      type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
+      title: GroupWithIncludesResponse
       type: object
     TooManyRequests:
       example:
@@ -1656,16 +1600,10 @@ components:
       - errors
       title: TooManyRequests
       type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    NotFound:
+    BadRequest:
       example:
         errors:
-        - detail: Not found
+        - detail: Bad request
       properties:
         errors:
           items:
@@ -1686,7 +1624,7 @@ components:
           type: array
       required:
       - errors
-      title: NotFound
+      title: BadRequest
       type: object
     GroupWithIncludes:
       discriminator:
@@ -1715,29 +1653,31 @@ components:
       - $ref: '#/components/schemas/SyncGroupWithIncludes'
       title: GroupWithIncludes
       type: object
-    GroupCommonWithIncludes:
-      allOf:
-      - $ref: '#/components/schemas/GroupCommon'
-      - properties:
-          creator:
-            $ref: '#/components/schemas/User'
-        type: object
+    UnprocessableContent:
       example:
-        created_at: '2024-02-02T21:19:24.828948Z'
-        creator:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
-        emoji: smile
-        id: 1b67ac33-b557-4122-bd3a-f071b5458e55
-        member_count: 5
-        name: group-1
-        source: frame
-        updated_at: '2024-02-02T21:19:24.828948Z'
-      title: GroupCommonWithIncludes
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
       type: object
     User:
       description: User details
@@ -1784,10 +1724,96 @@ components:
       - active
       title: User
       type: object
-    BadRequest:
+    GroupResponse:
+      example:
+        data:
+          created_at: '2024-02-02T21:19:24.828948Z'
+          creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+          emoji: smile
+          id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+          member_count: 5
+          name: group-1
+          source: frame
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/GroupCommon'
+      required:
+      - data
+      title: GroupResponse
+      type: object
+    CreateGroupParams:
+      additionalProperties: false
+      description: Frame.io create group params
+      example:
+        data:
+          emoji: smile
+          name: group-1
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            emoji:
+              description: Group emoji for UI display
+              maxLength: 255
+              minLength: 1
+              type: string
+            name:
+              description: Group name
+              maxLength: 255
+              minLength: 1
+              type: string
+          required:
+          - name
+          - emoji
+          type: object
+      required:
+      - data
+      title: CreateGroupParams
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    GroupCommonWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/GroupCommon'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        created_at: '2024-02-02T21:19:24.828948Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: a2ce4276-7b20-4fbd-b21e-fbfb05ce96f5
+        emoji: smile
+        id: 1b67ac33-b557-4122-bd3a-f071b5458e55
+        member_count: 5
+        name: group-1
+        source: frame
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      title: GroupCommonWithIncludes
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    Conflict:
       example:
         errors:
-        - detail: Bad request
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -1808,33 +1834,7 @@ components:
           type: array
       required:
       - errors
-      title: BadRequest
-      type: object
-    UpdateGroupParams:
-      additionalProperties: false
-      description: Frame.io update group params
-      example:
-        data:
-          emoji: smile
-          name: group-1
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            emoji:
-              description: Group emoji for UI display
-              maxLength: 255
-              minLength: 1
-              type: string
-            name:
-              description: Group name
-              maxLength: 255
-              minLength: 1
-              type: string
-          type: object
-      required:
-      - data
-      title: UpdateGroupParams
+      title: Conflict
       type: object
   securitySchemes:
     OAuth2:
