@@ -302,32 +302,6 @@ paths:
       - Users
 components:
   schemas:
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
     UnprocessableContent:
       example:
         errors:
@@ -353,6 +327,32 @@ components:
       required:
       - errors
       title: UnprocessableContent
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
       type: object
     Forbidden:
       example:
@@ -380,10 +380,10 @@ components:
       - errors
       title: Forbidden
       type: object
-    NotFound:
+    BadRequest:
       example:
         errors:
-        - detail: Not found
+        - detail: Bad request
       properties:
         errors:
           items:
@@ -404,7 +404,7 @@ components:
           type: array
       required:
       - errors
-      title: NotFound
+      title: BadRequest
       type: object
     ProfileResponse:
       description: User profile
@@ -420,32 +420,6 @@ components:
       required:
       - data
       title: ProfileResponse
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
       type: object
     Profile:
       description: User details
@@ -477,6 +451,32 @@ components:
       - id
       title: Profile
       type: object
+    Conflict:
+      example:
+        errors:
+        - detail: Conflict
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Conflict
+      type: object
     TooManyRequests:
       example:
         errors:
@@ -503,10 +503,10 @@ components:
       - errors
       title: TooManyRequests
       type: object
-    Conflict:
+    NotFound:
       example:
         errors:
-        - detail: Conflict
+        - detail: Not found
       properties:
         errors:
           items:
@@ -527,7 +527,7 @@ components:
           type: array
       required:
       - errors
-      title: Conflict
+      title: NotFound
       type: object
   securitySchemes:
     OAuth2:

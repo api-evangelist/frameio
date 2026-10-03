@@ -1537,112 +1537,6 @@ paths:
       - Workspaces
 components:
   schemas:
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    NotFound:
-      example:
-        errors:
-        - detail: Not found
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: NotFound
-      type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    WorkspaceWithIncludesResponse:
-      description: Frame.io workspace details with includes
-      example:
-        data:
-          account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
-          created_at: '2024-01-25T19:18:29.614189Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
-          name: My Workspace
-          updated_at: '2024-02-07T16:44:41.986478Z'
-      properties:
-        data:
-          $ref: '#/components/schemas/WorkspaceWithIncludes'
-      required:
-      - data
-      title: WorkspaceWithIncludesResponse
-      type: object
     WorkspaceParams:
       description: Workspace params
       example:
@@ -1690,6 +1584,48 @@ components:
       example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
       title: FrameOrAdobeId
       type: string
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    Workspace:
+      description: Frame.io workspace
+      example:
+        account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
+        created_at: '2024-01-25T19:18:29.614189Z'
+        id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
+        name: My Workspace
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        account_id:
+          description: Account ID
+          format: uuid
+          type: string
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        id:
+          description: Workspace ID
+          format: uuid
+          type: string
+        name:
+          description: Workspace Name
+          type: string
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - account_id
+      - created_at
+      - updated_at
+      title: Workspace
+      type: object
     RequestAfterOpaqueCursor:
       description: 'Opaque Cursor query param for requests returning paginated results.
 
@@ -1703,10 +1639,46 @@ components:
       type:
       - string
       - 'null'
-    TooManyRequests:
+    WorkspacesWithIncludesResponse:
+      description: Frame.io workspace details
+      example:
+        data:
+        - account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
+          created_at: '2024-01-25T19:18:29.614189Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
+          name: My Workspace
+          updated_at: '2024-02-07T16:44:41.986478Z'
+        links:
+          next: /v4/accounts/123/workspaces
+        total_count: 10
+      properties:
+        data:
+          description: Workspaces
+          items:
+            $ref: '#/components/schemas/WorkspaceWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
+      required:
+      - data
+      - links
+      title: WorkspacesWithIncludesResponse
+      type: object
+    Conflict:
       example:
         errors:
-        - detail: Too many requests
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -1727,7 +1699,28 @@ components:
           type: array
       required:
       - errors
-      title: TooManyRequests
+      title: Conflict
+      type: object
+    WorkspaceWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/Workspace'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
+        created_at: '2024-01-25T19:18:29.614189Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
+        name: My Workspace
+        updated_at: '2024-02-07T16:44:41.986478Z'
+      title: WorkspaceWithIncludes
       type: object
     WorkspaceResponse:
       description: Frame.io workspace details
@@ -1744,6 +1737,32 @@ components:
       required:
       - data
       title: WorkspaceResponse
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
       type: object
     BadRequest:
       example:
@@ -1771,10 +1790,41 @@ components:
       - errors
       title: BadRequest
       type: object
-    UnprocessableContent:
+    WorkspaceWithIncludesResponse:
+      description: Frame.io workspace details with includes
+      example:
+        data:
+          account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
+          created_at: '2024-01-25T19:18:29.614189Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
+          name: My Workspace
+          updated_at: '2024-02-07T16:44:41.986478Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkspaceWithIncludes'
+      required:
+      - data
+      title: WorkspaceWithIncludesResponse
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    Forbidden:
       example:
         errors:
-        - detail: Unprocessable content
+        - detail: Forbidden
       properties:
         errors:
           items:
@@ -1795,7 +1845,91 @@ components:
           type: array
       required:
       - errors
-      title: UnprocessableContent
+      title: Forbidden
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
       type: object
     User:
       description: User details
@@ -1842,145 +1976,11 @@ components:
       - active
       title: User
       type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    WorkspacesWithIncludesResponse:
-      description: Frame.io workspace details
-      example:
-        data:
-        - account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
-          created_at: '2024-01-25T19:18:29.614189Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
-          name: My Workspace
-          updated_at: '2024-02-07T16:44:41.986478Z'
-        links:
-          next: /v4/accounts/123/workspaces
-        total_count: 10
-      properties:
-        data:
-          description: Workspaces
-          items:
-            $ref: '#/components/schemas/WorkspaceWithIncludes'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          type:
-          - integer
-          - 'null'
-      required:
-      - data
-      - links
-      title: WorkspacesWithIncludesResponse
-      type: object
-    WorkspaceWithIncludes:
-      allOf:
-      - $ref: '#/components/schemas/Workspace'
-      - properties:
-          creator:
-            $ref: '#/components/schemas/User'
-        type: object
-      example:
-        account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
-        created_at: '2024-01-25T19:18:29.614189Z'
-        creator:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
-        name: My Workspace
-        updated_at: '2024-02-07T16:44:41.986478Z'
-      title: WorkspaceWithIncludes
-      type: object
-    Workspace:
-      description: Frame.io workspace
-      example:
-        account_id: e8aa7ace-0c35-4dd4-b9c1-65b4902302ae
-        created_at: '2024-01-25T19:18:29.614189Z'
-        id: 14e8ace5-908f-42c3-b1a8-722f2d1c6edf
-        name: My Workspace
-        updated_at: '2024-02-07T16:44:41.986478Z'
-      properties:
-        account_id:
-          description: Account ID
-          format: uuid
-          type: string
-        created_at:
-          description: Created Timestamp
-          format: date-time
-          type: string
-        id:
-          description: Workspace ID
-          format: uuid
-          type: string
-        name:
-          description: Workspace Name
-          type: string
-        updated_at:
-          description: Updated Timestamp
-          format: date-time
-          type: string
-      required:
-      - id
-      - name
-      - account_id
-      - created_at
-      - updated_at
-      title: Workspace
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
     NoContent:
       description: Response schema for generic no content response.
       example: ''
       title: NoContent
       type: string
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
-      type: object
   securitySchemes:
     OAuth2:
       description: 'For more information, see: https://developer.adobe.com/frameio'

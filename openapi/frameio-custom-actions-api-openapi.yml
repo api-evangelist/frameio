@@ -1537,16 +1537,116 @@ paths:
       - Custom Actions
 components:
   schemas:
+    ActionWithIncludesResponse:
+      description: Frame.io action details
+      example:
+        data:
+          active: true
+          created_at: '2024-08-23T14:39:29.125812Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
+          deleted_at: null
+          description: customizing our workflow
+          event: my.event
+          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
+          multi_asset: true
+          name: First Custom Action
+          timeout: 7
+          updated_at: '2024-08-23T14:39:29.125812Z'
+          url: https://example.com/custom-action
+          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionWithIncludes'
+      required:
+      - data
+      title: ActionWithIncludesResponse
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
     IncludeTotalCount:
       default: false
       description: Page query param to include the count of all entities
       example: false
       title: IncludeTotalCount
       type: boolean
-    NotFound:
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    ActionWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/Action'
+      - properties:
+          creator:
+            $ref: '#/components/schemas/User'
+        type: object
+      example:
+        active: true
+        created_at: '2024-08-23T14:39:29.125812Z'
+        creator:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
+        deleted_at: null
+        description: customizing our workflow
+        event: my.event
+        id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
+        multi_asset: true
+        name: First Custom Action
+        timeout: 7
+        updated_at: '2024-08-23T14:39:29.125812Z'
+        url: https://example.com/custom-action
+        workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
+      title: ActionWithIncludes
+      type: object
+    Conflict:
       example:
         errors:
-        - detail: Not found
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -1567,8 +1667,93 @@ components:
           type: array
       required:
       - errors
-      title: NotFound
+      title: Conflict
       type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    ActionResponse:
+      description: Action details
+      example:
+        data:
+          active: true
+          created_at: '2024-08-23T14:39:29.125812Z'
+          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
+          deleted_at: null
+          description: customizing our workflow
+          event: my.event
+          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
+          multi_asset: true
+          name: First Custom Action
+          timeout: 7
+          updated_at: '2024-08-23T14:39:29.125812Z'
+          url: https://example.com/custom-action
+          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
+      properties:
+        data:
+          $ref: '#/components/schemas/Action'
+      required:
+      - data
+      title: ActionResponse
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
     Forbidden:
       example:
         errors:
@@ -1595,10 +1780,107 @@ components:
       - errors
       title: Forbidden
       type: object
-    Unauthorized:
+    ActionCreateParams:
+      additionalProperties: false
+      description: Custom Action creation parameters
+      example:
+        data:
+          description: customizing our workflow
+          event: my.event
+          name: First Custom Action
+          timeout: 7
+          url: https://example.com/custom-action
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            description:
+              description: Action description
+              maxLength: 255
+              minLength: 1
+              type: string
+            event:
+              description: Event name sent to `url`
+              maxLength: 255
+              minLength: 1
+              type: string
+            multi_asset:
+              default: true
+              description: Manages action trigger on multiple assets
+              type: boolean
+            name:
+              description: Action name
+              maxLength: 255
+              minLength: 1
+              type: string
+            timeout:
+              description: Timeout for the action requests in seconds
+              maximum: 10
+              minimum: 5
+              type: integer
+            url:
+              description: URL where `event` is sent
+              maxLength: 2000
+              minLength: 1
+              type: string
+          required:
+          - name
+          - description
+          - event
+          - url
+          type: object
+      required:
+      - data
+      title: ActionCreateParams
+      type: object
+    ActionsWithIncludesResponse:
+      description: Frame.io actions
+      example:
+        data:
+        - active: true
+          created_at: '2024-08-23T14:39:29.125812Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
+          deleted_at: null
+          description: customizing our workflow
+          event: my.event
+          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
+          multi_asset: true
+          name: First Custom Action
+          timeout: 7
+          updated_at: '2024-08-23T14:39:29.125812Z'
+          url: https://example.com/custom-action
+          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
+        links:
+          next: /v4/accounts/123/workspaces/123/actions
+        total_count: 1
+      properties:
+        data:
+          description: Actions
+          items:
+            $ref: '#/components/schemas/ActionWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
+      required:
+      - data
+      - links
+      title: ActionsWithIncludesResponse
+      type: object
+    TooManyRequests:
       example:
         errors:
-        - detail: Unauthorized
+        - detail: Too many requests
       properties:
         errors:
           items:
@@ -1619,7 +1901,39 @@ components:
           type: array
       required:
       - errors
-      title: Unauthorized
+      title: TooManyRequests
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
       type: object
     Action:
       example:
@@ -1699,80 +2013,44 @@ components:
       - deleted_at
       title: Action
       type: object
-    Links:
+    ActionCreateResponse:
       additionalProperties: false
-      description: Links to paginated data
+      description: Returns a single custom action with secret.
       example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          type:
-          - string
-          - 'null'
-      required:
-      - next
-      title: Links
-      type: object
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      title: RequestAfterOpaqueCursor
-      type:
-      - string
-      - 'null'
-    ActionWithIncludes:
-      allOf:
-      - $ref: '#/components/schemas/Action'
-      - properties:
-          creator:
-            $ref: '#/components/schemas/User'
-        type: object
-      example:
-        active: true
-        created_at: '2024-08-23T14:39:29.125812Z'
-        creator:
+        data:
           active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
-        deleted_at: null
-        description: customizing our workflow
-        event: my.event
-        id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
-        multi_asset: true
-        name: First Custom Action
-        timeout: 7
-        updated_at: '2024-08-23T14:39:29.125812Z'
-        url: https://example.com/custom-action
-        workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
-      title: ActionWithIncludes
+          created_at: '2024-08-23T14:39:29.125812Z'
+          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
+          deleted_at: null
+          description: customizing our workflow
+          event: my.event
+          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
+          multi_asset: true
+          name: First Custom Action
+          secret: <secret>
+          timeout: 7
+          updated_at: '2024-08-23T14:39:29.125812Z'
+          url: https://example.com/custom-action
+          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Action'
+          - properties:
+              secret:
+                description: Secret used to validate underlying webhook requests. Make sure to store your secret. You won't be able to see it again!
+                type: string
+            required:
+            - secret
+            type: object
+      required:
+      - data
+      title: ActionCreateResponse
       type: object
-    TooManyRequests:
+    Unauthorized:
       example:
         errors:
-        - detail: Too many requests
+        - detail: Unauthorized
       properties:
         errors:
           items:
@@ -1793,59 +2071,7 @@ components:
           type: array
       required:
       - errors
-      title: TooManyRequests
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
+      title: Unauthorized
       type: object
     User:
       description: User details
@@ -1892,153 +2118,11 @@ components:
       - active
       title: User
       type: object
-    ActionCreateResponse:
-      additionalProperties: false
-      description: Returns a single custom action with secret.
-      example:
-        data:
-          active: true
-          created_at: '2024-08-23T14:39:29.125812Z'
-          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
-          deleted_at: null
-          description: customizing our workflow
-          event: my.event
-          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
-          multi_asset: true
-          name: First Custom Action
-          secret: <secret>
-          timeout: 7
-          updated_at: '2024-08-23T14:39:29.125812Z'
-          url: https://example.com/custom-action
-          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
-      properties:
-        data:
-          allOf:
-          - $ref: '#/components/schemas/Action'
-          - properties:
-              secret:
-                description: Secret used to validate underlying webhook requests. Make sure to store your secret. You won't be able to see it again!
-                type: string
-            required:
-            - secret
-            type: object
-      required:
-      - data
-      title: ActionCreateResponse
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
       type: string
-    ActionsWithIncludesResponse:
-      description: Frame.io actions
-      example:
-        data:
-        - active: true
-          created_at: '2024-08-23T14:39:29.125812Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
-          deleted_at: null
-          description: customizing our workflow
-          event: my.event
-          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
-          multi_asset: true
-          name: First Custom Action
-          timeout: 7
-          updated_at: '2024-08-23T14:39:29.125812Z'
-          url: https://example.com/custom-action
-          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
-        links:
-          next: /v4/accounts/123/workspaces/123/actions
-        total_count: 1
-      properties:
-        data:
-          description: Actions
-          items:
-            $ref: '#/components/schemas/ActionWithIncludes'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          type:
-          - integer
-          - 'null'
-      required:
-      - data
-      - links
-      title: ActionsWithIncludesResponse
-      type: object
-    ActionResponse:
-      description: Action details
-      example:
-        data:
-          active: true
-          created_at: '2024-08-23T14:39:29.125812Z'
-          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
-          deleted_at: null
-          description: customizing our workflow
-          event: my.event
-          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
-          multi_asset: true
-          name: First Custom Action
-          timeout: 7
-          updated_at: '2024-08-23T14:39:29.125812Z'
-          url: https://example.com/custom-action
-          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
-      properties:
-        data:
-          $ref: '#/components/schemas/Action'
-      required:
-      - data
-      title: ActionResponse
-      type: object
-    ActionWithIncludesResponse:
-      description: Frame.io action details
-      example:
-        data:
-          active: true
-          created_at: '2024-08-23T14:39:29.125812Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          creator_id: 820ef414-53f6-49f5-8687-863166c9eb53
-          deleted_at: null
-          description: customizing our workflow
-          event: my.event
-          id: d85fbb59-fa9d-4973-8ee8-577f439c7c99
-          multi_asset: true
-          name: First Custom Action
-          timeout: 7
-          updated_at: '2024-08-23T14:39:29.125812Z'
-          url: https://example.com/custom-action
-          workspace_id: 38c216b1-baaf-4505-ba38-14e3f1e9b09b
-      properties:
-        data:
-          $ref: '#/components/schemas/ActionWithIncludes'
-      required:
-      - data
-      title: ActionWithIncludesResponse
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
     ActionUpdateParams:
       additionalProperties: false
       description: Custom Action update parameters
@@ -2090,90 +2174,6 @@ components:
       required:
       - data
       title: ActionUpdateParams
-      type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    ActionCreateParams:
-      additionalProperties: false
-      description: Custom Action creation parameters
-      example:
-        data:
-          description: customizing our workflow
-          event: my.event
-          name: First Custom Action
-          timeout: 7
-          url: https://example.com/custom-action
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            description:
-              description: Action description
-              maxLength: 255
-              minLength: 1
-              type: string
-            event:
-              description: Event name sent to `url`
-              maxLength: 255
-              minLength: 1
-              type: string
-            multi_asset:
-              default: true
-              description: Manages action trigger on multiple assets
-              type: boolean
-            name:
-              description: Action name
-              maxLength: 255
-              minLength: 1
-              type: string
-            timeout:
-              description: Timeout for the action requests in seconds
-              maximum: 10
-              minimum: 5
-              type: integer
-            url:
-              description: URL where `event` is sent
-              maxLength: 2000
-              minLength: 1
-              type: string
-          required:
-          - name
-          - description
-          - event
-          - url
-          type: object
-      required:
-      - data
-      title: ActionCreateParams
-      type: object
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
       type: object
   securitySchemes:
     OAuth2:

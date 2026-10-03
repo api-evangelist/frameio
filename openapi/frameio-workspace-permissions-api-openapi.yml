@@ -952,156 +952,6 @@ paths:
       - Workspace Permissions
 components:
   schemas:
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    NotFound:
-      example:
-        errors:
-        - detail: Not found
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: NotFound
-      type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    UpdateWorkspaceRoleResponse:
-      example:
-        data:
-          role: editor
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            role:
-              $ref: '#/components/schemas/WorkspaceRole'
-          type: object
-      required:
-      - data
-      title: UpdateWorkspaceRoleResponse
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    WorkspaceUserRolesResponse:
-      description: Frame.io workspace user role details
-      example:
-        data:
-        - role: full_access
-          user:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-        links:
-          next: /v4/accounts/123/workspaces/123/users
-        total_count: 10
-      properties:
-        data:
-          description: User Roles
-          items:
-            $ref: '#/components/schemas/WorkspaceUserRole'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          type:
-          - integer
-          - 'null'
-      required:
-      - data
-      - links
-      title: WorkspaceUserRolesResponse
-      type: object
-    UpdateWorkspaceRoleParams:
-      additionalProperties: false
-      description: Update workspace role params
-      example:
-        data:
-          role: editor
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            role:
-              $ref: '#/components/schemas/WorkspaceRole'
-          required:
-          - role
-          type: object
-      required:
-      - data
-      title: UpdateWorkspaceRoleParams
-      type: object
     Links:
       additionalProperties: false
       description: Links to paginated data
@@ -1130,6 +980,12 @@ components:
       example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
       title: FrameOrAdobeId
       type: string
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
     RequestAfterOpaqueCursor:
       description: 'Opaque Cursor query param for requests returning paginated results.
 
@@ -1143,10 +999,25 @@ components:
       type:
       - string
       - 'null'
-    TooManyRequests:
+    UpdateWorkspaceRoleResponse:
+      example:
+        data:
+          role: editor
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            role:
+              $ref: '#/components/schemas/WorkspaceRole'
+          type: object
+      required:
+      - data
+      title: UpdateWorkspaceRoleResponse
+      type: object
+    Conflict:
       example:
         errors:
-        - detail: Too many requests
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -1167,7 +1038,45 @@ components:
           type: array
       required:
       - errors
-      title: TooManyRequests
+      title: Conflict
+      type: object
+    WorkspaceRole:
+      description: A workspace role.
+      enum:
+      - workspace_admin
+      - full_access
+      - editor
+      - edit_only
+      - commenter
+      - viewer
+      example: editor
+      title: WorkspaceRole
+      type: string
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
       type: object
     BadRequest:
       example:
@@ -1195,10 +1104,38 @@ components:
       - errors
       title: BadRequest
       type: object
-    UnprocessableContent:
+    UpdateWorkspaceRoleParams:
+      additionalProperties: false
+      description: Update workspace role params
+      example:
+        data:
+          role: editor
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            role:
+              $ref: '#/components/schemas/WorkspaceRole'
+          required:
+          - role
+          type: object
+      required:
+      - data
+      title: UpdateWorkspaceRoleParams
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    Forbidden:
       example:
         errors:
-        - detail: Unprocessable content
+        - detail: Forbidden
       properties:
         errors:
           items:
@@ -1219,7 +1156,91 @@ components:
           type: array
       required:
       - errors
-      title: UnprocessableContent
+      title: Forbidden
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
       type: object
     User:
       description: User details
@@ -1266,26 +1287,6 @@ components:
       - active
       title: User
       type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
     WorkspaceUserRole:
       description: Frame.io Workspace User Role
       example:
@@ -1315,43 +1316,42 @@ components:
       - user
       title: WorkspaceUserRole
       type: object
-    WorkspaceRole:
-      description: A workspace role.
-      enum:
-      - workspace_admin
-      - full_access
-      - editor
-      - edit_only
-      - commenter
-      - viewer
-      example: editor
-      title: WorkspaceRole
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
       type: string
-    Conflict:
+    WorkspaceUserRolesResponse:
+      description: Frame.io workspace user role details
       example:
-        errors:
-        - detail: Conflict
+        data:
+        - role: full_access
+          user:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+        links:
+          next: /v4/accounts/123/workspaces/123/users
+        total_count: 10
       properties:
-        errors:
+        data:
+          description: User Roles
           items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
+            $ref: '#/components/schemas/WorkspaceUserRole'
           type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
       required:
-      - errors
-      title: Conflict
+      - data
+      - links
+      title: WorkspaceUserRolesResponse
       type: object
   securitySchemes:
     OAuth2:

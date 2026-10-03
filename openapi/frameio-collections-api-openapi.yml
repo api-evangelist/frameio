@@ -650,16 +650,57 @@ paths:
       - Collections
 components:
   schemas:
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
     IncludeTotalCount:
       default: false
       description: Page query param to include the count of all entities
       example: false
       title: IncludeTotalCount
       type: boolean
-    NotFound:
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    CollectionInclude:
+      description: Include query parameter for collections
+      example: creator,project
+      title: CollectionInclude
+      type: string
+    Conflict:
       example:
         errors:
-        - detail: Not found
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -680,8 +721,237 @@ components:
           type: array
       required:
       - errors
-      title: NotFound
+      title: Conflict
       type: object
+    CollectionsResponse:
+      example:
+        data:
+        - aggregation_mode: dynamic
+          auto_generated: false
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of collection
+          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+          name: Test Collection
+          private: false
+          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        - aggregation_mode: dynamic
+          auto_generated: false
+          created_at: '2024-02-02T21:19:24.828948Z'
+          creator:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          description: Description of collection
+          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+          name: Test Collection
+          private: false
+          project:
+            adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+            created_at: '2024-01-25T19:18:29.614189Z'
+            id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+            name: My Project
+            restricted: false
+            root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
+            status: active
+            storage: 15000
+            updated_at: '2024-02-07T16:44:41.986478Z'
+            view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+            workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+          shares:
+          - access: public
+            collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
+            commenting_enabled: true
+            created_at: '2024-02-02T21:19:24.828948Z'
+            description: Description of share
+            downloading_enabled: true
+            enabled: true
+            expiration: '2026-07-17T22:34:21.758403Z'
+            id: f82d1488-3ee2-4573-aa7c-c727e6266080
+            last_viewed_at: '2024-03-02T21:19:24.828948Z'
+            name: Test Share
+            passphrase: as!dfj39sd(*
+            short_url: https://f.io/GGa9wPw5
+            updated_at: '2024-02-02T21:19:24.828948Z'
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        links:
+          next: /v4/accounts/123/projects/123/collections
+        total_count: 10
+      properties:
+        data:
+          description: Collections
+          items:
+            $ref: '#/components/schemas/Collection'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
+      required:
+      - data
+      - links
+      title: CollectionsResponse
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    Project:
+      description: Frame.io Project
+      example:
+        adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+        created_at: '2024-01-25T19:18:29.614189Z'
+        id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+        name: My Project
+        restricted: false
+        root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
+        status: active
+        storage: 15000
+        updated_at: '2024-02-07T16:44:41.986478Z'
+        view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+        workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+      properties:
+        adobe_id:
+          description: Adobe cloud storage directory ID associated with the project, when available.
+          type:
+          - string
+          - 'null'
+        created_at:
+          description: Created Timestamp
+          format: date-time
+          type: string
+        id:
+          description: Project ID
+          format: uuid
+          type: string
+        name:
+          description: Project Name
+          type: string
+        restricted:
+          description: Whether the project is restricted or not
+          type: boolean
+        root_folder_id:
+          description: Root Folder ID
+          format: uuid
+          type: string
+        status:
+          description: Project Status
+          enum:
+          - active
+          - inactive
+          type: string
+        storage:
+          default: 0
+          description: Storage Usage
+          type: integer
+        updated_at:
+          description: Updated Timestamp
+          format: date-time
+          type: string
+        view_url:
+          description: URL to view the project in the Frame.io web application
+          type: string
+        workspace_id:
+          description: Workspace ID
+          format: uuid
+          type: string
+      required:
+      - id
+      - name
+      - status
+      - storage
+      - workspace_id
+      - root_folder_id
+      - created_at
+      - updated_at
+      - view_url
+      title: Project
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    CollectionResponse:
+      example:
+        data:
+          aggregation_mode: dynamic
+          auto_generated: false
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of collection
+          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+          name: Test Collection
+          private: false
+          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/Collection'
+      required:
+      - data
+      title: CollectionResponse
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
     Forbidden:
       example:
         errors:
@@ -708,10 +978,86 @@ components:
       - errors
       title: Forbidden
       type: object
-    Unauthorized:
+    Collection:
+      example:
+        aggregation_mode: dynamic
+        auto_generated: false
+        created_at: '2024-02-02T21:19:24.828948Z'
+        description: Description of collection
+        id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+        name: Test Collection
+        private: false
+        project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+        root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        aggregation_mode:
+          enum:
+          - static
+          - dynamic
+          type: string
+        auto_generated:
+          type: boolean
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        creator:
+          $ref: '#/components/schemas/User'
+        description:
+          description: Collection description
+          type:
+          - string
+          - 'null'
+        id:
+          description: Collection ID
+          format: uuid
+          type: string
+        name:
+          description: Collection name
+          type:
+          - string
+          - 'null'
+        private:
+          type: boolean
+        project:
+          $ref: '#/components/schemas/Project'
+        project_id:
+          description: Project ID
+          format: uuid
+          type: string
+        root_folder_id:
+          description: Root folder ID
+          format: uuid
+          type:
+          - string
+          - 'null'
+        shares:
+          description: Shares
+          items:
+            $ref: '#/components/schemas/Share'
+          type: array
+        updated_at:
+          description: Update timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - description
+      - root_folder_id
+      - project_id
+      - auto_generated
+      - private
+      - aggregation_mode
+      - created_at
+      - updated_at
+      title: Collection
+      type: object
+    TooManyRequests:
       example:
         errors:
-        - detail: Unauthorized
+        - detail: Too many requests
       properties:
         errors:
           items:
@@ -732,7 +1078,7 @@ components:
           type: array
       required:
       - errors
-      title: Unauthorized
+      title: TooManyRequests
       type: object
     Share:
       example:
@@ -830,117 +1176,16 @@ components:
       - updated_at
       title: Share
       type: object
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          type:
-          - string
-          - 'null'
-      required:
-      - next
-      title: Links
-      type: object
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      title: RequestAfterOpaqueCursor
-      type:
-      - string
-      - 'null'
-    Project:
-      description: Frame.io Project
-      example:
-        adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
-        created_at: '2024-01-25T19:18:29.614189Z'
-        id: 18d9023a-6b06-4417-b3f4-bf87865c183f
-        name: My Project
-        restricted: false
-        root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
-        status: active
-        storage: 15000
-        updated_at: '2024-02-07T16:44:41.986478Z'
-        view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
-        workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
-      properties:
-        adobe_id:
-          description: Adobe cloud storage directory ID associated with the project, when available.
-          type:
-          - string
-          - 'null'
-        created_at:
-          description: Created Timestamp
-          format: date-time
-          type: string
-        id:
-          description: Project ID
-          format: uuid
-          type: string
-        name:
-          description: Project Name
-          type: string
-        restricted:
-          description: Whether the project is restricted or not
-          type: boolean
-        root_folder_id:
-          description: Root Folder ID
-          format: uuid
-          type: string
-        status:
-          description: Project Status
-          enum:
-          - active
-          - inactive
-          type: string
-        storage:
-          default: 0
-          description: Storage Usage
-          type: integer
-        updated_at:
-          description: Updated Timestamp
-          format: date-time
-          type: string
-        view_url:
-          description: URL to view the project in the Frame.io web application
-          type: string
-        workspace_id:
-          description: Workspace ID
-          format: uuid
-          type: string
-      required:
-      - id
-      - name
-      - status
-      - storage
-      - workspace_id
-      - root_folder_id
-      - created_at
-      - updated_at
-      - view_url
-      title: Project
-      type: object
-    TooManyRequests:
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    NotFound:
       example:
         errors:
-        - detail: Too many requests
+        - detail: Not found
       properties:
         errors:
           items:
@@ -961,32 +1206,12 @@ components:
           type: array
       required:
       - errors
-      title: TooManyRequests
+      title: NotFound
       type: object
-    CollectionResponse:
-      example:
-        data:
-          aggregation_mode: dynamic
-          auto_generated: false
-          created_at: '2024-02-02T21:19:24.828948Z'
-          description: Description of collection
-          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
-          name: Test Collection
-          private: false
-          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
-          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
-          updated_at: '2024-02-02T21:19:24.828948Z'
-      properties:
-        data:
-          $ref: '#/components/schemas/Collection'
-      required:
-      - data
-      title: CollectionResponse
-      type: object
-    BadRequest:
+    Unauthorized:
       example:
         errors:
-        - detail: Bad request
+        - detail: Unauthorized
       properties:
         errors:
           items:
@@ -1007,33 +1232,7 @@ components:
           type: array
       required:
       - errors
-      title: BadRequest
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
+      title: Unauthorized
       type: object
     User:
       description: User details
@@ -1079,205 +1278,6 @@ components:
       - avatar_url
       - active
       title: User
-      type: object
-    CollectionInclude:
-      description: Include query parameter for collections
-      example: creator,project
-      title: CollectionInclude
-      type: string
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    Collection:
-      example:
-        aggregation_mode: dynamic
-        auto_generated: false
-        created_at: '2024-02-02T21:19:24.828948Z'
-        description: Description of collection
-        id: b1d974ae-0a97-43d2-9851-4b0a35618c02
-        name: Test Collection
-        private: false
-        project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
-        root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
-        updated_at: '2024-02-02T21:19:24.828948Z'
-      properties:
-        aggregation_mode:
-          enum:
-          - static
-          - dynamic
-          type: string
-        auto_generated:
-          type: boolean
-        created_at:
-          description: Creation timestamp
-          format: date-time
-          type: string
-        creator:
-          $ref: '#/components/schemas/User'
-        description:
-          description: Collection description
-          type:
-          - string
-          - 'null'
-        id:
-          description: Collection ID
-          format: uuid
-          type: string
-        name:
-          description: Collection name
-          type:
-          - string
-          - 'null'
-        private:
-          type: boolean
-        project:
-          $ref: '#/components/schemas/Project'
-        project_id:
-          description: Project ID
-          format: uuid
-          type: string
-        root_folder_id:
-          description: Root folder ID
-          format: uuid
-          type:
-          - string
-          - 'null'
-        shares:
-          description: Shares
-          items:
-            $ref: '#/components/schemas/Share'
-          type: array
-        updated_at:
-          description: Update timestamp
-          format: date-time
-          type: string
-      required:
-      - id
-      - name
-      - description
-      - root_folder_id
-      - project_id
-      - auto_generated
-      - private
-      - aggregation_mode
-      - created_at
-      - updated_at
-      title: Collection
-      type: object
-    CollectionsResponse:
-      example:
-        data:
-        - aggregation_mode: dynamic
-          auto_generated: false
-          created_at: '2024-02-02T21:19:24.828948Z'
-          description: Description of collection
-          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
-          name: Test Collection
-          private: false
-          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
-          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
-          updated_at: '2024-02-02T21:19:24.828948Z'
-        - aggregation_mode: dynamic
-          auto_generated: false
-          created_at: '2024-02-02T21:19:24.828948Z'
-          creator:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          description: Description of collection
-          id: b1d974ae-0a97-43d2-9851-4b0a35618c02
-          name: Test Collection
-          private: false
-          project:
-            adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
-            created_at: '2024-01-25T19:18:29.614189Z'
-            id: 18d9023a-6b06-4417-b3f4-bf87865c183f
-            name: My Project
-            restricted: false
-            root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
-            status: active
-            storage: 15000
-            updated_at: '2024-02-07T16:44:41.986478Z'
-            view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
-            workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
-          project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
-          root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
-          shares:
-          - access: public
-            collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
-            commenting_enabled: true
-            created_at: '2024-02-02T21:19:24.828948Z'
-            description: Description of share
-            downloading_enabled: true
-            enabled: true
-            expiration: '2026-07-17T22:34:21.758403Z'
-            id: f82d1488-3ee2-4573-aa7c-c727e6266080
-            last_viewed_at: '2024-03-02T21:19:24.828948Z'
-            name: Test Share
-            passphrase: as!dfj39sd(*
-            short_url: https://f.io/GGa9wPw5
-            updated_at: '2024-02-02T21:19:24.828948Z'
-          updated_at: '2024-02-02T21:19:24.828948Z'
-        links:
-          next: /v4/accounts/123/projects/123/collections
-        total_count: 10
-      properties:
-        data:
-          description: Collections
-          items:
-            $ref: '#/components/schemas/Collection'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          type:
-          - integer
-          - 'null'
-      required:
-      - data
-      - links
-      title: CollectionsResponse
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
       type: object
   securitySchemes:
     OAuth2:
