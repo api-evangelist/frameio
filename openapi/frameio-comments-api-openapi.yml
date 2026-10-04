@@ -2165,40 +2165,28 @@ paths:
       - Comments
 components:
   schemas:
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
+    Anchor:
       example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+        x: 0.5
+        y: 0.5
       properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          type:
-          - string
-          - 'null'
+        x:
+          description: Horizontal comment anchor location.
+          format: float
+          maximum: 1.0
+          minimum: 0.0
+          type: number
+        y:
+          description: Vertical comment anchor location.
+          format: float
+          maximum: 1.0
+          minimum: 0.0
+          type: number
       required:
-      - next
-      title: Links
+      - x
+      - y
+      title: Anchor
       type: object
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
     RequestAfterOpaqueCursor:
       description: 'Opaque Cursor query param for requests returning paginated results.
 
@@ -2212,33 +2200,6 @@ components:
       type:
       - string
       - 'null'
-    Mention:
-      example:
-        end_index: 13
-        start_index: 5
-        text: Test User
-        user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
-      properties:
-        end_index:
-          description: End index of mention text
-          type: integer
-        start_index:
-          description: Start index of mention text
-          type: integer
-        text:
-          description: Mention text
-          type: string
-        user_id:
-          description: Mentioned user ID
-          format: uuid
-          type: string
-      required:
-      - user_id
-      - start_index
-      - end_index
-      - text
-      title: Mention
-      type: object
     Conflict:
       example:
         errors:
@@ -2264,278 +2225,6 @@ components:
       required:
       - errors
       title: Conflict
-      type: object
-    CommentAttachmentResponse:
-      example:
-        data:
-          created_at: '2025-11-11T17:41:34.358394Z'
-          file_size: 1024000
-          id: 1a3ccfb4-c431-4f39-b0b6-6b146b9beefe
-          media_type: image/png
-          name: Comp2.png
-          upload_urls:
-          - https://s3.amazonaws.com/bucket/part1?signature=...
-      properties:
-        data:
-          $ref: '#/components/schemas/CommentAttachment'
-      title: CommentAttachmentResponse
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
-    CommentWithIncludesResponse:
-      example:
-        data:
-          anchor:
-            x: 0.5
-            y: 0.5
-          annotation: annotation
-          attachments:
-          - created_at: '2024-02-02T21:19:24.828948Z'
-            file_size: 1024000
-            id: 325ce490-eeac-4b84-879d-57d2a939bfae
-            media_type: image/png
-            name: screenshot.png
-            upload_urls:
-            - https://s3.amazonaws.com/bucket/part1?signature=...
-          completed_at: null
-          completer_id: null
-          created_at: '2024-02-02T21:19:24.828948Z'
-          duration: 10
-          file_id: 4ae08df1-b419-4897-aba5-560198a18237
-          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
-          links:
-          - end_index: 13
-            start_index: 5
-            text: Test User
-            url: https://www.example.com
-          mentions:
-          - end_index: 13
-            start_index: 5
-            text: Test User
-            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
-          owner:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          page: 1
-          replies: []
-          text: This is great!
-          text_edited_at: '2024-02-02T21:19:24.828948Z'
-          text_review_annotation:
-            bounds:
-            - height: 42.0
-              width: 130.0
-              x: 12.5
-              y: 24.0
-            selection_text: existing copy
-            suggested_text: updated copy
-            text_review_annotation_type: replace
-          timestamp: 123
-          updated_at: '2024-02-02T21:19:24.828948Z'
-      properties:
-        data:
-          $ref: '#/components/schemas/CommentWithIncludes'
-      required:
-      - data
-      title: CommentWithIncludesResponse
-      type: object
-    CommentResponse:
-      example:
-        data:
-          anchor:
-            x: 0.5
-            y: 0.5
-          annotation: annotation
-          attachments:
-          - created_at: '2024-02-02T21:19:24.828948Z'
-            file_size: 1024000
-            id: 325ce490-eeac-4b84-879d-57d2a939bfae
-            media_type: image/png
-            name: screenshot.png
-            upload_urls:
-            - https://s3.amazonaws.com/bucket/part1?signature=...
-          completed_at: null
-          completer_id: null
-          created_at: '2024-02-02T21:19:24.828948Z'
-          duration: 10
-          file_id: 4ae08df1-b419-4897-aba5-560198a18237
-          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
-          links:
-          - end_index: 13
-            start_index: 5
-            text: Test User
-            url: https://www.example.com
-          mentions:
-          - end_index: 13
-            start_index: 5
-            text: Test User
-            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
-          page: 1
-          text: This is great!
-          text_edited_at: '2024-02-02T21:19:24.828948Z'
-          text_review_annotation:
-            bounds:
-            - height: 42.0
-              width: 130.0
-              x: 12.5
-              y: 24.0
-            selection_text: existing copy
-            suggested_text: updated copy
-            text_review_annotation_type: replace
-          timestamp: 123
-          updated_at: '2024-02-02T21:19:24.828948Z'
-      properties:
-        data:
-          $ref: '#/components/schemas/Comment'
-      required:
-      - data
-      title: CommentResponse
-      type: object
-    CreateCommentParams:
-      additionalProperties: false
-      description: Frame.io create comment params
-      example:
-        data:
-          anchor:
-            x: 0.5
-            y: 0.5
-          annotation: '[{"tool":"rect","color":"#F22237","size":8,"x":0.277726001863933,"y":0.12909555568499534,"w":0.3153168321877913,"h":0.5308131407269339,"ix":0.277726001863933,"iy":0.12909555568499534,"radius":8}]'
-          attachments:
-          - file_size: 1024000
-            media_type: image/png
-            name: screenshot.png
-          completed: false
-          duration: 10
-          links:
-          - end_index: 13
-            start_index: 5
-            url: https://www.example.com
-          page: 4
-          text: This is great!
-          text_review_annotation:
-            bounds:
-            - height: 42.0
-              width: 130.0
-              x: 12.5
-              y: 24.0
-            selection_text: existing copy
-            suggested_text: updated copy
-            text_review_annotation_type: replace
-          timestamp: 00:00:02:12
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            anchor:
-              allOf:
-              - $ref: '#/components/schemas/Anchor'
-              description: Comment anchor location. {(x, y) | 0 <= x <= 1, 0 <= y <= 1}.
-              type:
-              - object
-              - 'null'
-            annotation:
-              description: JSON geometry for on-screen drawings. Allowed for document, image, video, or stream file types. JSON must be stringified
-              maxLength: 200000
-              type:
-              - string
-              - 'null'
-            attachments:
-              description: Optional attachments to create with the comment (max 6 attachments)
-              items:
-                $ref: '#/components/schemas/AttachmentInput'
-              type: array
-            completed:
-              description: Comment completion status
-              type:
-              - boolean
-              - 'null'
-            duration:
-              description: Duration of comment in frames. Requires presence of timestamp parameter
-              format: int32
-              minimum: 1
-              type:
-              - integer
-              - 'null'
-            links:
-              description: Comment text links.
-              items:
-                $ref: '#/components/schemas/LinkParams'
-              type: array
-            page:
-              description: Document page. Only allowed when file type is a pdf document
-              minimum: 1
-              type:
-              - integer
-              - 'null'
-            text:
-              description: Comment text (required)
-              maxLength: 40000
-              minLength: 1
-              type: string
-            text_review_annotation:
-              allOf:
-              - $ref: '#/components/schemas/TextReviewAnnotation'
-              description: Text review annotation details for comments left on text documents.
-            timestamp:
-              $ref: '#/components/schemas/TimeStamp'
-          required:
-          - text
-          type: object
-      required:
-      - data
-      title: CreateCommentParams
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
       type: object
     CommentsWithIncludesResponse:
       example:
@@ -2701,6 +2390,599 @@ components:
       - links
       title: CommentsWithIncludesResponse
       type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          type:
+          - boolean
+          - 'null'
+        adobe_user_id:
+          description: Adobe user ID
+          type:
+          - string
+          - 'null'
+        avatar_url:
+          description: User avatar image url
+          type:
+          - string
+          - 'null'
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          type:
+          - string
+          - 'null'
+        name:
+          description: User name
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
+    TextReviewAnnotationBounds:
+      example:
+        height: 42.0
+        width: 130.0
+        x: 12.5
+        y: 24.0
+      properties:
+        height:
+          description: Height of the rectangle
+          minimum: 0
+          type: number
+        width:
+          description: Width of the rectangle
+          minimum: 0
+          type: number
+        x:
+          description: Left corner position.
+          type: number
+        y:
+          description: Bottom corner position.
+          type: number
+      required:
+      - x
+      - y
+      - width
+      - height
+      title: TextReviewAnnotationBounds
+      type: object
+    Mention:
+      example:
+        end_index: 13
+        start_index: 5
+        text: Test User
+        user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+      properties:
+        end_index:
+          description: End index of mention text
+          type: integer
+        start_index:
+          description: Start index of mention text
+          type: integer
+        text:
+          description: Mention text
+          type: string
+        user_id:
+          description: Mentioned user ID
+          format: uuid
+          type: string
+      required:
+      - user_id
+      - start_index
+      - end_index
+      - text
+      title: Mention
+      type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    TextReviewAnnotation:
+      example:
+        bounds:
+        - height: 42.0
+          width: 130.0
+          x: 12.5
+          y: 24.0
+        selection_text: existing copy
+        suggested_text: updated copy
+        text_review_annotation_type: replace
+      properties:
+        bounds:
+          description: An array of bounds representing a multiline selection origin at the lower-left corner.
+          items:
+            $ref: '#/components/schemas/TextReviewAnnotationBounds'
+          minItems: 1
+          type: array
+        selection_text:
+          description: Selected text from the document.
+          type:
+          - string
+          - 'null'
+        suggested_text:
+          description: Suggested replacement or insertion text.
+          maxLength: 3000
+          type:
+          - string
+          - 'null'
+        text_review_annotation_type:
+          description: 'The type of text review annotation. '
+          enum:
+          - highlight
+          - insert
+          - remove
+          - replace
+          type: string
+      required:
+      - bounds
+      - suggested_text
+      - selection_text
+      - text_review_annotation_type
+      title: TextReviewAnnotation
+      type: object
+    CreateCommentParams:
+      additionalProperties: false
+      description: Frame.io create comment params
+      example:
+        data:
+          anchor:
+            x: 0.5
+            y: 0.5
+          annotation: '[{"tool":"rect","color":"#F22237","size":8,"x":0.277726001863933,"y":0.12909555568499534,"w":0.3153168321877913,"h":0.5308131407269339,"ix":0.277726001863933,"iy":0.12909555568499534,"radius":8}]'
+          attachments:
+          - file_size: 1024000
+            media_type: image/png
+            name: screenshot.png
+          completed: false
+          duration: 10
+          links:
+          - end_index: 13
+            start_index: 5
+            url: https://www.example.com
+          page: 4
+          text: This is great!
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 00:00:02:12
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            anchor:
+              allOf:
+              - $ref: '#/components/schemas/Anchor'
+              description: Comment anchor location. {(x, y) | 0 <= x <= 1, 0 <= y <= 1}.
+              type:
+              - object
+              - 'null'
+            annotation:
+              description: JSON geometry for on-screen drawings. Allowed for document, image, video, or stream file types. JSON must be stringified
+              maxLength: 200000
+              type:
+              - string
+              - 'null'
+            attachments:
+              description: Optional attachments to create with the comment (max 6 attachments)
+              items:
+                $ref: '#/components/schemas/AttachmentInput'
+              type: array
+            completed:
+              description: Comment completion status
+              type:
+              - boolean
+              - 'null'
+            duration:
+              description: Duration of comment in frames. Requires presence of timestamp parameter
+              format: int32
+              minimum: 1
+              type:
+              - integer
+              - 'null'
+            links:
+              description: Comment text links.
+              items:
+                $ref: '#/components/schemas/LinkParams'
+              type: array
+            page:
+              description: Document page. Only allowed when file type is a pdf document
+              minimum: 1
+              type:
+              - integer
+              - 'null'
+            text:
+              description: Comment text (required)
+              maxLength: 40000
+              minLength: 1
+              type: string
+            text_review_annotation:
+              allOf:
+              - $ref: '#/components/schemas/TextReviewAnnotation'
+              description: Text review annotation details for comments left on text documents.
+            timestamp:
+              $ref: '#/components/schemas/TimeStamp'
+          required:
+          - text
+          type: object
+      required:
+      - data
+      title: CreateCommentParams
+      type: object
+    LinkParams:
+      example:
+        end_index: 13
+        start_index: 5
+        url: https://www.example.com
+      properties:
+        end_index:
+          description: End index of link text
+          format: int32
+          minimum: 1
+          type: integer
+        start_index:
+          description: Start index of link text
+          format: int32
+          minimum: 0
+          type: integer
+        url:
+          description: Link URL
+          type: string
+      required:
+      - start_index
+      - end_index
+      - url
+      title: LinkParams
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    CommentWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/Comment'
+      - properties:
+          owner:
+            $ref: '#/components/schemas/User'
+          replies:
+            description: Replies
+            items:
+              $ref: '#/components/schemas/Comment'
+            type: array
+        type: object
+      example:
+        anchor:
+          x: 0.5
+          y: 0.5
+        annotation: annotation
+        attachments:
+        - created_at: '2024-02-02T21:19:24.828948Z'
+          file_size: 1024000
+          id: 325ce490-eeac-4b84-879d-57d2a939bfae
+          media_type: image/png
+          name: screenshot.png
+          upload_urls:
+          - https://s3.amazonaws.com/bucket/part1?signature=...
+        completed_at: null
+        completer_id: null
+        created_at: '2024-02-02T21:19:24.828948Z'
+        duration: 10
+        file_id: 4ae08df1-b419-4897-aba5-560198a18237
+        id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+        links:
+        - end_index: 13
+          start_index: 5
+          text: Test User
+          url: https://www.example.com
+        mentions:
+        - end_index: 13
+          start_index: 5
+          text: Test User
+          user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+        owner:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        page: 1
+        replies: []
+        text: This is great!
+        text_edited_at: '2024-02-02T21:19:24.828948Z'
+        text_review_annotation:
+          bounds:
+          - height: 42.0
+            width: 130.0
+            x: 12.5
+            y: 24.0
+          selection_text: existing copy
+          suggested_text: updated copy
+          text_review_annotation_type: replace
+        timestamp: 123
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      title: CommentWithIncludes
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    Link:
+      example:
+        end_index: 13
+        start_index: 5
+        text: Test User
+        url: https://www.example.com
+      properties:
+        end_index:
+          description: End index of link text
+          minimum: 1
+          type: integer
+        start_index:
+          description: Start index of link text
+          format: int32
+          minimum: 0
+          type: integer
+        text:
+          description: Link text
+          type: string
+        url:
+          description: Link URL
+          type: string
+      required:
+      - start_index
+      - end_index
+      - text
+      - url
+      title: Link
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    TextReviewAnnotationUpdate:
+      description: Payload for updating an existing text review annotation.
+      example:
+        selection_text: existing copy
+        suggested_text: updated copy
+      minProperties: 1
+      properties:
+        bounds:
+          description: Optional bounds array. When omitted, previously stored bounds are preserved.
+          items:
+            $ref: '#/components/schemas/TextReviewAnnotationBounds'
+          minItems: 1
+          type: array
+        selection_text:
+          description: Optional selection text override.
+          type:
+          - string
+          - 'null'
+        suggested_text:
+          description: Optional suggestion override.
+          maxLength: 3000
+          type:
+          - string
+          - 'null'
+        text_review_annotation_type:
+          description: Optional annotation type override.
+          enum:
+          - highlight
+          - insert
+          - remove
+          - replace
+          type: string
+      title: TextReviewAnnotationUpdate
+      type: object
+    AttachmentInput:
+      additionalProperties: false
+      description: Input for creating a comment attachment
+      example:
+        file_size: 1024000
+        media_type: image/png
+        name: screenshot.png
+      properties:
+        file_size:
+          description: Attachment file size in bytes (up to 5TB)
+          maximum: 5000000000000
+          minimum: 1
+          type: integer
+        media_type:
+          description: File media type
+          maxLength: 255
+          minLength: 1
+          type: string
+        name:
+          description: Filename
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - name
+      - file_size
+      - media_type
+      title: AttachmentInput
+      type: object
     UpdateCommentParams:
       additionalProperties: false
       description: Frame.io update comment params
@@ -2776,352 +3058,6 @@ components:
       - data
       title: UpdateCommentParams
       type: object
-    TextReviewAnnotation:
-      example:
-        bounds:
-        - height: 42.0
-          width: 130.0
-          x: 12.5
-          y: 24.0
-        selection_text: existing copy
-        suggested_text: updated copy
-        text_review_annotation_type: replace
-      properties:
-        bounds:
-          description: An array of bounds representing a multiline selection origin at the lower-left corner.
-          items:
-            $ref: '#/components/schemas/TextReviewAnnotationBounds'
-          minItems: 1
-          type: array
-        selection_text:
-          description: Selected text from the document.
-          type:
-          - string
-          - 'null'
-        suggested_text:
-          description: Suggested replacement or insertion text.
-          maxLength: 3000
-          type:
-          - string
-          - 'null'
-        text_review_annotation_type:
-          description: 'The type of text review annotation. '
-          enum:
-          - highlight
-          - insert
-          - remove
-          - replace
-          type: string
-      required:
-      - bounds
-      - suggested_text
-      - selection_text
-      - text_review_annotation_type
-      title: TextReviewAnnotation
-      type: object
-    TextReviewAnnotationBounds:
-      example:
-        height: 42.0
-        width: 130.0
-        x: 12.5
-        y: 24.0
-      properties:
-        height:
-          description: Height of the rectangle
-          minimum: 0
-          type: number
-        width:
-          description: Width of the rectangle
-          minimum: 0
-          type: number
-        x:
-          description: Left corner position.
-          type: number
-        y:
-          description: Bottom corner position.
-          type: number
-      required:
-      - x
-      - y
-      - width
-      - height
-      title: TextReviewAnnotationBounds
-      type: object
-    CommentWithIncludes:
-      allOf:
-      - $ref: '#/components/schemas/Comment'
-      - properties:
-          owner:
-            $ref: '#/components/schemas/User'
-          replies:
-            description: Replies
-            items:
-              $ref: '#/components/schemas/Comment'
-            type: array
-        type: object
-      example:
-        anchor:
-          x: 0.5
-          y: 0.5
-        annotation: annotation
-        attachments:
-        - created_at: '2024-02-02T21:19:24.828948Z'
-          file_size: 1024000
-          id: 325ce490-eeac-4b84-879d-57d2a939bfae
-          media_type: image/png
-          name: screenshot.png
-          upload_urls:
-          - https://s3.amazonaws.com/bucket/part1?signature=...
-        completed_at: null
-        completer_id: null
-        created_at: '2024-02-02T21:19:24.828948Z'
-        duration: 10
-        file_id: 4ae08df1-b419-4897-aba5-560198a18237
-        id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
-        links:
-        - end_index: 13
-          start_index: 5
-          text: Test User
-          url: https://www.example.com
-        mentions:
-        - end_index: 13
-          start_index: 5
-          text: Test User
-          user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
-        owner:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        page: 1
-        replies: []
-        text: This is great!
-        text_edited_at: '2024-02-02T21:19:24.828948Z'
-        text_review_annotation:
-          bounds:
-          - height: 42.0
-            width: 130.0
-            x: 12.5
-            y: 24.0
-          selection_text: existing copy
-          suggested_text: updated copy
-          text_review_annotation_type: replace
-        timestamp: 123
-        updated_at: '2024-02-02T21:19:24.828948Z'
-      title: CommentWithIncludes
-      type: object
-    Link:
-      example:
-        end_index: 13
-        start_index: 5
-        text: Test User
-        url: https://www.example.com
-      properties:
-        end_index:
-          description: End index of link text
-          minimum: 1
-          type: integer
-        start_index:
-          description: Start index of link text
-          format: int32
-          minimum: 0
-          type: integer
-        text:
-          description: Link text
-          type: string
-        url:
-          description: Link URL
-          type: string
-      required:
-      - start_index
-      - end_index
-      - text
-      - url
-      title: Link
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
-    Anchor:
-      example:
-        x: 0.5
-        y: 0.5
-      properties:
-        x:
-          description: Horizontal comment anchor location.
-          format: float
-          maximum: 1.0
-          minimum: 0.0
-          type: number
-        y:
-          description: Vertical comment anchor location.
-          format: float
-          maximum: 1.0
-          minimum: 0.0
-          type: number
-      required:
-      - x
-      - y
-      title: Anchor
-      type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    CommentAttachment:
-      example:
-        created_at: '2024-02-02T21:19:24.828948Z'
-        file_size: 1024000
-        id: 325ce490-eeac-4b84-879d-57d2a939bfae
-        media_type: image/png
-        name: screenshot.png
-        upload_urls:
-        - https://s3.amazonaws.com/bucket/part1?signature=...
-      properties:
-        created_at:
-          description: Creation timestamp
-          format: date-time
-          type: string
-        file_size:
-          description: Attachment file size in bytes (up to 5TB)
-          type: integer
-        id:
-          description: Comment attachment ID
-          format: uuid
-          type: string
-        media_type:
-          description: File media type
-          type:
-          - string
-          - 'null'
-        name:
-          description: File name for the attachment
-          type: string
-        upload_urls:
-          description: Comment attachment upload URLs. Number of URLs returned will vary depending on the file size.
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      required:
-      - id
-      - name
-      - file_size
-      - media_type
-      - created_at
-      title: CommentAttachment
-      type: object
-    TimeStamp:
-      example: 00:00:02:12
-      oneOf:
-      - description: Comment timecode in media. Only allowed when file type is 'audio', 'stream', or 'video'.
-        format: HH:MM:SS:FF
-        type:
-        - string
-        - 'null'
-      - description: Comment frame in media. Only allowed when file type is 'audio', 'stream', or 'video'.
-        format: int32
-        minimum: 0
-        type:
-        - integer
-        - 'null'
-      title: TimeStamp
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    TextReviewAnnotationUpdate:
-      description: Payload for updating an existing text review annotation.
-      example:
-        selection_text: existing copy
-        suggested_text: updated copy
-      minProperties: 1
-      properties:
-        bounds:
-          description: Optional bounds array. When omitted, previously stored bounds are preserved.
-          items:
-            $ref: '#/components/schemas/TextReviewAnnotationBounds'
-          minItems: 1
-          type: array
-        selection_text:
-          description: Optional selection text override.
-          type:
-          - string
-          - 'null'
-        suggested_text:
-          description: Optional suggestion override.
-          maxLength: 3000
-          type:
-          - string
-          - 'null'
-        text_review_annotation_type:
-          description: Optional annotation type override.
-          enum:
-          - highlight
-          - insert
-          - remove
-          - replace
-          type: string
-      title: TextReviewAnnotationUpdate
-      type: object
     NotFound:
       example:
         errors:
@@ -3148,120 +3084,57 @@ components:
       - errors
       title: NotFound
       type: object
-    AttachmentInput:
-      additionalProperties: false
-      description: Input for creating a comment attachment
-      example:
-        file_size: 1024000
-        media_type: image/png
-        name: screenshot.png
-      properties:
-        file_size:
-          description: Attachment file size in bytes (up to 5TB)
-          maximum: 5000000000000
-          minimum: 1
-          type: integer
-        media_type:
-          description: File media type
-          maxLength: 255
-          minLength: 1
-          type: string
-        name:
-          description: Filename
-          maxLength: 255
-          minLength: 1
-          type: string
-      required:
-      - name
-      - file_size
-      - media_type
-      title: AttachmentInput
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    CreateAttachmentParams:
-      additionalProperties: false
-      description: Request body for creating a comment attachment
+    CommentResponse:
       example:
         data:
-          file_size: 1024000
-          media_type: image/png
-          name: screenshot.png
+          anchor:
+            x: 0.5
+            y: 0.5
+          annotation: annotation
+          attachments:
+          - created_at: '2024-02-02T21:19:24.828948Z'
+            file_size: 1024000
+            id: 325ce490-eeac-4b84-879d-57d2a939bfae
+            media_type: image/png
+            name: screenshot.png
+            upload_urls:
+            - https://s3.amazonaws.com/bucket/part1?signature=...
+          completed_at: null
+          completer_id: null
+          created_at: '2024-02-02T21:19:24.828948Z'
+          duration: 10
+          file_id: 4ae08df1-b419-4897-aba5-560198a18237
+          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+          links:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            url: https://www.example.com
+          mentions:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+          page: 1
+          text: This is great!
+          text_edited_at: '2024-02-02T21:19:24.828948Z'
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 123
+          updated_at: '2024-02-02T21:19:24.828948Z'
       properties:
         data:
-          $ref: '#/components/schemas/AttachmentInput'
+          $ref: '#/components/schemas/Comment'
       required:
       - data
-      title: CreateAttachmentParams
-      type: object
-    User:
-      description: User details
-      example:
-        active: true
-        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-        email: user_email@example.com
-        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-        name: Jon Doe
-      properties:
-        active:
-          description: User active status
-          type:
-          - boolean
-          - 'null'
-        adobe_user_id:
-          description: Adobe user ID
-          type:
-          - string
-          - 'null'
-        avatar_url:
-          description: User avatar image url
-          type:
-          - string
-          - 'null'
-        email:
-          description: User email
-          type: string
-        id:
-          description: User ID - can be null for invited users with no frame account
-          type:
-          - string
-          - 'null'
-        name:
-          description: User name
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-      - email
-      - avatar_url
-      - active
-      title: User
+      title: CommentResponse
       type: object
     Comment:
       example:
@@ -3413,36 +3286,163 @@ components:
       - links
       title: Comment
       type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    LinkParams:
+    CreateAttachmentParams:
+      additionalProperties: false
+      description: Request body for creating a comment attachment
       example:
-        end_index: 13
-        start_index: 5
-        url: https://www.example.com
+        data:
+          file_size: 1024000
+          media_type: image/png
+          name: screenshot.png
       properties:
-        end_index:
-          description: End index of link text
-          format: int32
-          minimum: 1
-          type: integer
-        start_index:
-          description: Start index of link text
-          format: int32
-          minimum: 0
-          type: integer
-        url:
-          description: Link URL
-          type: string
+        data:
+          $ref: '#/components/schemas/AttachmentInput'
       required:
-      - start_index
-      - end_index
-      - url
-      title: LinkParams
+      - data
+      title: CreateAttachmentParams
       type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    CommentAttachmentResponse:
+      example:
+        data:
+          created_at: '2025-11-11T17:41:34.358394Z'
+          file_size: 1024000
+          id: 1a3ccfb4-c431-4f39-b0b6-6b146b9beefe
+          media_type: image/png
+          name: Comp2.png
+          upload_urls:
+          - https://s3.amazonaws.com/bucket/part1?signature=...
+      properties:
+        data:
+          $ref: '#/components/schemas/CommentAttachment'
+      title: CommentAttachmentResponse
+      type: object
+    CommentAttachment:
+      example:
+        created_at: '2024-02-02T21:19:24.828948Z'
+        file_size: 1024000
+        id: 325ce490-eeac-4b84-879d-57d2a939bfae
+        media_type: image/png
+        name: screenshot.png
+        upload_urls:
+        - https://s3.amazonaws.com/bucket/part1?signature=...
+      properties:
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        file_size:
+          description: Attachment file size in bytes (up to 5TB)
+          type: integer
+        id:
+          description: Comment attachment ID
+          format: uuid
+          type: string
+        media_type:
+          description: File media type
+          type:
+          - string
+          - 'null'
+        name:
+          description: File name for the attachment
+          type: string
+        upload_urls:
+          description: Comment attachment upload URLs. Number of URLs returned will vary depending on the file size.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      required:
+      - id
+      - name
+      - file_size
+      - media_type
+      - created_at
+      title: CommentAttachment
+      type: object
+    CommentWithIncludesResponse:
+      example:
+        data:
+          anchor:
+            x: 0.5
+            y: 0.5
+          annotation: annotation
+          attachments:
+          - created_at: '2024-02-02T21:19:24.828948Z'
+            file_size: 1024000
+            id: 325ce490-eeac-4b84-879d-57d2a939bfae
+            media_type: image/png
+            name: screenshot.png
+            upload_urls:
+            - https://s3.amazonaws.com/bucket/part1?signature=...
+          completed_at: null
+          completer_id: null
+          created_at: '2024-02-02T21:19:24.828948Z'
+          duration: 10
+          file_id: 4ae08df1-b419-4897-aba5-560198a18237
+          id: ec771386-c3a8-4ed9-bb94-c8e0a2b84bd8
+          links:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            url: https://www.example.com
+          mentions:
+          - end_index: 13
+            start_index: 5
+            text: Test User
+            user_id: 38f42ae2-f44e-4bc3-9c34-b22fbcc57fbb
+          owner:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          page: 1
+          replies: []
+          text: This is great!
+          text_edited_at: '2024-02-02T21:19:24.828948Z'
+          text_review_annotation:
+            bounds:
+            - height: 42.0
+              width: 130.0
+              x: 12.5
+              y: 24.0
+            selection_text: existing copy
+            suggested_text: updated copy
+            text_review_annotation_type: replace
+          timestamp: 123
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/CommentWithIncludes'
+      required:
+      - data
+      title: CommentWithIncludesResponse
+      type: object
+    TimeStamp:
+      example: 00:00:02:12
+      oneOf:
+      - description: Comment timecode in media. Only allowed when file type is 'audio', 'stream', or 'video'.
+        format: HH:MM:SS:FF
+        type:
+        - string
+        - 'null'
+      - description: Comment frame in media. Only allowed when file type is 'audio', 'stream', or 'video'.
+        format: int32
+        minimum: 0
+        type:
+        - integer
+        - 'null'
+      title: TimeStamp
   securitySchemes:
     OAuth2:
       description: 'For more information, see: https://developer.adobe.com/frameio'

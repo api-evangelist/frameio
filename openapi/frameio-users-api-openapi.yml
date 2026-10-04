@@ -302,10 +302,10 @@ paths:
       - Users
 components:
   schemas:
-    UnprocessableContent:
+    Conflict:
       example:
         errors:
-        - detail: Unprocessable content
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -326,100 +326,7 @@ components:
           type: array
       required:
       - errors
-      title: UnprocessableContent
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
-    ProfileResponse:
-      description: User profile
-      example:
-        data:
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 9571e103-40c4-481a-8549-8f13495c537d
-          name: Name
-      properties:
-        data:
-          $ref: '#/components/schemas/Profile'
-      required:
-      - data
-      title: ProfileResponse
+      title: Conflict
       type: object
     Profile:
       description: User details
@@ -451,10 +358,10 @@ components:
       - id
       title: Profile
       type: object
-    Conflict:
+    Unauthorized:
       example:
         errors:
-        - detail: Conflict
+        - detail: Unauthorized
       properties:
         errors:
           items:
@@ -475,7 +382,48 @@ components:
           type: array
       required:
       - errors
-      title: Conflict
+      title: Unauthorized
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    ProfileResponse:
+      description: User profile
+      example:
+        data:
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 9571e103-40c4-481a-8549-8f13495c537d
+          name: Name
+      properties:
+        data:
+          $ref: '#/components/schemas/Profile'
+      required:
+      - data
+      title: ProfileResponse
       type: object
     TooManyRequests:
       example:
@@ -503,6 +451,32 @@ components:
       - errors
       title: TooManyRequests
       type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
     NotFound:
       example:
         errors:
@@ -528,6 +502,32 @@ components:
       required:
       - errors
       title: NotFound
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
       type: object
   securitySchemes:
     OAuth2:

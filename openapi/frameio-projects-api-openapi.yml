@@ -2236,122 +2236,6 @@ paths:
       - Projects
 components:
   schemas:
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          type:
-          - string
-          - 'null'
-      required:
-      - next
-      title: Links
-      type: object
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
-    ProjectParams:
-      additionalProperties: false
-      description: Project parameters for create operations
-      example:
-        data:
-          name: Project Name
-          restricted: true
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            name:
-              description: Project Name
-              maxLength: 255
-              minLength: 1
-              type: string
-            restricted:
-              description: Whether the project is restricted or not
-              type: boolean
-          required:
-          - name
-          type: object
-      required:
-      - data
-      title: ProjectParams
-      type: object
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      title: RequestAfterOpaqueCursor
-      type:
-      - string
-      - 'null'
-    ProjectsWithIncludesResponse:
-      description: Frame.io projects
-      example:
-        data:
-        - adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
-          created_at: '2024-01-25T19:18:29.614189Z'
-          description: Project Description
-          id: 18d9023a-6b06-4417-b3f4-bf87865c183f
-          name: My Project
-          owner:
-            active: true
-            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-            email: user_email@example.com
-            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-            name: Jon Doe
-          restricted: false
-          root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
-          status: active
-          storage: 15000
-          updated_at: '2024-02-07T16:44:41.986478Z'
-          view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
-          workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
-        links:
-          next: /v4/accounts/123/workspaces/123/projects
-        total_count: 10
-      properties:
-        data:
-          description: Projects
-          items:
-            $ref: '#/components/schemas/ProjectWithIncludes'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          type:
-          - integer
-          - 'null'
-      required:
-      - data
-      - links
-      title: ProjectsWithIncludesResponse
-      type: object
     Conflict:
       example:
         errors:
@@ -2378,31 +2262,152 @@ components:
       - errors
       title: Conflict
       type: object
-    UnprocessableContent:
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    ProjectUpdateParams:
+      additionalProperties: false
+      description: Project parameters for update operations
       example:
-        errors:
-        - detail: Unprocessable content
+        data:
+          name: Project Name
+          restricted: true
+          status: active
       properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
+        data:
+          additionalProperties: false
+          properties:
+            name:
+              description: Project Name
+              maxLength: 255
+              minLength: 1
+              type: string
+            restricted:
+              description: Whether the project is restricted or not
+              type: boolean
+            status:
+              description: Project Status
+              enum:
+              - active
+              - inactive
+              type: string
+          type: object
       required:
-      - errors
-      title: UnprocessableContent
+      - data
+      title: ProjectUpdateParams
+      type: object
+    ProjectWithIncludes:
+      allOf:
+      - $ref: '#/components/schemas/Project'
+      - properties:
+          description:
+            description: Project Description
+            type:
+            - string
+            - 'null'
+          owner:
+            $ref: '#/components/schemas/User'
+        required:
+        - description
+        type: object
+      example:
+        adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+        created_at: '2024-01-25T19:18:29.614189Z'
+        description: Project Description
+        id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+        name: My Project
+        owner:
+          active: true
+          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+          email: user_email@example.com
+          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+          name: Jon Doe
+        restricted: false
+        root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
+        status: active
+        storage: 15000
+        updated_at: '2024-02-07T16:44:41.986478Z'
+        view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+        workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+      title: ProjectWithIncludes
+      type: object
+    Links:
+      additionalProperties: false
+      description: Links to paginated data
+      example:
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
+      properties:
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
+          type:
+          - string
+          - 'null'
+      required:
+      - next
+      title: Links
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          type:
+          - boolean
+          - 'null'
+        adobe_user_id:
+          description: Adobe user ID
+          type:
+          - string
+          - 'null'
+        avatar_url:
+          description: User avatar image url
+          type:
+          - string
+          - 'null'
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          type:
+          - string
+          - 'null'
+        name:
+          description: User name
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
       type: object
     ProjectWithIncludesResponse:
       description: Frame.io project details
@@ -2433,6 +2438,219 @@ components:
       - data
       title: ProjectWithIncludesResponse
       type: object
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    ProjectParams:
+      additionalProperties: false
+      description: Project parameters for create operations
+      example:
+        data:
+          name: Project Name
+          restricted: true
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            name:
+              description: Project Name
+              maxLength: 255
+              minLength: 1
+              type: string
+            restricted:
+              description: Whether the project is restricted or not
+              type: boolean
+          required:
+          - name
+          type: object
+      required:
+      - data
+      title: ProjectParams
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
+      type: object
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
     Project:
       description: Frame.io Project
       example:
@@ -2504,76 +2722,6 @@ components:
       - view_url
       title: Project
       type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
-    ProjectWithIncludes:
-      allOf:
-      - $ref: '#/components/schemas/Project'
-      - properties:
-          description:
-            description: Project Description
-            type:
-            - string
-            - 'null'
-          owner:
-            $ref: '#/components/schemas/User'
-        required:
-        - description
-        type: object
-      example:
-        adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
-        created_at: '2024-01-25T19:18:29.614189Z'
-        description: Project Description
-        id: 18d9023a-6b06-4417-b3f4-bf87865c183f
-        name: My Project
-        owner:
-          active: true
-          avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-          email: user_email@example.com
-          id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-          name: Jon Doe
-        restricted: false
-        root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
-        status: active
-        storage: 15000
-        updated_at: '2024-02-07T16:44:41.986478Z'
-        view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
-        workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
-      title: ProjectWithIncludes
-      type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
     ProjectResponse:
       description: Frame.io project details
       example:
@@ -2596,197 +2744,49 @@ components:
       - data
       title: ProjectResponse
       type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    ProjectUpdateParams:
-      additionalProperties: false
-      description: Project parameters for update operations
+    ProjectsWithIncludesResponse:
+      description: Frame.io projects
       example:
         data:
-          name: Project Name
-          restricted: true
+        - adobe_id: urn:aaid:sc:US:9f4e4d7a-4b6b-4c4f-9f00-b31a91cfc6f3
+          created_at: '2024-01-25T19:18:29.614189Z'
+          description: Project Description
+          id: 18d9023a-6b06-4417-b3f4-bf87865c183f
+          name: My Project
+          owner:
+            active: true
+            avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+            email: user_email@example.com
+            id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+            name: Jon Doe
+          restricted: false
+          root_folder_id: 69110a93-de02-4e87-be46-28fa89c577a1
           status: active
+          storage: 15000
+          updated_at: '2024-02-07T16:44:41.986478Z'
+          view_url: https://next.frame.io/project/d5e6011c-2bc9-4596-be05-77d562627112/
+          workspace_id: a4759365-dc55-4c1d-8369-ea8244b76ae6
+        links:
+          next: /v4/accounts/123/workspaces/123/projects
+        total_count: 10
       properties:
         data:
-          additionalProperties: false
-          properties:
-            name:
-              description: Project Name
-              maxLength: 255
-              minLength: 1
-              type: string
-            restricted:
-              description: Whether the project is restricted or not
-              type: boolean
-            status:
-              description: Project Status
-              enum:
-              - active
-              - inactive
-              type: string
-          type: object
+          description: Projects
+          items:
+            $ref: '#/components/schemas/ProjectWithIncludes'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
       required:
       - data
-      title: ProjectUpdateParams
+      - links
+      title: ProjectsWithIncludesResponse
       type: object
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    NotFound:
-      example:
-        errors:
-        - detail: Not found
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: NotFound
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    User:
-      description: User details
-      example:
-        active: true
-        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-        email: user_email@example.com
-        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-        name: Jon Doe
-      properties:
-        active:
-          description: User active status
-          type:
-          - boolean
-          - 'null'
-        adobe_user_id:
-          description: Adobe user ID
-          type:
-          - string
-          - 'null'
-        avatar_url:
-          description: User avatar image url
-          type:
-          - string
-          - 'null'
-        email:
-          description: User email
-          type: string
-        id:
-          description: User ID - can be null for invited users with no frame account
-          type:
-          - string
-          - 'null'
-        name:
-          description: User name
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-      - email
-      - avatar_url
-      - active
-      title: User
-      type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
   securitySchemes:
     OAuth2:
       description: 'For more information, see: https://developer.adobe.com/frameio'
