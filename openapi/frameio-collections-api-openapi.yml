@@ -650,121 +650,6 @@ paths:
       - Collections
 components:
   schemas:
-    Collection:
-      example:
-        aggregation_mode: dynamic
-        auto_generated: false
-        created_at: '2024-02-02T21:19:24.828948Z'
-        description: Description of collection
-        id: b1d974ae-0a97-43d2-9851-4b0a35618c02
-        name: Test Collection
-        private: false
-        project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
-        root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
-        updated_at: '2024-02-02T21:19:24.828948Z'
-      properties:
-        aggregation_mode:
-          enum:
-          - static
-          - dynamic
-          type: string
-        auto_generated:
-          type: boolean
-        created_at:
-          description: Creation timestamp
-          format: date-time
-          type: string
-        creator:
-          $ref: '#/components/schemas/User'
-        description:
-          description: Collection description
-          type:
-          - string
-          - 'null'
-        id:
-          description: Collection ID
-          format: uuid
-          type: string
-        name:
-          description: Collection name
-          type:
-          - string
-          - 'null'
-        private:
-          type: boolean
-        project:
-          $ref: '#/components/schemas/Project'
-        project_id:
-          description: Project ID
-          format: uuid
-          type: string
-        root_folder_id:
-          description: Root folder ID
-          format: uuid
-          type:
-          - string
-          - 'null'
-        shares:
-          description: Shares
-          items:
-            $ref: '#/components/schemas/Share'
-          type: array
-        updated_at:
-          description: Update timestamp
-          format: date-time
-          type: string
-      required:
-      - id
-      - name
-      - description
-      - root_folder_id
-      - project_id
-      - auto_generated
-      - private
-      - aggregation_mode
-      - created_at
-      - updated_at
-      title: Collection
-      type: object
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
-      type: object
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      title: RequestAfterOpaqueCursor
-      type:
-      - string
-      - 'null'
     Links:
       additionalProperties: false
       description: Links to paginated data
@@ -787,51 +672,6 @@ components:
       required:
       - next
       title: Links
-      type: object
-    User:
-      description: User details
-      example:
-        active: true
-        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-        email: user_email@example.com
-        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-        name: Jon Doe
-      properties:
-        active:
-          description: User active status
-          type:
-          - boolean
-          - 'null'
-        adobe_user_id:
-          description: Adobe user ID
-          type:
-          - string
-          - 'null'
-        avatar_url:
-          description: User avatar image url
-          type:
-          - string
-          - 'null'
-        email:
-          description: User email
-          type: string
-        id:
-          description: User ID - can be null for invited users with no frame account
-          type:
-          - string
-          - 'null'
-        name:
-          description: User name
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-      - email
-      - avatar_url
-      - active
-      title: User
       type: object
     BadRequest:
       example:
@@ -858,127 +698,6 @@ components:
       required:
       - errors
       title: BadRequest
-      type: object
-    CollectionInclude:
-      description: Include query parameter for collections
-      example: creator,project
-      title: CollectionInclude
-      type: string
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
       type: object
     Share:
       example:
@@ -1076,10 +795,10 @@ components:
       - updated_at
       title: Share
       type: object
-    NotFound:
+    Conflict:
       example:
         errors:
-        - detail: Not found
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -1100,7 +819,33 @@ components:
           type: array
       required:
       - errors
-      title: NotFound
+      title: Conflict
+      type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
       type: object
     CollectionResponse:
       example:
@@ -1199,15 +944,185 @@ components:
       - links
       title: CollectionsResponse
       type: object
-    RequestPageSize:
-      default: 50
-      description: Page size query param for requests
-      example: 10
-      format: int32
-      maximum: 100
-      minimum: 1
-      title: RequestPageSize
-      type: integer
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    Collection:
+      example:
+        aggregation_mode: dynamic
+        auto_generated: false
+        created_at: '2024-02-02T21:19:24.828948Z'
+        description: Description of collection
+        id: b1d974ae-0a97-43d2-9851-4b0a35618c02
+        name: Test Collection
+        private: false
+        project_id: 9e0e8394-0236-48b4-8d5c-a57cea716f5a
+        root_folder_id: fa0ae62d-6692-410d-87b1-78abf8821789
+        updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        aggregation_mode:
+          enum:
+          - static
+          - dynamic
+          type: string
+        auto_generated:
+          type: boolean
+        created_at:
+          description: Creation timestamp
+          format: date-time
+          type: string
+        creator:
+          $ref: '#/components/schemas/User'
+        description:
+          description: Collection description
+          type:
+          - string
+          - 'null'
+        id:
+          description: Collection ID
+          format: uuid
+          type: string
+        name:
+          description: Collection name
+          type:
+          - string
+          - 'null'
+        private:
+          type: boolean
+        project:
+          $ref: '#/components/schemas/Project'
+        project_id:
+          description: Project ID
+          format: uuid
+          type: string
+        root_folder_id:
+          description: Root folder ID
+          format: uuid
+          type:
+          - string
+          - 'null'
+        shares:
+          description: Shares
+          items:
+            $ref: '#/components/schemas/Share'
+          type: array
+        updated_at:
+          description: Update timestamp
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - description
+      - root_folder_id
+      - project_id
+      - auto_generated
+      - private
+      - aggregation_mode
+      - created_at
+      - updated_at
+      title: Collection
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          type:
+          - boolean
+          - 'null'
+        adobe_user_id:
+          description: Adobe user ID
+          type:
+          - string
+          - 'null'
+        avatar_url:
+          description: User avatar image url
+          type:
+          - string
+          - 'null'
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          type:
+          - string
+          - 'null'
+        name:
+          description: User name
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
+      type: object
     Project:
       description: Frame.io Project
       example:
@@ -1278,6 +1193,91 @@ components:
       - updated_at
       - view_url
       title: Project
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
+    RequestPageSize:
+      default: 50
+      description: Page size query param for requests
+      example: 10
+      format: int32
+      maximum: 100
+      minimum: 1
+      title: RequestPageSize
+      type: integer
+    CollectionInclude:
+      description: Include query parameter for collections
+      example: creator,project
+      title: CollectionInclude
+      type: string
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: NotFound
       type: object
   securitySchemes:
     OAuth2:

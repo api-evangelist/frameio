@@ -600,6 +600,127 @@ paths:
       - Metadata
 components:
   schemas:
+    SelectOption:
+      example:
+        display_name: Display name
+        id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+      properties:
+        display_name:
+          description: Option display name
+          type: string
+        id:
+          description: Option ID
+          format: uuid
+          type: string
+      required:
+      - id
+      - display_name
+      title: SelectOption
+      type: object
+    BooleanValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            type:
+            - boolean
+            - 'null'
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: toggle
+        mutable: true
+        value: true
+      required:
+      - value
+      title: BooleanValue
+      type: object
+    MultiUserValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          custom_members:
+            description: Populated with custom member options only if `member_options_type` is set to 'custom'.
+            items:
+              $ref: '#/components/schemas/UserValue'
+            type: array
+          member_options_type:
+            enum:
+            - custom
+            - all_project_members
+            type: string
+          value:
+            items:
+              $ref: '#/components/schemas/UserValue'
+            type: array
+        type: object
+      example:
+        custom_members: []
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: user_multi
+        member_options_type: all_project_members
+        mutable: true
+        value:
+        - id: 43033894-3018-4670-9692-d908b691a0e4
+          type: user
+        - id: ff69e361-ce99-41b9-940f-20f5f9951c94
+          type: user
+      required:
+      - value
+      title: MultiUserValue
+      type: object
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
+      type: string
+    BadRequest:
+      example:
+        errors:
+        - detail: Bad request
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: BadRequest
+      type: object
+    IntegerValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            type:
+            - integer
+            - 'null'
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: rating
+        mutable: true
+        value: 4
+      required:
+      - value
+      title: IntegerValue
+      type: object
     Conflict:
       example:
         errors:
@@ -626,60 +747,251 @@ components:
       - errors
       title: Conflict
       type: object
-    MetadataWithDefinition:
+    TooManyRequests:
       example:
-        file_id: 4ba15760-a13d-4131-9b91-2d14f52c88fa
-        metadata:
-        - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-          field_definition_name: Fields definition name
-          field_options:
-          - display_name: Display name
-            id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
-          - display_name: Display name 2
-            id: 774fc8c5-d709-4b3f-af68-b6fb5622a6c7
-          field_type: select_multi
-          mutable: true
-          value:
-          - display_name: Display name
-            id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
-        - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-          field_definition_name: Fields definition name
-          field_type: text
-          mutable: true
-          value: text value
+        errors:
+        - detail: Too many requests
       properties:
-        file_id:
-          description: File ID
-          format: uuid
-          type: string
-        metadata:
-          description: Metadata fields values
+        errors:
           items:
-            $ref: '#/components/schemas/MetadataField'
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
           type: array
       required:
-      - file_id
-      - metadata
-      title: MetadataWithDefinition
+      - errors
+      title: TooManyRequests
       type: object
-    UserValue:
+    SingleUserValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          custom_members:
+            description: Populated with custom member options only if `member_options_type` is set to 'custom'.
+            items:
+              $ref: '#/components/schemas/UserValue'
+            type: array
+          member_options_type:
+            enum:
+            - custom
+            - all_project_members
+            type: string
+          value:
+            items:
+              $ref: '#/components/schemas/UserValue'
+            maxItems: 1
+            minItems: 0
+            type: array
+        type: object
       example:
-        id: 43033894-3018-4670-9692-d908b691a0e4
-        type: user
-      properties:
-        id:
-          description: User Id or Account User Group Id
-          format: uuid
-          type: string
-        type:
-          enum:
-          - user
-          - account_user_group
-          type: string
+        custom_members:
+        - id: 43033894-3018-4670-9692-d908b691a0e4
+          type: user
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: user_single
+        member_options_type: custom
+        mutable: true
+        value:
+        - id: 43033894-3018-4670-9692-d908b691a0e4
+          type: user
       required:
-      - id
-      - type
-      title: UserValue
+      - value
+      title: SingleUserValue
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    TextValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            type:
+            - string
+            - 'null'
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: text
+        mutable: true
+        value: text value
+      required:
+      - value
+      title: TextValue
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
+    SelectValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          field_options:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            type: array
+          value:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            maxItems: 1
+            minItems: 0
+            type: array
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_options:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+        - display_name: Display name 2
+          id: e5530483-30c0-4589-8313-6d3634c15e43
+        field_type: select
+        mutable: true
+        value:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+      required:
+      - value
+      title: SelectValue
+      type: object
+    NumberValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          value:
+            type:
+            - number
+            - 'null'
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_type: number
+        mutable: true
+        value: 2.0
+      required:
+      - value
+      title: NumberValue
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    MultiSelectValue:
+      allOf:
+      - $ref: '#/components/schemas/FieldValueCommon'
+      - properties:
+          field_options:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            type: array
+          value:
+            items:
+              $ref: '#/components/schemas/SelectOption'
+            type: array
+        type: object
+      example:
+        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+        field_definition_name: Fields definition name
+        field_options:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+        - display_name: Display name 2
+          id: 774fc8c5-d709-4b3f-af68-b6fb5622a6c7
+        field_type: select_multi
+        mutable: true
+        value:
+        - display_name: Display name
+          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+      required:
+      - value
+      title: MultiSelectValue
+      type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
       type: object
     MetadataResponse:
       example:
@@ -710,146 +1022,6 @@ components:
       - data
       title: MetadataResponse
       type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
-      type: string
     MetadataField:
       discriminator:
         mapping:
@@ -890,6 +1062,25 @@ components:
       - $ref: '#/components/schemas/MultiUserValue'
       title: MetadataField
       type: object
+    UserValue:
+      example:
+        id: 43033894-3018-4670-9692-d908b691a0e4
+        type: user
+      properties:
+        id:
+          description: User Id or Account User Group Id
+          format: uuid
+          type: string
+        type:
+          enum:
+          - user
+          - account_user_group
+          type: string
+      required:
+      - id
+      - type
+      title: UserValue
+      type: object
     DateValue:
       allOf:
       - $ref: '#/components/schemas/FieldValueCommon'
@@ -909,6 +1100,88 @@ components:
       required:
       - value
       title: DateValue
+      type: object
+    BulkUpdateMetadataParams:
+      example:
+        data:
+          file_ids:
+          - fef1d987-e209-4421-87a5-216148eeeddb
+          - c794014d-cbb5-4ef2-8932-aebec1e1d3a2
+          values:
+          - field_definition_id: 6eb448e9-39e4-4f39-8fd2-4a1711bf6d01
+            value:
+            - id: 1ab3fd1a-2f92-4fe0-94d8-f823c0edd66a
+              type: user
+            - id: 545c4dd6-3315-4fc1-887d-cec3624b6f82
+              type: account_user_group
+      properties:
+        data:
+          properties:
+            file_ids:
+              description: Files for bulk updates
+              items:
+                $ref: '#/components/schemas/FrameOrAdobeId'
+              maxItems: 100
+              minItems: 1
+              type: array
+            values:
+              description: "Metadata field and value mapping params. \nNote: Select and MultiSelect field values should be passed as lists, eg: [<uuid>]. Users and MultiUser values should be passed as lists formatted as follows: [{id: <user_id>, type: \"user\"}, {id: <user_group_id>, type: \"account_user_group\"}"
+              items:
+                properties:
+                  field_definition_id:
+                    format: uuid
+                    type: string
+                  value: {}
+                required:
+                - field_definition_id
+                - value
+                type: object
+              maxItems: 100
+              minItems: 1
+              type: array
+          required:
+          - file_ids
+          - values
+          type: object
+      required:
+      - data
+      title: BulkUpdateMetadataParams
+      type: object
+    MetadataWithDefinition:
+      example:
+        file_id: 4ba15760-a13d-4131-9b91-2d14f52c88fa
+        metadata:
+        - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+          field_definition_name: Fields definition name
+          field_options:
+          - display_name: Display name
+            id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+          - display_name: Display name 2
+            id: 774fc8c5-d709-4b3f-af68-b6fb5622a6c7
+          field_type: select_multi
+          mutable: true
+          value:
+          - display_name: Display name
+            id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
+        - field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
+          field_definition_name: Fields definition name
+          field_type: text
+          mutable: true
+          value: text value
+      properties:
+        file_id:
+          description: File ID
+          format: uuid
+          type: string
+        metadata:
+          description: Metadata fields values
+          items:
+            $ref: '#/components/schemas/MetadataField'
+          type: array
+      required:
+      - file_id
+      - metadata
+      title: MetadataWithDefinition
       type: object
     FieldValueCommon:
       description: Metadata field value
@@ -976,279 +1249,6 @@ components:
       required:
       - errors
       title: NotFound
-      type: object
-    SingleUserValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          custom_members:
-            description: Populated with custom member options only if `member_options_type` is set to 'custom'.
-            items:
-              $ref: '#/components/schemas/UserValue'
-            type: array
-          member_options_type:
-            enum:
-            - custom
-            - all_project_members
-            type: string
-          value:
-            items:
-              $ref: '#/components/schemas/UserValue'
-            maxItems: 1
-            minItems: 0
-            type: array
-        type: object
-      example:
-        custom_members:
-        - id: 43033894-3018-4670-9692-d908b691a0e4
-          type: user
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_type: user_single
-        member_options_type: custom
-        mutable: true
-        value:
-        - id: 43033894-3018-4670-9692-d908b691a0e4
-          type: user
-      required:
-      - value
-      title: SingleUserValue
-      type: object
-    SelectValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          field_options:
-            items:
-              $ref: '#/components/schemas/SelectOption'
-            type: array
-          value:
-            items:
-              $ref: '#/components/schemas/SelectOption'
-            maxItems: 1
-            minItems: 0
-            type: array
-        type: object
-      example:
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_options:
-        - display_name: Display name
-          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
-        - display_name: Display name 2
-          id: e5530483-30c0-4589-8313-6d3634c15e43
-        field_type: select
-        mutable: true
-        value:
-        - display_name: Display name
-          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
-      required:
-      - value
-      title: SelectValue
-      type: object
-    BulkUpdateMetadataParams:
-      example:
-        data:
-          file_ids:
-          - fef1d987-e209-4421-87a5-216148eeeddb
-          - c794014d-cbb5-4ef2-8932-aebec1e1d3a2
-          values:
-          - field_definition_id: 6eb448e9-39e4-4f39-8fd2-4a1711bf6d01
-            value:
-            - id: 1ab3fd1a-2f92-4fe0-94d8-f823c0edd66a
-              type: user
-            - id: 545c4dd6-3315-4fc1-887d-cec3624b6f82
-              type: account_user_group
-      properties:
-        data:
-          properties:
-            file_ids:
-              description: Files for bulk updates
-              items:
-                $ref: '#/components/schemas/FrameOrAdobeId'
-              maxItems: 100
-              minItems: 1
-              type: array
-            values:
-              description: "Metadata field and value mapping params. \nNote: Select and MultiSelect field values should be passed as lists, eg: [<uuid>]. Users and MultiUser values should be passed as lists formatted as follows: [{id: <user_id>, type: \"user\"}, {id: <user_group_id>, type: \"account_user_group\"}"
-              items:
-                properties:
-                  field_definition_id:
-                    format: uuid
-                    type: string
-                  value: {}
-                required:
-                - field_definition_id
-                - value
-                type: object
-              maxItems: 100
-              minItems: 1
-              type: array
-          required:
-          - file_ids
-          - values
-          type: object
-      required:
-      - data
-      title: BulkUpdateMetadataParams
-      type: object
-    TextValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          value:
-            type:
-            - string
-            - 'null'
-        type: object
-      example:
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_type: text
-        mutable: true
-        value: text value
-      required:
-      - value
-      title: TextValue
-      type: object
-    IntegerValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          value:
-            type:
-            - integer
-            - 'null'
-        type: object
-      example:
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_type: rating
-        mutable: true
-        value: 4
-      required:
-      - value
-      title: IntegerValue
-      type: object
-    MultiUserValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          custom_members:
-            description: Populated with custom member options only if `member_options_type` is set to 'custom'.
-            items:
-              $ref: '#/components/schemas/UserValue'
-            type: array
-          member_options_type:
-            enum:
-            - custom
-            - all_project_members
-            type: string
-          value:
-            items:
-              $ref: '#/components/schemas/UserValue'
-            type: array
-        type: object
-      example:
-        custom_members: []
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_type: user_multi
-        member_options_type: all_project_members
-        mutable: true
-        value:
-        - id: 43033894-3018-4670-9692-d908b691a0e4
-          type: user
-        - id: ff69e361-ce99-41b9-940f-20f5f9951c94
-          type: user
-      required:
-      - value
-      title: MultiUserValue
-      type: object
-    SelectOption:
-      example:
-        display_name: Display name
-        id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
-      properties:
-        display_name:
-          description: Option display name
-          type: string
-        id:
-          description: Option ID
-          format: uuid
-          type: string
-      required:
-      - id
-      - display_name
-      title: SelectOption
-      type: object
-    BooleanValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          value:
-            type:
-            - boolean
-            - 'null'
-        type: object
-      example:
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_type: toggle
-        mutable: true
-        value: true
-      required:
-      - value
-      title: BooleanValue
-      type: object
-    NumberValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          value:
-            type:
-            - number
-            - 'null'
-        type: object
-      example:
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_type: number
-        mutable: true
-        value: 2.0
-      required:
-      - value
-      title: NumberValue
-      type: object
-    MultiSelectValue:
-      allOf:
-      - $ref: '#/components/schemas/FieldValueCommon'
-      - properties:
-          field_options:
-            items:
-              $ref: '#/components/schemas/SelectOption'
-            type: array
-          value:
-            items:
-              $ref: '#/components/schemas/SelectOption'
-            type: array
-        type: object
-      example:
-        field_definition_id: 520662f7-6b13-4bad-bd72-0b6be0088e71
-        field_definition_name: Fields definition name
-        field_options:
-        - display_name: Display name
-          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
-        - display_name: Display name 2
-          id: 774fc8c5-d709-4b3f-af68-b6fb5622a6c7
-        field_type: select_multi
-        mutable: true
-        value:
-        - display_name: Display name
-          id: db37fc0c-56d2-42f5-97ce-7926ffe224ef
-      required:
-      - value
-      title: MultiSelectValue
       type: object
   securitySchemes:
     OAuth2:

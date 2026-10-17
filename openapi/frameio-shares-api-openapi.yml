@@ -3038,396 +3038,6 @@ paths:
       - Shares
 components:
   schemas:
-    Conflict:
-      example:
-        errors:
-        - detail: Conflict
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Conflict
-      type: object
-    SharesResponse:
-      description: Shares on a project
-      example:
-        data:
-        - access: public
-          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
-          commenting_enabled: true
-          created_at: '2024-02-02T21:19:24.828948Z'
-          description: Description of share
-          downloading_enabled: true
-          enabled: true
-          expiration: '2026-07-17T22:34:21.758403Z'
-          id: f82d1488-3ee2-4573-aa7c-c727e6266080
-          last_viewed_at: '2024-03-02T21:19:24.828948Z'
-          name: Test Share
-          passphrase: as!dfj39sd(*
-          short_url: https://f.io/GGa9wPw5
-          updated_at: '2024-02-02T21:19:24.828948Z'
-        links:
-          next: /v4/accounts/123/projects/123/shares
-        total_count: 10
-      properties:
-        data:
-          description: Shares
-          items:
-            $ref: '#/components/schemas/Share'
-          type: array
-        links:
-          $ref: '#/components/schemas/Links'
-        total_count:
-          description: Total count
-          type:
-          - integer
-          - 'null'
-      required:
-      - data
-      - links
-      title: SharesResponse
-      type: object
-    RequestAfterOpaqueCursor:
-      description: 'Opaque Cursor query param for requests returning paginated results.
-
-        <br/>
-
-        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
-
-        '
-      example: <opaque_cursor>
-      title: RequestAfterOpaqueCursor
-      type:
-      - string
-      - 'null'
-    Links:
-      additionalProperties: false
-      description: Links to paginated data
-      example:
-        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
-      properties:
-        next:
-          description: '"Link to next page of data.
-
-            <br/>
-
-            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
-
-            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
-
-            '
-          type:
-          - string
-          - 'null'
-      required:
-      - next
-      title: Links
-      type: object
-    User:
-      description: User details
-      example:
-        active: true
-        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
-        email: user_email@example.com
-        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
-        name: Jon Doe
-      properties:
-        active:
-          description: User active status
-          type:
-          - boolean
-          - 'null'
-        adobe_user_id:
-          description: Adobe user ID
-          type:
-          - string
-          - 'null'
-        avatar_url:
-          description: User avatar image url
-          type:
-          - string
-          - 'null'
-        email:
-          description: User email
-          type: string
-        id:
-          description: User ID - can be null for invited users with no frame account
-          type:
-          - string
-          - 'null'
-        name:
-          description: User name
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-      - email
-      - avatar_url
-      - active
-      title: User
-      type: object
-    BadRequest:
-      example:
-        errors:
-        - detail: Bad request
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: BadRequest
-      type: object
-    Forbidden:
-      example:
-        errors:
-        - detail: Forbidden
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Forbidden
-      type: object
-    UUID:
-      description: A UUID string that uniquely identifies a Frame.io entity.
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      format: uuid
-      title: UUID
-      type: string
-    IncludeTotalCount:
-      default: false
-      description: Page query param to include the count of all entities
-      example: false
-      title: IncludeTotalCount
-      type: boolean
-    Unauthorized:
-      example:
-        errors:
-        - detail: Unauthorized
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: Unauthorized
-      type: object
-    UnprocessableContent:
-      example:
-        errors:
-        - detail: Unprocessable content
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: UnprocessableContent
-      type: object
-    AddAssetResponse:
-      additionalProperties: false
-      example:
-        data:
-          access: public
-          asset_added: 257b251a-ffce-4c5c-b3e2-c3c77e1df0b9
-          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
-          commenting_enabled: true
-          created_at: '2024-02-02T21:19:24.828948Z'
-          description: Description of share
-          downloading_enabled: true
-          enabled: true
-          expiration: '2026-07-17T22:34:21.758403Z'
-          id: f82d1488-3ee2-4573-aa7c-c727e6266080
-          last_viewed_at: '2024-03-02T21:19:24.828948Z'
-          name: Test Share
-          passphrase: as!dfj39sd(*
-          short_url: https://f.io/GGa9wPw5
-          updated_at: '2024-02-02T21:19:24.828948Z'
-      properties:
-        data:
-          additionalProperties: false
-          allOf:
-          - $ref: '#/components/schemas/Share'
-          - properties:
-              asset_added:
-                description: ID for asset added
-                format: uuid
-                type: string
-            required:
-            - asset_added
-            type: object
-          type: object
-      required:
-      - data
-      title: AddAssetResponse
-      type: object
-    UpdateShareParams:
-      additionalProperties: false
-      description: Share update parameters
-      example:
-        data:
-          access: public
-          description: A descriptive summary of the share
-          downloading_enabled: true
-          expiration: '2026-07-17T22:34:21.758403Z'
-          name: Share Name
-          passphrase: as!dfj39sd(*
-      properties:
-        data:
-          additionalProperties: false
-          minProperties: 1
-          properties:
-            access:
-              enum:
-              - public
-              - secure
-              type: string
-            description:
-              description: 'Share description - NOTE: Requires feature custom_branded_shares'
-              maxLength: 640
-              minLength: 1
-              type:
-              - string
-              - 'null'
-            downloading_enabled:
-              description: Whether downloading is enabled on the share
-              type: boolean
-            expiration:
-              description: Expiration timestamp
-              format: date-time
-              type:
-              - string
-              - 'null'
-            name:
-              description: Share Name (must include at least one non-whitespace character and no line breaks)
-              maxLength: 175
-              minLength: 1
-              type:
-              - string
-              - 'null'
-            passphrase:
-              description: Passphrase to access share, if passphrase is required and not given it will be generated
-              maxLength: 255
-              type:
-              - string
-              - 'null'
-          type: object
-      required:
-      - data
-      title: UpdateShareParams
-      type: object
-    TooManyRequests:
-      example:
-        errors:
-        - detail: Too many requests
-      properties:
-        errors:
-          items:
-            additionalProperties: false
-            properties:
-              detail:
-                type: string
-              source:
-                properties:
-                  pointer:
-                    type: string
-                type: object
-              title:
-                type: string
-            required:
-            - detail
-            type: object
-          type: array
-      required:
-      - errors
-      title: TooManyRequests
-      type: object
-    NoContent:
-      description: Response schema for generic no content response.
-      example: ''
-      title: NoContent
-      type: string
-    Email:
-      description: A valid email address.
-      example: user_name@domain.com
-      title: Email
-      type: string
     RemoveReviewerParams:
       additionalProperties: false
       description: Remove reviewers from a secure share
@@ -3476,146 +3086,59 @@ components:
       - data
       title: RemoveReviewerParams
       type: object
-    AssetShareParams:
+    Links:
       additionalProperties: false
+      description: Links to paginated data
       example:
-        access: public
-        asset_ids:
-        - 5685a475-2cdf-4b7c-9605-44f164cb0d86
-        - b9d75ad3-0ee9-46af-ad2f-9ac576aab6ad
-        downloading_enabled: true
-        expiration: '2026-07-17T22:34:21.758403Z'
-        name: Share Name
-        passphrase: as!dfj39sd(*
-        type: asset
+        next: /v4/accounts/1234/workspaces/5678/projects?after=g3QAAAACZAACaWRtAAAAJGFiMmNiY2QzLWFkODQtNDQwMC05YTRkLWE1ZDRkMGE4ZTIxM2QABG5hbWVtAAAACVByb2plY3QgMg==
       properties:
-        access:
-          enum:
-          - public
-          - secure
-          type: string
-        asset_ids:
-          description: Asset IDs (File, folder, and/or version stack IDs).
-          items:
-            $ref: '#/components/schemas/FrameOrAdobeId'
-          maxItems: 100
-          minItems: 1
-          type: array
-        description:
-          description: 'Share description - NOTE: Requires feature custom_branded_shares'
-          maxLength: 640
+        next:
+          description: '"Link to next page of data.
+
+            <br/>
+
+            This link is the request path with the addition of the `after` query parameter to fetch the next page of results.
+
+            Optional query parameters `page_size` and `include_total_count` are supported when paginating data."
+
+            '
           type:
           - string
           - 'null'
-        downloading_enabled:
-          description: Whether downloading is enabled on the share
-          type: boolean
-        expiration:
-          description: Expiration timestamp
-          format: date-time
-          type:
-          - string
-          - 'null'
-        name:
-          description: Share Name (must include at least one non-whitespace character and no line breaks)
-          maxLength: 175
-          minLength: 1
-          type: string
-        passphrase:
-          description: Passphrase to access share, if passphrase is required and not given it will be generated
-          maxLength: 255
-          type:
-          - string
-          - 'null'
-        type:
-          description: Entity type
-          enum:
-          - asset
-          type: string
       required:
-      - type
-      - name
-      - access
-      title: AssetShareParams
+      - next
+      title: Links
       type: object
-    AddReviewersToShareParams:
-      additionalProperties: false
-      description: Add reviewers to a share
-      example:
-        data:
-          message: Please join my share!
-          reviewers:
-            emails:
-            - email1@domain.com
-            - email2@domain.com
-      properties:
-        data:
-          additionalProperties: false
-          properties:
-            message:
-              description: Message for notification content
-              type: string
-            reviewers:
-              additionalProperties: false
-              maxProperties: 1
-              properties:
-                adobe_user_ids:
-                  description: Adobe User IDs
-                  items:
-                    type: string
-                  maxItems: 10
-                  minItems: 1
-                  type: array
-                  uniqueItems: true
-                emails:
-                  description: Email Addresses
-                  items:
-                    $ref: '#/components/schemas/Email'
-                  maxItems: 10
-                  minItems: 1
-                  type: array
-                  uniqueItems: true
-                user_ids:
-                  description: User IDs
-                  items:
-                    $ref: '#/components/schemas/UUID'
-                  maxItems: 10
-                  minItems: 1
-                  type: array
-                  uniqueItems: true
-              type: object
-          required:
-          - reviewers
-          - message
-          type: object
-      required:
-      - data
-      title: AddReviewersToShareParams
-      type: object
-    FrameOrAdobeId:
-      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
-      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
-      title: FrameOrAdobeId
+    NoContent:
+      description: Response schema for generic no content response.
+      example: ''
+      title: NoContent
       type: string
-    AddAssetParams:
-      additionalProperties: false
-      description: Add asset to share parameters
+    BadRequest:
       example:
-        data:
-          asset_id: 877937d0-1966-4385-9aea-4866a0cf554a
+        errors:
+        - detail: Bad request
       properties:
-        data:
-          additionalProperties: false
-          properties:
-            asset_id:
-              description: ID for asset to be added.
-              type: string
-          required:
-          - asset_id
-          type: object
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
       required:
-      - data
-      title: AddAssetParams
+      - errors
+      title: BadRequest
       type: object
     Share:
       example:
@@ -3713,10 +3236,138 @@ components:
       - updated_at
       title: Share
       type: object
-    NotFound:
+    RemoveAssetResponse:
+      additionalProperties: false
+      example:
+        data:
+          access: public
+          asset_removed: 257b251a-ffce-4c5c-b3e2-c3c77e1df0b9
+          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
+          commenting_enabled: true
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of share
+          downloading_enabled: true
+          enabled: true
+          expiration: '2026-07-17T22:34:21.758403Z'
+          id: f82d1488-3ee2-4573-aa7c-c727e6266080
+          last_viewed_at: '2024-03-02T21:19:24.828948Z'
+          name: Test Share
+          passphrase: as!dfj39sd(*
+          short_url: https://f.io/GGa9wPw5
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          additionalProperties: false
+          allOf:
+          - $ref: '#/components/schemas/Share'
+          - properties:
+              asset_removed:
+                description: ID for asset added
+                format: uuid
+                type: string
+            required:
+            - asset_removed
+            type: object
+          type: object
+      required:
+      - data
+      title: RemoveAssetResponse
+      type: object
+    AddReviewersToShareParams:
+      additionalProperties: false
+      description: Add reviewers to a share
+      example:
+        data:
+          message: Please join my share!
+          reviewers:
+            emails:
+            - email1@domain.com
+            - email2@domain.com
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            message:
+              description: Message for notification content
+              type: string
+            reviewers:
+              additionalProperties: false
+              maxProperties: 1
+              properties:
+                adobe_user_ids:
+                  description: Adobe User IDs
+                  items:
+                    type: string
+                  maxItems: 10
+                  minItems: 1
+                  type: array
+                  uniqueItems: true
+                emails:
+                  description: Email Addresses
+                  items:
+                    $ref: '#/components/schemas/Email'
+                  maxItems: 10
+                  minItems: 1
+                  type: array
+                  uniqueItems: true
+                user_ids:
+                  description: User IDs
+                  items:
+                    $ref: '#/components/schemas/UUID'
+                  maxItems: 10
+                  minItems: 1
+                  type: array
+                  uniqueItems: true
+              type: object
+          required:
+          - reviewers
+          - message
+          type: object
+      required:
+      - data
+      title: AddReviewersToShareParams
+      type: object
+    AddAssetResponse:
+      additionalProperties: false
+      example:
+        data:
+          access: public
+          asset_added: 257b251a-ffce-4c5c-b3e2-c3c77e1df0b9
+          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
+          commenting_enabled: true
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of share
+          downloading_enabled: true
+          enabled: true
+          expiration: '2026-07-17T22:34:21.758403Z'
+          id: f82d1488-3ee2-4573-aa7c-c727e6266080
+          last_viewed_at: '2024-03-02T21:19:24.828948Z'
+          name: Test Share
+          passphrase: as!dfj39sd(*
+          short_url: https://f.io/GGa9wPw5
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          additionalProperties: false
+          allOf:
+          - $ref: '#/components/schemas/Share'
+          - properties:
+              asset_added:
+                description: ID for asset added
+                format: uuid
+                type: string
+            required:
+            - asset_added
+            type: object
+          type: object
+      required:
+      - data
+      title: AddAssetResponse
+      type: object
+    Conflict:
       example:
         errors:
-        - detail: Not found
+        - detail: Conflict
       properties:
         errors:
           items:
@@ -3737,8 +3388,89 @@ components:
           type: array
       required:
       - errors
-      title: NotFound
+      title: Conflict
       type: object
+    TooManyRequests:
+      example:
+        errors:
+        - detail: Too many requests
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: TooManyRequests
+      type: object
+    ShareResponse:
+      example:
+        data:
+          access: public
+          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
+          commenting_enabled: true
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of share
+          downloading_enabled: true
+          enabled: true
+          expiration: '2026-07-17T22:34:21.758403Z'
+          id: f82d1488-3ee2-4573-aa7c-c727e6266080
+          last_viewed_at: '2024-03-02T21:19:24.828948Z'
+          name: Test Share
+          passphrase: as!dfj39sd(*
+          short_url: https://f.io/GGa9wPw5
+          updated_at: '2024-02-02T21:19:24.828948Z'
+      properties:
+        data:
+          $ref: '#/components/schemas/Share'
+      required:
+      - data
+      title: ShareResponse
+      type: object
+    UnprocessableContent:
+      example:
+        errors:
+        - detail: Unprocessable content
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: UnprocessableContent
+      type: object
+    FrameOrAdobeId:
+      description: A Frame.io or Adobe entity identifier. Typically a Frame.io UUID. But for accounts, projects, folders, files, and version stacks that reside in Adobe cloud storage, which is the case for Workfront-connected accounts and projects, an Adobe-assigned id may also be used interchangeably. These ids must be prefixed with `adobe:` (e.g. `adobe:<adobe_org_id>` for an account, `adobe:<adobe_asset_id>` for a project or folder, `adobe:`adobe:<adobe_asset_id>|<version>` for a file asset).
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      title: FrameOrAdobeId
+      type: string
     ShareReviewersResponse:
       description: Share reviewers
       example:
@@ -3762,6 +3494,147 @@ components:
       required:
       - data
       title: ShareReviewersResponse
+      type: object
+    Forbidden:
+      example:
+        errors:
+        - detail: Forbidden
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Forbidden
+      type: object
+    Email:
+      description: A valid email address.
+      example: user_name@domain.com
+      title: Email
+      type: string
+    AddAssetParams:
+      additionalProperties: false
+      description: Add asset to share parameters
+      example:
+        data:
+          asset_id: 877937d0-1966-4385-9aea-4866a0cf554a
+      properties:
+        data:
+          additionalProperties: false
+          properties:
+            asset_id:
+              description: ID for asset to be added.
+              type: string
+          required:
+          - asset_id
+          type: object
+      required:
+      - data
+      title: AddAssetParams
+      type: object
+    IncludeTotalCount:
+      default: false
+      description: Page query param to include the count of all entities
+      example: false
+      title: IncludeTotalCount
+      type: boolean
+    SharesResponse:
+      description: Shares on a project
+      example:
+        data:
+        - access: public
+          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
+          commenting_enabled: true
+          created_at: '2024-02-02T21:19:24.828948Z'
+          description: Description of share
+          downloading_enabled: true
+          enabled: true
+          expiration: '2026-07-17T22:34:21.758403Z'
+          id: f82d1488-3ee2-4573-aa7c-c727e6266080
+          last_viewed_at: '2024-03-02T21:19:24.828948Z'
+          name: Test Share
+          passphrase: as!dfj39sd(*
+          short_url: https://f.io/GGa9wPw5
+          updated_at: '2024-02-02T21:19:24.828948Z'
+        links:
+          next: /v4/accounts/123/projects/123/shares
+        total_count: 10
+      properties:
+        data:
+          description: Shares
+          items:
+            $ref: '#/components/schemas/Share'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        total_count:
+          description: Total count
+          type:
+          - integer
+          - 'null'
+      required:
+      - data
+      - links
+      title: SharesResponse
+      type: object
+    User:
+      description: User details
+      example:
+        active: true
+        avatar_url: https://assets.frame.io/uploads/cd58cb8e-24b3-4448-8d0f-9532fcd04d11/original.png?response-content-disposition=attachment%3B+filename%3D%22foo.png&Expires=1729857600&Signature=L09h0pi82dCrMYjr9lMHBragByWYh1&Key-Pair-Id=KKI497NESTHMN
+        email: user_email@example.com
+        id: 196C1A5666BF4EB00A49411B@176719f5667c82b4494214.e
+        name: Jon Doe
+      properties:
+        active:
+          description: User active status
+          type:
+          - boolean
+          - 'null'
+        adobe_user_id:
+          description: Adobe user ID
+          type:
+          - string
+          - 'null'
+        avatar_url:
+          description: User avatar image url
+          type:
+          - string
+          - 'null'
+        email:
+          description: User email
+          type: string
+        id:
+          description: User ID - can be null for invited users with no frame account
+          type:
+          - string
+          - 'null'
+        name:
+          description: User name
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - email
+      - avatar_url
+      - active
+      title: User
       type: object
     CreateShareParams:
       additionalProperties: false
@@ -3799,30 +3672,93 @@ components:
       - data
       title: CreateShareParams
       type: object
-    ShareResponse:
+    UpdateShareParams:
+      additionalProperties: false
+      description: Share update parameters
       example:
         data:
           access: public
-          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
-          commenting_enabled: true
-          created_at: '2024-02-02T21:19:24.828948Z'
-          description: Description of share
+          description: A descriptive summary of the share
           downloading_enabled: true
-          enabled: true
           expiration: '2026-07-17T22:34:21.758403Z'
-          id: f82d1488-3ee2-4573-aa7c-c727e6266080
-          last_viewed_at: '2024-03-02T21:19:24.828948Z'
-          name: Test Share
+          name: Share Name
           passphrase: as!dfj39sd(*
-          short_url: https://f.io/GGa9wPw5
-          updated_at: '2024-02-02T21:19:24.828948Z'
       properties:
         data:
-          $ref: '#/components/schemas/Share'
+          additionalProperties: false
+          minProperties: 1
+          properties:
+            access:
+              enum:
+              - public
+              - secure
+              type: string
+            description:
+              description: 'Share description - NOTE: Requires feature custom_branded_shares'
+              maxLength: 640
+              minLength: 1
+              type:
+              - string
+              - 'null'
+            downloading_enabled:
+              description: Whether downloading is enabled on the share
+              type: boolean
+            expiration:
+              description: Expiration timestamp
+              format: date-time
+              type:
+              - string
+              - 'null'
+            name:
+              description: Share Name (must include at least one non-whitespace character and no line breaks)
+              maxLength: 175
+              minLength: 1
+              type:
+              - string
+              - 'null'
+            passphrase:
+              description: Passphrase to access share, if passphrase is required and not given it will be generated
+              maxLength: 255
+              type:
+              - string
+              - 'null'
+          type: object
       required:
       - data
-      title: ShareResponse
+      title: UpdateShareParams
       type: object
+    Unauthorized:
+      example:
+        errors:
+        - detail: Unauthorized
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
+                type: string
+            required:
+            - detail
+            type: object
+          type: array
+      required:
+      - errors
+      title: Unauthorized
+      type: object
+    UUID:
+      description: A UUID string that uniquely identifies a Frame.io entity.
+      example: b2702c44-c6da-4bb6-8bbd-be6e547ccf1b
+      format: uuid
+      title: UUID
+      type: string
     RequestPageSize:
       default: 50
       description: Page size query param for requests
@@ -3832,42 +3768,106 @@ components:
       minimum: 1
       title: RequestPageSize
       type: integer
-    RemoveAssetResponse:
+    AssetShareParams:
       additionalProperties: false
       example:
-        data:
-          access: public
-          asset_removed: 257b251a-ffce-4c5c-b3e2-c3c77e1df0b9
-          collection_id: 28dd260d-dead-4dd9-a149-e1c6175080f6
-          commenting_enabled: true
-          created_at: '2024-02-02T21:19:24.828948Z'
-          description: Description of share
-          downloading_enabled: true
-          enabled: true
-          expiration: '2026-07-17T22:34:21.758403Z'
-          id: f82d1488-3ee2-4573-aa7c-c727e6266080
-          last_viewed_at: '2024-03-02T21:19:24.828948Z'
-          name: Test Share
-          passphrase: as!dfj39sd(*
-          short_url: https://f.io/GGa9wPw5
-          updated_at: '2024-02-02T21:19:24.828948Z'
+        access: public
+        asset_ids:
+        - 5685a475-2cdf-4b7c-9605-44f164cb0d86
+        - b9d75ad3-0ee9-46af-ad2f-9ac576aab6ad
+        downloading_enabled: true
+        expiration: '2026-07-17T22:34:21.758403Z'
+        name: Share Name
+        passphrase: as!dfj39sd(*
+        type: asset
       properties:
-        data:
-          additionalProperties: false
-          allOf:
-          - $ref: '#/components/schemas/Share'
-          - properties:
-              asset_removed:
-                description: ID for asset added
-                format: uuid
+        access:
+          enum:
+          - public
+          - secure
+          type: string
+        asset_ids:
+          description: Asset IDs (File, folder, and/or version stack IDs).
+          items:
+            $ref: '#/components/schemas/FrameOrAdobeId'
+          maxItems: 100
+          minItems: 1
+          type: array
+        description:
+          description: 'Share description - NOTE: Requires feature custom_branded_shares'
+          maxLength: 640
+          type:
+          - string
+          - 'null'
+        downloading_enabled:
+          description: Whether downloading is enabled on the share
+          type: boolean
+        expiration:
+          description: Expiration timestamp
+          format: date-time
+          type:
+          - string
+          - 'null'
+        name:
+          description: Share Name (must include at least one non-whitespace character and no line breaks)
+          maxLength: 175
+          minLength: 1
+          type: string
+        passphrase:
+          description: Passphrase to access share, if passphrase is required and not given it will be generated
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        type:
+          description: Entity type
+          enum:
+          - asset
+          type: string
+      required:
+      - type
+      - name
+      - access
+      title: AssetShareParams
+      type: object
+    RequestAfterOpaqueCursor:
+      description: 'Opaque Cursor query param for requests returning paginated results.
+
+        <br/>
+
+        NOTE: this value is auto-generated and included as part of links from a previous response. It is not intended to be human readable.
+
+        '
+      example: <opaque_cursor>
+      title: RequestAfterOpaqueCursor
+      type:
+      - string
+      - 'null'
+    NotFound:
+      example:
+        errors:
+        - detail: Not found
+      properties:
+        errors:
+          items:
+            additionalProperties: false
+            properties:
+              detail:
+                type: string
+              source:
+                properties:
+                  pointer:
+                    type: string
+                type: object
+              title:
                 type: string
             required:
-            - asset_removed
+            - detail
             type: object
-          type: object
+          type: array
       required:
-      - data
-      title: RemoveAssetResponse
+      - errors
+      title: NotFound
       type: object
   securitySchemes:
     OAuth2:
